@@ -1,0 +1,7 @@
+com/wimk/domain/Child.class
+com/wimk/domain/Point.class
+com/wimk/controllers/ServletInitializer.class
+com/wimk/domain/Area.class
+com/wimk/config/AppConfig.class
+com/wimk/controllers/RegisterController.class
+com/wimk/domain/Parent.class
