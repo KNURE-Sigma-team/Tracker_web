@@ -10,16 +10,14 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan 
-(basePackages = {"com.wimk.controllers"})
+@ComponentScan(basePackages = { "com.wimk.controllers" })
 public class AppConfig {
 	@Bean
-	public ViewResolver jspViewResolver(){
-	 InternalResourceViewResolver resolver = new
-	InternalResourceViewResolver();
-	 resolver.setViewClass(JstlView.class);
-	 resolver.setPrefix("/WEB-INF/views/");
-	 resolver.setSuffix(".jsp");
-	 return resolver;
+	public ViewResolver jspViewResolver() {
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setViewClass(JstlView.class);
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setSuffix(".jsp");
+		return resolver;
 	}
 }
