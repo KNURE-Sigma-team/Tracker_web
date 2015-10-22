@@ -12,11 +12,6 @@
 		<hb.manager>4.2.5.Final</hb.manager>
 		<mysql.version>5.1.29</mysql.version>
 		<spring.data>1.3.4.RELEASE</spring.data>
-
-		<!-- <spring.mvc>4.0.3.RELEASE</spring.mvc>
-		<javax.servlet>3.0.1</javax.servlet>
-		<spring.test>3.2.4.RELEASE</spring.test>
-		<junit.version>4.11</junit.version> -->
 	</properties>
 
 	<dependencies>
@@ -58,9 +53,40 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hb.manager}</version>
 		</dependency>
-		<!-- End for DB -->
+
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>3.2.4.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.2.4.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.2.4.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>3.2.4.RELEASE</version>
+		</dependency>
+		<!-- Jstl Dependencies -->
+		<dependency>
+			<groupId>org.apache.taglibs</groupId>
+			<artifactId>taglibs-standard-jstlel</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+
 	</dependencies>
-	
+
 	<build>
 		<finalName>wimk</finalName>
 		<plugins>
