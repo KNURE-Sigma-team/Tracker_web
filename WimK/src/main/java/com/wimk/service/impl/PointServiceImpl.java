@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.wimk.entity.Child;
 import com.wimk.entity.Point;
 import com.wimk.repository.PointRepository;
 import com.wimk.service.PointService;
@@ -31,6 +32,10 @@ public class PointServiceImpl implements PointService {
 
 	public List<Point> getAll() {
 		return pointRepository.findAll();
+	}
+
+	public List<Point> getAllPointsOfChild(Child child) {
+		return pointRepository.findPointsByChild(child.getId());
 	}
 
 }

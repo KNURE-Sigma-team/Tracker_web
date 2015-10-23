@@ -30,6 +30,9 @@
 				<a href="<c:url value="/add_child" />" role="button">Добавить ребенка</a>
 			</p>
 			<p>
+				<a href="<c:url value="/view_points" />" role="button">Просмотреть точки ребенка</a>
+			</p>
+			<p>
 				<a href="<c:url value="/logout" />" role="button">Выйти</a>
 			</p>
 		</sec:authorize>

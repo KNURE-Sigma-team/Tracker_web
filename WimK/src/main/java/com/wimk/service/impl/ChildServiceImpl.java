@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wimk.entity.Child;
+import com.wimk.entity.Parent;
 import com.wimk.repository.ChildRepository;
 import com.wimk.service.ChildService;
 
@@ -32,6 +33,10 @@ public class ChildServiceImpl implements ChildService {
 
 	public List<Child> getAll() {
 		return childRepository.findAll();
+	}
+
+	public List<Child> getChildOfParent(Parent parent) {
+		return childRepository.findChildOfParent(parent.getIdParent());
 	}
 
 }

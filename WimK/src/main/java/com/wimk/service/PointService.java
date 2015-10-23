@@ -2,6 +2,7 @@ package com.wimk.service;
 
 import java.util.List;
 
+import com.wimk.entity.Child;
 import com.wimk.entity.Point;
 
 public interface PointService {
@@ -12,4 +13,6 @@ public interface PointService {
 	Point editParent(Point point);
 
 	List<Point> getAll();
+	
+	List<Point> getAllPointsOfChild(Child child);
 }
