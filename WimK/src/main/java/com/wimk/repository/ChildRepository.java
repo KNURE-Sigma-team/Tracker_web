@@ -15,4 +15,6 @@ public interface ChildRepository extends JpaRepository<Child, Integer> {
 	@Query(value = "SELECT * FROM Child WHERE idParent=:idParent", nativeQuery = true)
 	List<Child> findChildOfParent(@Param("idParent") Integer idParent);
 	
+	@Query("select c from Child c where c.id=:idChild")
+	Child findById(@Param("idChild") Integer idChild);
 }

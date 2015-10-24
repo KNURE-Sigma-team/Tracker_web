@@ -25,14 +25,14 @@ public class AddChildController {
 	ParentService parentService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String viewRegistration(Map<String, Object> model) {
+	public String viewAdditionChild(Map<String, Object> model) {
 		Child child = new Child();
 		model.put("userForm", child);
 		return "AddChild";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String processRegistration(@ModelAttribute("userForm") Child child, Map<String, Object> model) {
+	public String processAdditionChild(@ModelAttribute("userForm") Child child, Map<String, Object> model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String login = auth.getName();
 		Parent parent = parentService.getByLogin(login);

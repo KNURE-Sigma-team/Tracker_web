@@ -39,4 +39,8 @@ public class ChildServiceImpl implements ChildService {
 		return childRepository.findChildOfParent(parent.getIdParent());
 	}
 
+	public Child getById(Integer id) {
+		return childRepository.findById(id);
+	}
+
 }

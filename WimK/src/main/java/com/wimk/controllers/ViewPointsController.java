@@ -30,7 +30,18 @@ public class ViewPointsController {
 
 	@Autowired
 	PointService pointService;
-
+	
+	
+	/*
+	 	Method get request and model.
+	 	return name of view.
+	 	Method process input data from request and put in model:
+	 	 1) list of parents child;
+	 	 2) current child. If parameter in request "currentChild" == null then currentChild 
+	 	 		will be first child in list else currentChild.
+	 	 3) list of points current child. 
+	 */
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String viewShowPoints(HttpServletRequest request, Map<String, Object> model) {
 		

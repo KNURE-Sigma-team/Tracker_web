@@ -18,6 +18,7 @@ public class PointServiceImpl implements PointService {
 	
 	@Transactional(readOnly = false)
 	public Point addPoint(Point point) {
+		point.setId(-1);
 		return pointRepository.saveAndFlush(point);
 	}
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/")
 public class MainController {
 	@RequestMapping(method = RequestMethod.GET)
-	public String viewLogin(Map<String, Object> model) {
+	public String viewMainForm(Map<String, Object> model) {
 		return "Index";
 	}
 }

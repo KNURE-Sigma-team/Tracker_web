@@ -15,4 +15,6 @@ public interface ChildService {
 	List<Child> getAll();
 	
 	List<Child> getChildOfParent(Parent parent);
+	
+	Child getById(Integer id);
 }
