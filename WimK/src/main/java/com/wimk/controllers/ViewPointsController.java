@@ -1,5 +1,6 @@
 package com.wimk.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,26 +31,23 @@ public class ViewPointsController {
 
 	@Autowired
 	PointService pointService;
-	
-	
+
 	/*
-	 	Method get request and model.
-	 	return name of view.
-	 	Method process input data from request and put in model:
-	 	 1) list of parents child;
-	 	 2) current child. If parameter in request "currentChild" == null then currentChild 
-	 	 		will be first child in list else currentChild.
-	 	 3) list of points current child. 
+	 * Method get request and model. return name of view. Method process input
+	 * data from request and put in model: 1) list of parents child; 2) current
+	 * child. If parameter in request "currentChild" == null then currentChild
+	 * will be first child in list else currentChild. 3) list of points current
+	 * child.
 	 */
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String viewShowPoints(HttpServletRequest request, Map<String, Object> model) {
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String login = auth.getName();
 		Parent parent = parentService.getByLogin(login);
 		List<Child> listOfChild = childService.getChildOfParent(parent);
-		
+
 		Child currentChild = null;
 		if (request.getParameter("currentChild") != null) {
 			for (Child c : listOfChild) {
@@ -61,12 +59,12 @@ public class ViewPointsController {
 		} else if (listOfChild.size() > 0) {
 			currentChild = listOfChild.get(0);
 		}
-		
-		List<Point> listOfPoints = null;
-		if(currentChild!=null){
+
+		List<Point> listOfPoints = new ArrayList<Point>();
+		if (currentChild != null) {
 			listOfPoints = pointService.getAllPointsOfChild(currentChild);
 		}
-		
+
 		model.put("listOfChild", listOfChild);
 		model.put("currentChild", currentChild);
 		model.put("listOfPoints", listOfPoints);

@@ -33,7 +33,8 @@ public class MobileGetPointController {
 	/*
 	 * Method get request and response. Request must contain new parameters:
 	 * "idChild", "longitude", "latitude", "battery_level", "time". Based on
-	 * this data method put new point in the database.
+	 * this data method put new point in the database. Return "OK" if method
+	 * success end else "Invalid input data"
 	 */
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -42,17 +43,19 @@ public class MobileGetPointController {
 		Double longitude = Double.parseDouble(request.getParameter("longitude"));
 		Double latitude = Double.parseDouble(request.getParameter("latitude"));
 		Integer battery_level = Integer.parseInt(request.getParameter("battery_level"));
-		
+		String pointType = request.getParameter("point_type");
+
 		String timeString = request.getParameter("time");
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
 		Date time;
 		try {
 			time = format.parse(timeString);
 		} catch (ParseException e) {
-			return null;
+			return "Invalid input data";
 		}
 
-		if (idChild != null || longitude != null || latitude != null || battery_level != null || time != null) {
+		if (idChild != null && longitude != null && latitude != null && battery_level != null
+				&& time != null && pointType != null) {
 			Child child = childService.getById(idChild);
 			if (child != null) {
 				Point point = new Point();
@@ -61,10 +64,12 @@ public class MobileGetPointController {
 				point.setY(longitude);
 				point.setBatteryStatus(battery_level);
 				point.setTime(time);
+				point.setPointType(pointType);
 				pointService.addPoint(point);
+				return "OK";
 			}
 		}
-		return null;
+		return "Exception";
 	}
 
 }

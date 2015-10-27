@@ -33,9 +33,6 @@ public class Child implements Serializable{
 	@Column(name = "login")
 	private String login;
 
-	@Column(name = "password")
-	private String password;
-
 	@Column(name = "sendingFrequency")
 	private Integer sendingFrequency;
 	
@@ -61,14 +58,6 @@ public class Child implements Serializable{
 
 	public void setLogin(String login) {
 		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	
 	public Integer getSendingFrequency() {
