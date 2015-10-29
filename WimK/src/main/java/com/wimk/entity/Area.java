@@ -37,7 +37,7 @@ public class Area implements Serializable {
 	private Double y;
 
 	@Column(name = "radius")
-	private Integer radius;
+	private Double radius;
 
 	@Column(name = "allowed")
 	private Boolean allowed;
@@ -74,11 +74,11 @@ public class Area implements Serializable {
 		this.y = y;
 	}
 
-	public Integer getRadius() {
+	public Double getRadius() {
 		return radius;
 	}
 
-	public void setRadius(Integer radius) {
+	public void setRadius(Double radius) {
 		this.radius = radius;
 	}
 

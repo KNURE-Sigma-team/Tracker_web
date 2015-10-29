@@ -13,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wimk.entity.Area;
 import com.wimk.entity.Child;
 import com.wimk.entity.Parent;
 import com.wimk.entity.Point;
+import com.wimk.service.AreaService;
 import com.wimk.service.ChildService;
 import com.wimk.service.ParentService;
 import com.wimk.service.PointService;
@@ -31,7 +33,10 @@ public class ViewPointsController {
 
 	@Autowired
 	PointService pointService;
-
+	
+	@Autowired
+	AreaService areaService;
+	
 	/*
 	 * Method get request and model. return name of view. Method process input
 	 * data from request and put in model: 1) list of parents child; 2) current
@@ -61,13 +66,16 @@ public class ViewPointsController {
 		}
 
 		List<Point> listOfPoints = new ArrayList<Point>();
+		List<Area> listOfAreas = new ArrayList<Area>();
 		if (currentChild != null) {
 			listOfPoints = pointService.getAllPointsOfChild(currentChild);
+			listOfAreas = areaService.getAllAreasOfChild(currentChild);
 		}
 
 		model.put("listOfChild", listOfChild);
 		model.put("currentChild", currentChild);
 		model.put("listOfPoints", listOfPoints);
+		model.put("listOfAreas", listOfAreas);
 
 		return "ViewPoints";
 	}

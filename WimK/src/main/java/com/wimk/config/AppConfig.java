@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -16,7 +18,7 @@ import com.wimk.secure.UserDetailsServiceImpl;
 @EnableWebMvc
 @ComponentScan(basePackages = { "com.wimk.controllers" })
 @Import(AppSecurityConfig.class)
-public class AppConfig {
+public class AppConfig extends WebMvcConfigurerAdapter{
 	@Bean
 	public ViewResolver jspViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -29,5 +31,10 @@ public class AppConfig {
 	@Bean
 	public UserDetailsService getUserDetailsService() {
 		return new UserDetailsServiceImpl();
+	}
+	
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 }

@@ -87,6 +87,10 @@ CREATE TABLE IF NOT EXISTS `db_wimk`.`area` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+alter table child drop column password;
+alter table point add pointType varchar(20);
+alter table child drop index login;
+alter table area modify radius double;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

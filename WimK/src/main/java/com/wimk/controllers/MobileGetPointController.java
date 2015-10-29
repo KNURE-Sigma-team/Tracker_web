@@ -40,8 +40,8 @@ public class MobileGetPointController {
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody String getPoint(HttpServletRequest request, HttpServletResponse response) {
 		Integer idChild = Integer.parseInt(request.getParameter("idChild"));
-		Double longitude = Double.parseDouble(request.getParameter("longitude"));
 		Double latitude = Double.parseDouble(request.getParameter("latitude"));
+		Double longitude = Double.parseDouble(request.getParameter("longitude"));
 		Integer battery_level = Integer.parseInt(request.getParameter("battery_level"));
 		String pointType = request.getParameter("point_type");
 
