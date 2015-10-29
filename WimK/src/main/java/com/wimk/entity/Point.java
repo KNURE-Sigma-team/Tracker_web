@@ -22,7 +22,7 @@ public class Point implements Serializable {
 	private static final long serialVersionUID = -5517566248012296042L;
 
 	@Id
-	@Column(name = "idpoint")
+	@Column(name = "idPoint")
 	@GeneratedValue(generator= "increment")
 	@GenericGenerator(name= "increment", strategy= "increment")
 	private Integer id;

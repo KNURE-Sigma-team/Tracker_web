@@ -15,13 +15,13 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "area")
+@Table(name = "Area")
 public class Area implements Serializable {
 
 	private static final long serialVersionUID = -5517566248012236042L;
 
 	@Id
-	@Column(name = "idarea")
+	@Column(name = "idArea")
 	@GeneratedValue(generator= "increment")
 	@GenericGenerator(name= "increment", strategy= "increment")
 	private Integer id;

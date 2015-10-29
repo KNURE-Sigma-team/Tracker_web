@@ -1,83 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="viewPoints/map.css">
+
+<!-- URLs -->
+<spring:url value="/resources/core/css/map.css" var="mapCss" />
+<spring:url value="/resources/core/js/map.js" var="mapJs" />
+<spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
+
+<!-- CSS styles -->
+<link href="${mapCss}" rel="stylesheet" type="text/css"/>
+
+<!-- JS scripts -->
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV1ck7gCmYPxEXLsYPDsU6LIXcbd1OKXM&callback=initMap"></script>
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV1ck7gCmYPxEXLsYPDsU6LIXcbd1OKXM&libraries=drawing"></script>
-<script type="text/javascript">
-function initMap(latitude,longitude) {
-	var map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: latitude, lng: longitude},
-		zoom: 16
-	});
-	return map;
-}
-function drawPoint(latitude,longitude,map){
-	var marker = new google.maps.Marker({
-    position: {lat:latitude,lng:longitude},
-    map: map,
-  });
-}
-</script>
+<script src="${mapJs}" type="text/javascript"></script>
+<script src="${jquery}" type="text/javascript"></script>
 
-<style>
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
-#map {
-	height: 100%;
-	width: 80%;
-	float: right;
-}
-#menu{
-	height: 100%;
-	width: 20%;
-	float: left;
-	background-color: #ffffff;
-}
-</style>
 <title>Insert title here</title>
 </head>
 <body>
 	<div id="menu" align="center">
-		<select onchange = "document.location='view_points?currentChild='+this.options[this.selectedIndex].value">
-		<%@ page import = "java.util.List" %>
-		<%@ page import = "com.wimk.entity.Child"%>
-		<%@ page import = "com.wimk.entity.Point"%>
-			<%
-			List<Child> listOfChild = (List<Child>)request.getAttribute("listOfChild");
-			Child currentChild = (Child) request.getAttribute("currentChild");
-			for (int i=0; i < listOfChild.size(); ++i){
-			%>
-			<option value = <%= listOfChild.get(i).getLogin() %>
-			<% if(currentChild.getLogin() == listOfChild.get(i).getLogin()) {%> selected <%} %> > 
-			<%= listOfChild.get(i).getLogin() %></option>
-			<%
-			}
-			%>
+		<select id="childLogin" onchange = "document.location='view_points?currentChild='+this.options[this.selectedIndex].value">
+			<c:forEach items="${listOfChild}" var="child" >
+				<option value = ${child.login}
+					<c:if test="${currentChild.login==child.login}">selected</c:if>> 
+					${child.login}
+				</option>
+			</c:forEach>
 		</select>
 		<br/>
 		<a href="<c:url value="/" />">To main menu</a>
+		<br/>
+		<button onclick = changeMode() >Change mode</button>
+		<br/>
+		<button id="confirmAreaChanges" onclick = confirmChanges() >Confirm changes</button>
+		<br/>
+		<button id="changeAreaColor" onclick = changeDrawingColor() >Change drawing color</button>
 	</div>
 	<div id="map"></div>
 	<script language="javascript">
-		var map = initMap(50.003902, 36.233614);
-		<%
-		List<Point> listOfPoints = (List<Point>)request.getAttribute("listOfPoints");
-		for (int i=0; i < listOfPoints.size(); ++i){
-		%>
-			drawPoint(<%= listOfPoints.get(i).getX() %>, <%= listOfPoints.get(i).getY() %>, map);
-		<%
-		}
-		%>
+		initMap(50.003902, 36.233614);
+		<c:forEach items="${listOfPoints}" var="point" >
+			drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>);
+		</c:forEach>
+		<c:forEach items="${listOfAreas}" var="area" >
+			addArea(<c:out value="${area.x}"/>, <c:out value="${area.y}"/>, <c:out value="${area.radius}"/>, <c:out value="${area.allowed}"/>, <c:out value="${area.id}"/>);
+		</c:forEach>
 	</script>
 </body>
 </html>
