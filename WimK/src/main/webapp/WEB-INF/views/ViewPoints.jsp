@@ -20,6 +20,7 @@
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV1ck7gCmYPxEXLsYPDsU6LIXcbd1OKXM&callback=initMap"></script>
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCV1ck7gCmYPxEXLsYPDsU6LIXcbd1OKXM&libraries=drawing"></script>
+<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel.js"></script>
 <script src="${mapJs}" type="text/javascript"></script>
 <script src="${jquery}" type="text/javascript"></script>
 
@@ -51,7 +52,9 @@
 			drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>);
 		</c:forEach>
 		<c:forEach items="${listOfAreas}" var="area" >
-			addArea(<c:out value="${area.x}"/>, <c:out value="${area.y}"/>, <c:out value="${area.radius}"/>, <c:out value="${area.allowed}"/>, <c:out value="${area.id}"/>);
+			addArea(<c:out value="${area.x}"/>, <c:out value="${area.y}"/>, 
+					<c:out value="${area.radius}"/>, <c:out value="${area.allowed}"/>, 
+					<c:out value="${area.id}"/>, '<c:out value="${area.name}"/>');
 		</c:forEach>
 	</script>
 </body>

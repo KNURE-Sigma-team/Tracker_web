@@ -58,6 +58,7 @@ public class AreaEditorController {
 			String y = request.getParameter("longitude");
 			String radius = request.getParameter("radius");
 			String allowed = request.getParameter("allowed");
+			String name = request.getParameter("name");
 			
 			Area area = new Area();
 			area.setChild(currentChild);
@@ -65,6 +66,7 @@ public class AreaEditorController {
 			area.setY(Double.parseDouble(y));
 			area.setRadius(Double.parseDouble(radius));
 			area.setAllowed(Boolean.parseBoolean(allowed));
+			area.setName(name);
 			areaService.addArea(area);
 		}
 	}
@@ -77,6 +79,7 @@ public class AreaEditorController {
 			String y = request.getParameter("longitude");
 			String radius = request.getParameter("radius");
 			String allowed = request.getParameter("allowed");
+			String name = request.getParameter("name");
 			
 			Area area = new Area();
 			area.setId(Integer.parseInt(areaId));
@@ -85,6 +88,7 @@ public class AreaEditorController {
 			area.setY(Double.parseDouble(y));
 			area.setRadius(Double.parseDouble(radius));
 			area.setAllowed(Boolean.parseBoolean(allowed));
+			area.setName(name);
 			areaService.editArea(area);
 		}
 	}

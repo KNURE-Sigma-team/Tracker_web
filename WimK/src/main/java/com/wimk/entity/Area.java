@@ -41,6 +41,9 @@ public class Area implements Serializable {
 
 	@Column(name = "allowed")
 	private Boolean allowed;
+	
+	@Column(name = "name")
+	private String name;
 
 	public Integer getId() {
 		return id;
@@ -88,5 +91,14 @@ public class Area implements Serializable {
 
 	public void setAllowed(Boolean allowed) {
 		this.allowed = allowed;
+	}	
+
+	public String getName() {
+		return name;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }
