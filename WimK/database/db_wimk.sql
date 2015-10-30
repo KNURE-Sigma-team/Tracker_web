@@ -94,4 +94,5 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 alter table child drop column password;
 alter table point add pointType varchar(20);
 alter table child drop index login;
+alter table area modify radius double;
 alter table area add column name varchar(45);
