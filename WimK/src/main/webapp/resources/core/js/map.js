@@ -146,7 +146,7 @@ function addArea(x, y, radius, isAllowed, id, name) {
 	});
 	google.maps.event.addListener(circle, 'dblclick', function() {
 		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle) && ctrlDown) {
+			if(compareCircles(listArea[i].circle, circle) && getCtrlDown()) {
 				if(editMode){
 					circle.setVisible(false);
 					listArea[i].status = 'removed';
@@ -155,19 +155,23 @@ function addArea(x, y, radius, isAllowed, id, name) {
 				break;
 			}
 		}
+		setCtrlDown(false);
 	});
 	google.maps.event.addListener(circle, "rightclick", function (e) { 
 		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle) && ctrlDown) {
-				var areaName = listArea[i].label.text;
-				areaName = prompt("Enter new name for area", areaName);
-				if(areaName != null){
-					listArea[i].label.set('text', areaName);
-					listArea[i].status = 'changed';
+			if(compareCircles(listArea[i].circle, circle) && getCtrlDown()) {
+				if(editMode){
+					var areaName = listArea[i].label.text;
+					areaName = prompt("Enter new name for area", areaName);
+					if(areaName != null){
+						listArea[i].label.set('text', areaName);
+						listArea[i].status = 'changed';
+					}
 				}
 				break;
 			}
 		}
+		setCtrlDown(false);
 	});
 	sizeListArea++;
 }
@@ -195,7 +199,7 @@ google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle)
 	
 	google.maps.event.addListener(circle, "dblclick", function (e) { 
 		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle) && ctrlDown) {
+			if(compareCircles(listArea[i].circle, circle) && getCtrlDown()) {
 				if(editMode){
 					circle.setVisible(false);
 					listArea[i].status = 'removed_not_check';
@@ -204,6 +208,7 @@ google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle)
 				break;
 			}
 		}
+		setCtrlDown(false);
 	});
 	google.maps.event.addListener(circle, "center_changed", function (e) { 
 		for(i=0; i < sizeListArea; ++i){
@@ -226,15 +231,18 @@ google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle)
 	});
 	google.maps.event.addListener(circle, "rightclick", function (e) { 
 		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle) && ctrlDown) {
-				var areaName = listArea[i].label.text;
-				areaName = prompt("Enter new name for area", areaName);
-				if(areaName != null){
-					listArea[i].label.set('text', areaName);
+			if(compareCircles(listArea[i].circle, circle) && getCtrlDown()) {
+				if(edit_mode){
+					var areaName = listArea[i].label.text;
+					areaName = prompt("Enter new name for area", areaName);
+					if(areaName != null){
+						listArea[i].label.set('text', areaName);
+					}
 				}
 				break;
 			}
 		}
+		setCtrlDown(false);
 	});
 });
 // ======================================================================================
@@ -303,7 +311,18 @@ function compareCircles(circle1, circle2){
 // ======================================================================================
 // 										Check pressed Ctrl 
 // ======================================================================================
-var ctrlDown = false;
+var ctrlDown = {
+	value : false
+};
+
+function setCtrlDown(value){
+	ctrlDown.value = value;
+}
+
+function getCtrlDown(){
+	return ctrlDown.value;
+}
+
 var addEvent = function(elem, type, handler){
 	if (elem.addEventListener){
 		elem.addEventListener(type, handler, false)
@@ -316,7 +335,10 @@ addEvent(window.document,'keydown',function(event){
 	event = (event) ? event : window.event;
 	keyCode=(event.charCode) ? event.charCode : event.keyCode;
 	if(keyCode==17){
-		ctrlDown=true;
+		setCtrlDown(true);
+		flag = true;
 	}
 });
-addEvent(window.document,'keyup',function(){ctrlDown=false});
+addEvent(window.document,'keyup',function(){
+	setCtrlDown(false);
+});
