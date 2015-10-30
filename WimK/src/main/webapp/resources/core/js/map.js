@@ -168,11 +168,13 @@ function addArea(x, y, radius, isAllowed, id, name) {
 			if(listArea[i].circle.getCenter() == circle.getCenter() 
 				&& listArea[i].circle.getRadius() == circle.getRadius()
 				&& listArea[i].circle.fillColor == circle.fillColor){
-				var areaName = listArea[i].label.text;
-				areaName = prompt("Enter new name for area", areaName);
-				if(areaName != null){
-					listArea[i].label.set('text', areaName);
-					listArea[i].status = 'changed';
+				if(editMode){
+					var areaName = listArea[i].label.text;
+					areaName = prompt("Enter new name for area", areaName);
+					if(areaName != null){
+						listArea[i].label.set('text', areaName);
+						listArea[i].status = 'changed';
+					}
 				}
 				break;
 			}
@@ -231,10 +233,12 @@ google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle)
 			if(listArea[i].circle.getCenter() == circle.getCenter() 
 				&& listArea[i].circle.getRadius() == circle.getRadius()
 				&& listArea[i].circle.fillColor == circle.fillColor){
-				var areaName = listArea[i].label.text;
-				areaName = prompt("Enter new name for area", areaName);
-				if(areaName != null){
-					listArea[i].label.set('text', areaName);
+				if(editMode){
+					var areaName = listArea[i].label.text;
+					areaName = prompt("Enter new name for area", areaName);
+					if(areaName != null){
+						listArea[i].label.set('text', areaName);
+					}
 				}
 				break;
 			}
