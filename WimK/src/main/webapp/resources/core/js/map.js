@@ -89,7 +89,6 @@ function changeDrawingColor(){
 
 // Function for adding area from database.
 function addArea(x, y, radius, isAllowed, id, name) {
-	
 	var color;
 	if (isAllowed) {
 		color = allowedColor;
@@ -130,9 +129,7 @@ function addArea(x, y, radius, isAllowed, id, name) {
 	// Description events of areas
 	google.maps.event.addListener(circle, 'center_changed', function() {
 		for(i=0; i < sizeListArea; ++i){
-			if(listArea[i].circle.getCenter() == circle.getCenter()
-				&& listArea[i].circle.getRadius() == circle.getRadius()
-				&& listArea[i].circle.fillColor == circle.fillColor){
+			if(compareCircles(listArea[i].circle, circle)) {
 				listArea[i].status = 'changed';
 				listArea[i].label.set('position', circle.getCenter());
 				break;
@@ -141,9 +138,7 @@ function addArea(x, y, radius, isAllowed, id, name) {
 	});
 	google.maps.event.addListener(circle, 'radius_changed', function() {
 		for(i=0; i < sizeListArea; ++i){
-			if(listArea[i].circle.getCenter() == circle.getCenter() 
-				&& listArea[i].circle.getRadius() == circle.getRadius()
-				&& listArea[i].circle.fillColor == circle.fillColor){
+			if(compareCircles(listArea[i].circle, circle)) {
 				listArea[i].status = 'changed';
 				break;
 			}
@@ -151,9 +146,7 @@ function addArea(x, y, radius, isAllowed, id, name) {
 	});
 	google.maps.event.addListener(circle, 'dblclick', function() {
 		for(i=0; i < sizeListArea; ++i){
-			if(listArea[i].circle.getCenter() == circle.getCenter() 
-				&& listArea[i].circle.getRadius() == circle.getRadius()
-				&& listArea[i].circle.fillColor == circle.fillColor){
+			if(compareCircles(listArea[i].circle, circle) && ctrlDown) {
 				if(editMode){
 					circle.setVisible(false);
 					listArea[i].status = 'removed';
@@ -165,16 +158,12 @@ function addArea(x, y, radius, isAllowed, id, name) {
 	});
 	google.maps.event.addListener(circle, "rightclick", function (e) { 
 		for(i=0; i < sizeListArea; ++i){
-			if(listArea[i].circle.getCenter() == circle.getCenter() 
-				&& listArea[i].circle.getRadius() == circle.getRadius()
-				&& listArea[i].circle.fillColor == circle.fillColor){
-				if(editMode){
-					var areaName = listArea[i].label.text;
-					areaName = prompt("Enter new name for area", areaName);
-					if(areaName != null){
-						listArea[i].label.set('text', areaName);
-						listArea[i].status = 'changed';
-					}
+			if(compareCircles(listArea[i].circle, circle) && ctrlDown) {
+				var areaName = listArea[i].label.text;
+				areaName = prompt("Enter new name for area", areaName);
+				if(areaName != null){
+					listArea[i].label.set('text', areaName);
+					listArea[i].status = 'changed';
 				}
 				break;
 			}
@@ -206,9 +195,7 @@ google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle)
 	
 	google.maps.event.addListener(circle, "dblclick", function (e) { 
 		for(i=0; i < sizeListArea; ++i){
-			if(listArea[i].circle.getCenter() == circle.getCenter() 
-				&& listArea[i].circle.getRadius() == circle.getRadius()
-				&& listArea[i].circle.fillColor == circle.fillColor){
+			if(compareCircles(listArea[i].circle, circle) && ctrlDown) {
 				if(editMode){
 					circle.setVisible(false);
 					listArea[i].status = 'removed_not_check';
@@ -220,25 +207,30 @@ google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle)
 	});
 	google.maps.event.addListener(circle, "center_changed", function (e) { 
 		for(i=0; i < sizeListArea; ++i){
-			if(listArea[i].circle.getCenter() == circle.getCenter() 
-				&& listArea[i].circle.getRadius() == circle.getRadius()
-				&& listArea[i].circle.fillColor == circle.fillColor){
+			if(compareCircles(listArea[i].circle, circle)) {
+				if(listArea[i].status == 'old') {
+					listArea[i].status = 'changed';
+				}
 				listArea[i].label.set('position', circle.getCenter());
+				break;
+			}
+		}
+	});
+	google.maps.event.addListener(circle, 'radius_changed', function() {
+		for(i=0; i < sizeListArea; ++i){
+			if(compareCircles(listArea[i].circle, circle) && listArea[i].status == 'old') {
+				listArea[i].status = 'changed';
 				break;
 			}
 		}
 	});
 	google.maps.event.addListener(circle, "rightclick", function (e) { 
 		for(i=0; i < sizeListArea; ++i){
-			if(listArea[i].circle.getCenter() == circle.getCenter() 
-				&& listArea[i].circle.getRadius() == circle.getRadius()
-				&& listArea[i].circle.fillColor == circle.fillColor){
-				if(editMode){
-					var areaName = listArea[i].label.text;
-					areaName = prompt("Enter new name for area", areaName);
-					if(areaName != null){
-						listArea[i].label.set('text', areaName);
-					}
+			if(compareCircles(listArea[i].circle, circle) && ctrlDown) {
+				var areaName = listArea[i].label.text;
+				areaName = prompt("Enter new name for area", areaName);
+				if(areaName != null){
+					listArea[i].label.set('text', areaName);
 				}
 				break;
 			}
@@ -297,3 +289,34 @@ function executeQuery(data){
 		data: data
 	});
 }
+
+// ======================================================================================
+// 										Compare circles 
+// ======================================================================================
+function compareCircles(circle1, circle2){
+	if(circle1.getCenter() == circle2.getCenter() && circle1.getRadius() == circle2.getRadius() 
+		&& circle1.fillColor == circle2.fillColor){
+		return true;
+	}
+	return false;
+}
+// ======================================================================================
+// 										Check pressed Ctrl 
+// ======================================================================================
+var ctrlDown = false;
+var addEvent = function(elem, type, handler){
+	if (elem.addEventListener){
+		elem.addEventListener(type, handler, false)
+	} else {
+		elem.attachEvent("on"+type, handler)
+	}
+	return arguments.callee;
+}
+addEvent(window.document,'keydown',function(event){
+	event = (event) ? event : window.event;
+	keyCode=(event.charCode) ? event.charCode : event.keyCode;
+	if(keyCode==17){
+		ctrlDown=true;
+	}
+});
+addEvent(window.document,'keyup',function(){ctrlDown=false});
