@@ -26,7 +26,7 @@ public class Child implements Serializable{
 	@GenericGenerator(name= "increment", strategy= "increment")
 	private Integer id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "idParent", nullable = false)
 	private Parent parent;
 	

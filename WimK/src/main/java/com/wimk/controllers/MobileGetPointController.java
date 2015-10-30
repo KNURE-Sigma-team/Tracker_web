@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wimk.entity.Area;
 import com.wimk.entity.Child;
+import com.wimk.entity.Parent;
 import com.wimk.entity.Point;
+import com.wimk.service.AreaService;
 import com.wimk.service.ChildService;
 import com.wimk.service.PointService;
+import com.wimk.utils.PointProcessor;
 
 @Controller
 @RequestMapping(value = "/mobile_get_point")
@@ -29,7 +34,10 @@ public class MobileGetPointController {
 
 	@Autowired
 	ChildService childService;
-
+	
+	@Autowired
+	AreaService areaService;
+	
 	/*
 	 * Method get request and response. Request must contain new parameters:
 	 * "idChild", "longitude", "latitude", "battery_level", "time". Based on
@@ -66,6 +74,10 @@ public class MobileGetPointController {
 				point.setTime(time);
 				point.setPointType(pointType);
 				pointService.addPoint(point);
+				
+				List<Area> areaList = areaService.getAllAreasOfChild(child);
+				Parent parent = child.getParent();
+				PointProcessor.pointProcess(point, child, parent, areaList);
 				return "OK";
 			}
 		}

@@ -12,4 +12,7 @@ public interface ParentRepository extends JpaRepository<Parent, Integer> {
 
 	@Query("select b from Parent b where b.login=:login")
 	Parent findByLogin(@Param("login") String login);
+	
+	@Query("select b from Parent b where b.id=:id")
+	Parent findById(@Param("id") Integer id);
 }
