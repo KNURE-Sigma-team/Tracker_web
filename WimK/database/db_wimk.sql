@@ -17,74 +17,58 @@ USE `db_wimk` ;
 -- -----------------------------------------------------
 -- Table `db_wimk`.`parent`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_wimk`.`parent` (
-  `idParent` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `name` VARCHAR(45) NULL COMMENT '',
-  `login` VARCHAR(45) NOT NULL COMMENT '',
-  `password` VARCHAR(45) NOT NULL COMMENT '',
-  `removingFrequency` INT NULL DEFAULT 7 COMMENT '',
-  PRIMARY KEY (`idParent`)  COMMENT '',
-  UNIQUE INDEX `login_UNIQUE` (`login` ASC)  COMMENT '')
+CREATE TABLE IF NOT EXISTS `db_wimk`.`Parent` (
+  `idParent` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `login` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `removingFrequency` INT NULL DEFAULT 7,
+  PRIMARY KEY (`idParent`) ,
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `db_wimk`.`child`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_wimk`.`child` (
-  `idChild` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `idParent` INT NOT NULL COMMENT '',
-  `login` VARCHAR(45) NOT NULL COMMENT '',
-  `password` VARCHAR(45) NOT NULL COMMENT '',
-  `sendingFrequency` INT NULL COMMENT '',
-  PRIMARY KEY (`idChild`)  COMMENT '',
-  UNIQUE INDEX `login_UNIQUE` (`login` ASC)  COMMENT '')
-  INDEX `idParent_idx` (`idParent` ASC)  COMMENT '',
-  CONSTRAINT `idParent`
-    FOREIGN KEY (`idParent`)
-    REFERENCES `db_wimk`.`parent` (`idParent`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+CREATE TABLE IF NOT EXISTS `db_wimk`.`Child` (
+  `idChild` INT NOT NULL AUTO_INCREMENT,
+  `idParent` INT NOT NULL REFERENCES `db_wimk`.`parent` (`idParent`),
+  `login` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `sendingFrequency` INT NULL,
+  PRIMARY KEY (`idChild`) ,
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `db_wimk`.`point`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_wimk`.`point` (
-  `idpoint` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `idChild` INT NOT NULL COMMENT '',
-  `x` DOUBLE NULL COMMENT '',
-  `y` DOUBLE NULL COMMENT '',
-  `time` DATETIME NULL COMMENT '',
-  `batteryStatus` INT NULL COMMENT '',
-  PRIMARY KEY (`idpoint`)  COMMENT '',
-  INDEX `idChild_idx` (`idChild` ASC)  COMMENT '',
-  CONSTRAINT `idChildPoint`
-    FOREIGN KEY (`idChild`)
-    REFERENCES `db_wimk`.`child` (`idChild`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+CREATE TABLE IF NOT EXISTS `db_wimk`.`Point` (
+  `idpoint` INT NOT NULL AUTO_INCREMENT,
+  `idChild` INT NOT NULL REFERENCES `db_wimk`.`child` (`idChild`),
+  `x` DOUBLE NULL,
+  `y` DOUBLE NULL,
+  `time` DATETIME NULL,
+  `batteryStatus` INT NULL,
+  PRIMARY KEY (`idpoint`) ,
+  INDEX `idChild_idx` (`idChild` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `db_wimk`.`area`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_wimk`.`area` (
-  `idArea` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `idChild` INT NOT NULL COMMENT '',
-  `x` DOUBLE NULL COMMENT '',
-  `y` DOUBLE NULL COMMENT '',
-  `radius` INT NULL COMMENT '',
-  `allowed` TINYINT(1) NULL COMMENT '',
-  PRIMARY KEY (`idArea`)  COMMENT '',
-  INDEX `idChild_idx` (`idChild` ASC)  COMMENT '',
-  CONSTRAINT `idChildArea`
-    FOREIGN KEY (`idChild`)
-    REFERENCES `db_wimk`.`child` (`idChild`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+CREATE TABLE IF NOT EXISTS `db_wimk`.`Area` (
+  `idArea` INT NOT NULL AUTO_INCREMENT,
+  `idChild` INT NOT NULL REFERENCES `db_wimk`.`child` (`idChild`),
+  `x` DOUBLE NULL,
+  `y` DOUBLE NULL,
+  `radius` INT NULL,
+  `allowed` TINYINT(1) NULL,
+  PRIMARY KEY (`idArea`) ,
+  INDEX `idChild_idx` (`idChild` ASC) )
 ENGINE = InnoDB;
 
 
