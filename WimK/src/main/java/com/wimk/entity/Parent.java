@@ -29,7 +29,7 @@ public class Parent implements Serializable {
 
 	@Column(name = "password")
 	private String password;
-
+	
 	@Column(name = "removingFrequency", columnDefinition = "int(11) default 7")
 	private Integer removingFrequency;
 

@@ -14,19 +14,20 @@
         <form:form action="register" method="post" commandName="userForm">
             <table border="0">
                 <tr>
-                    <td colspan="2" align="center"><h2>Spring MVC Form Demo - Registration</h2></td>
+                    <td colspan="2" align="center"><h2>Registration</h2></td>
                 </tr>
                 <tr>
           		    <td>User E-mail:</td>
-				<td><form:input path="login"/></td>
+				<td><form:input type="email" path="login"/></td>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><form:password path="password"/></td>
+                    <td><form:password path="password" required="required" pattern="[A-Za-z0-9]{8,20}"/></td>
                 </tr>
+
                 <tr>
                     <td>Name:</td>
-                    <td><form:input path="name"/></td>
+                    <td><form:input path="name"  required="required" pattern="[A-Za-z0-9]{4,16}"/></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center"><input type="submit" value="Register" /></td>

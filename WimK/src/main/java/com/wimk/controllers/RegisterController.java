@@ -2,6 +2,7 @@ package com.wimk.controllers;
 
 import java.util.Map;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,6 +29,19 @@ public class RegisterController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String processRegistration(@ModelAttribute("userForm") Parent user,
 	Map<String, Object> model) {
+		boolean valid = EmailValidator.getInstance().isValid(user.getLogin());
+		if (!valid) {
+			return "Registration";
+		}
+		if (parentService.getByLogin(user.getLogin()) != null) {
+			return "This login is already used";
+		}
+		if (user.getName().length() > 16) {
+			return "Name is too long";
+		}
+		if (user.getPassword().length() < 8) {
+			return "Password is too simple";
+		}
 		parentService.addParent(user);
 		return "RegistrationSuccess";
 	}
