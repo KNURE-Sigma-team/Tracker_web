@@ -19,26 +19,35 @@ public class PointProcessor {
 			boolean allowedAreasPresent = false;
 			boolean childInAllowedArea = false;
 			for (Area area : areaList) {
-				if(area.getAllowed()){
+				if (area.getAllowed()) {
 					allowedAreasPresent = true;
-					if(pointIntoArea(point, area)){
+					if (pointIntoArea(point, area)) {
 						childInAllowedArea = true;
 					}
-				} else if (pointIntoArea(point, area)){
+				} else if (pointIntoArea(point, area)) {
 					EmailSender.sendMessageChildIntoForbiddenArea(child.getLogin(), point.getTime(), parent.getLogin());
 					return;
 				}
 			}
 			
-			if(allowedAreasPresent && !childInAllowedArea){
+			if (allowedAreasPresent && !childInAllowedArea) {
 				EmailSender.sendMessageChildLeaveAllowedArea(child.getLogin(), point.getTime(), parent.getLogin());
 			}
 		}
 	}
 
 	private static boolean pointIntoArea(Point point, Area area) {
-		if (Math.sqrt(Math.pow(point.getX() - area.getX(), 2) + Math.pow(point.getY() - area.getY(), 2)) < area
-				.getRadius()) {
+		double radius = 6371000;
+		double fi1 = Math.toRadians(point.getX());
+		double fi2 = Math.toRadians(area.getX());
+		double deltaFi = Math.toRadians(point.getX() - area.getX());
+		double deltaLambda = Math.toRadians(point.getY() - area.getY());
+
+		double a = Math.sin(deltaFi / 2.0) * Math.sin(deltaFi / 2.0)
+				+ Math.cos(fi1) * Math.cos(fi2) * Math.sin(deltaLambda / 2.0) * Math.sin(deltaLambda / 2.0);
+		double c = 2.0 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+		double distance = c * radius;
+		if (distance < area.getRadius()) {
 			return true;
 		}
 		return false;

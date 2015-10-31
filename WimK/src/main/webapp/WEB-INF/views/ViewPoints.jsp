@@ -11,6 +11,7 @@
 <spring:url value="/resources/core/css/map.css" var="mapCss" />
 <spring:url value="/resources/core/js/map.js" var="mapJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
+<spring:url value="/resources/core/js/view_points.js" var="view_points" />
 
 <!-- CSS styles -->
 <link href="${mapCss}" rel="stylesheet" type="text/css"/>
@@ -23,16 +24,25 @@
 <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel.js"></script>
 <script src="${mapJs}" type="text/javascript"></script>
 <script src="${jquery}" type="text/javascript"></script>
+<script src="${view_points}" type="text/javascript"></script>
 
 <title>Insert title here</title>
 </head>
 <body>
 	<div id="menu" align="center">
-		<select id="childLogin" onchange = "document.location='view_points?currentChild='+this.options[this.selectedIndex].value">
+		<select id="childLogin" onchange = "childChanged()">
 			<c:forEach items="${listOfChild}" var="child" >
 				<option value = ${child.login}
 					<c:if test="${currentChild.login==child.login}">selected</c:if>> 
 					${child.login}
+				</option>
+			</c:forEach>
+		</select>
+		<select id="dateSelect" onchange = "dateChanged()">
+			<c:forEach items="${listOfDates}" var="date">
+				<option value = ${date}
+					<c:if test="${currentDate==date}">selected</c:if>> 
+					${date}
 				</option>
 			</c:forEach>
 		</select>

@@ -1,4 +1,9 @@
 var map;
+var polyline = new google.maps.Polyline({
+    strokeColor: '#000000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+ });
 
 var editMode = false;
 
@@ -45,6 +50,8 @@ function initMap(latitude, longitude) {
 			listArea[i].label.set('fontSize', areaFontSize);
 		}
 	});
+	
+	polyline.setMap(map);
 }
 
 // Function for draw point on the map.
@@ -57,6 +64,7 @@ function drawPoint(latitude, longitude) {
 		map : map,
 		icon : imageOfPoint
 	});
+	polyline.getPath().push(marker.position);
 }
 
 // Function for change mode (Edit area mode, View mode).
