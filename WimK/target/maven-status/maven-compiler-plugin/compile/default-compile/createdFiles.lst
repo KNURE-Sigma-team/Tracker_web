@@ -9,6 +9,7 @@ com/wimk/config/AppInitializer.class
 com/wimk/service/impl/ParentServiceImpl.class
 com/wimk/service/PointService.class
 com/wimk/service/impl/AreaServiceImpl.class
+com/wimk/secure/PasswordValidator.class
 com/wimk/entity/Point.class
 com/wimk/config/AppConfig.class
 com/wimk/entity/Area.class

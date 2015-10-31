@@ -25,6 +25,7 @@
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/entity/Point.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/repository/PointRepository.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/controllers/AddChildController.java
+/home/someone/Tracker_web/WimK/src/main/java/com/wimk/secure/PasswordValidator.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/controllers/MobileGetPointController.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/service/AreaService.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/config/AppConfig.java
