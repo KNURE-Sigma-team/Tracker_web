@@ -38,4 +38,8 @@ public class ParentServiceImpl implements ParentService {
 		return parentRepository.findAll();
 	}
 
+	public Parent getById(Integer id) {
+		return parentRepository.findById(id);
+	}
+
 }

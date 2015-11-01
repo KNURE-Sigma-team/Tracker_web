@@ -6,7 +6,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add new child</title>
 </head>
 <body>
@@ -19,10 +19,6 @@
                 <tr>
           		    <td>Child Login:</td>
 				<td><form:input path="login"/></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><form:password path="password"/></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center"><input type="submit" value="Add child" /></td>

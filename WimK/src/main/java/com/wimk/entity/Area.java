@@ -15,13 +15,13 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "area")
+@Table(name = "Area")
 public class Area implements Serializable {
 
 	private static final long serialVersionUID = -5517566248012236042L;
 
 	@Id
-	@Column(name = "idarea")
+	@Column(name = "idArea")
 	@GeneratedValue(generator= "increment")
 	@GenericGenerator(name= "increment", strategy= "increment")
 	private Integer id;
@@ -37,10 +37,13 @@ public class Area implements Serializable {
 	private Double y;
 
 	@Column(name = "radius")
-	private Integer radius;
+	private Double radius;
 
 	@Column(name = "allowed")
 	private Boolean allowed;
+	
+	@Column(name = "name")
+	private String name;
 
 	public Integer getId() {
 		return id;
@@ -74,11 +77,11 @@ public class Area implements Serializable {
 		this.y = y;
 	}
 
-	public Integer getRadius() {
+	public Double getRadius() {
 		return radius;
 	}
 
-	public void setRadius(Integer radius) {
+	public void setRadius(Double radius) {
 		this.radius = radius;
 	}
 
@@ -88,5 +91,14 @@ public class Area implements Serializable {
 
 	public void setAllowed(Boolean allowed) {
 		this.allowed = allowed;
+	}	
+
+	public String getName() {
+		return name;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }
