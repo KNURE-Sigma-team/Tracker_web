@@ -23,7 +23,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/register/**", "/mobile_authorization/**", "/mobile_get_point/**")
+		http.authorizeRequests().antMatchers("/register/**", "/mobile_authorization/**", "/mobile_get_point/**", "/restore_password/**")
 				.permitAll();
 		http.authorizeRequests().antMatchers("/add_child/**", "/view_points/**", "/area_editor/**").access("hasRole('ROLE_USER')").and();
 

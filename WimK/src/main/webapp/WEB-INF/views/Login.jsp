@@ -32,7 +32,10 @@
 			</table>
 		</form>
 		<form action="/wimk/register">
-			<button type="submit">Регистрация</button>
+			<button type="submit">Registration</button>
+		</form>
+		<form action="/wimk/restore_password">
+			<button type="submit">Forget password?</button>
 		</form>
 	</div>
 </body>

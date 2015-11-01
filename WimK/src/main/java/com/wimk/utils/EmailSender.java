@@ -63,4 +63,10 @@ public class EmailSender {
 		String message = "Child " + childName + " is outside allowed area. " + date.toString();
 		sendEmail(parentEmail, subject, message);
 	}
+	
+	public static void sendRestorePasswordMessage(String email, String password){
+		String subject = "Resore password";
+		String message = "Your password is " + password;
+		sendEmail(email, subject, message);
+	}
 }
