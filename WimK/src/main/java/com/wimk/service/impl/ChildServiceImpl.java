@@ -43,4 +43,9 @@ public class ChildServiceImpl implements ChildService {
 		return childRepository.findById(id);
 	}
 
+	public Child getByLogin(String login) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
