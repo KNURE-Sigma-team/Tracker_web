@@ -1,7 +1,7 @@
 package com.wimk.controllers;
 
 import java.util.Map;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,6 +36,15 @@ public class AddChildController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String login = auth.getName();
 		Parent parent = parentService.getByLogin(login);
+		if (child.getLogin().length() < 6 || child.getLogin().length() > 20) {
+			return "Child's name must be 6-20 letters";
+		}
+		List<Child> children = childService.getChildOfParent(parent);
+		for (Child c : children) {
+			if (c.getLogin().equals(child.getLogin())) {
+				return "This child is already in WimK";
+			}
+		}
 	    child.setParent(parent);
 		childService.addChild(child);
 		return "AddChildSuccess";

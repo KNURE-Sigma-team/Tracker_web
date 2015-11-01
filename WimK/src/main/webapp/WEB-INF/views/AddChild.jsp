@@ -18,11 +18,7 @@
                 </tr>
                 <tr>
           		    <td>Child Login:</td>
-				<td><form:input path="login"/></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><form:password path="password"/></td>
+				<td><form:input path="login"required="required" pattern="[A-Za-z0-9]{6,20}" /></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center"><input type="submit" value="Add child" /></td>

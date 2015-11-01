@@ -9,8 +9,6 @@ public interface ChildService {
 	Child addChild(Child child);
 
 	void delete(int id);
-	
-	Child getByLogin(String login);
 
 	Child editParent(Child child);
 
