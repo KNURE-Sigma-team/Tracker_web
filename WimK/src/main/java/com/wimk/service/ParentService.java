@@ -10,7 +10,9 @@ public interface ParentService {
 	void delete(int id);
 
 	Parent getByLogin(String login);
-
+	
+	Parent getById(Integer id);
+	
 	Parent editParent(Parent parent);
 
 	List<Parent> getAll();

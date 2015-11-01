@@ -22,7 +22,7 @@ public class Point implements Serializable {
 	private static final long serialVersionUID = -5517566248012296042L;
 
 	@Id
-	@Column(name = "idpoint")
+	@Column(name = "idPoint")
 	@GeneratedValue(generator= "increment")
 	@GenericGenerator(name= "increment", strategy= "increment")
 	private Integer id;
@@ -42,6 +42,9 @@ public class Point implements Serializable {
 
 	@Column(name = "batteryStatus")
 	private Integer batteryStatus;
+	
+	@Column(name = "pointType")
+	private String pointType;
 
 	public Integer getId() {
 		return id;
@@ -89,5 +92,13 @@ public class Point implements Serializable {
 
 	public void setBatteryStatus(Integer batteryStatus) {
 		this.batteryStatus = batteryStatus;
+	}
+	
+	public String getPointType() {
+		return pointType;
+	}
+
+	public void setPointType(String pointType) {
+		this.pointType = pointType;
 	}
 }

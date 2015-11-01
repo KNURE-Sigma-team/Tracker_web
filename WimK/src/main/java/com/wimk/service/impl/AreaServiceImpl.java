@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wimk.entity.Area;
+import com.wimk.entity.Child;
 import com.wimk.repository.AreaRepository;
 import com.wimk.service.AreaService;
 
@@ -17,6 +18,7 @@ public class AreaServiceImpl implements AreaService {
 	
 	@Transactional(readOnly = false)
 	public Area addArea(Area area) {
+		area.setId(-1);
 		return areaRepository.saveAndFlush(area);
 	}
 
@@ -30,6 +32,10 @@ public class AreaServiceImpl implements AreaService {
 
 	public List<Area> getAll() {
 		return areaRepository.findAll();
+	}
+
+	public List<Area> getAllAreasOfChild(Child child) {
+		return areaRepository.findAreasByChild(child.getId());
 	}
 
 }
