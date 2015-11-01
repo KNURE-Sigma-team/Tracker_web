@@ -47,7 +47,6 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-alter table point add pointType varchar(20);
-alter table child drop index login;
-alter table area modify radius double;
-alter table area add column name varchar(45);
+alter table Point add pointType varchar(20);
+alter table Area modify radius double;
+alter table Area add column name varchar(45);

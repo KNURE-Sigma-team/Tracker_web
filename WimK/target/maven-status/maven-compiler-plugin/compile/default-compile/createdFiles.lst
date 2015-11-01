@@ -12,13 +12,15 @@ com/wimk/service/impl/AreaServiceImpl.class
 com/wimk/secure/PasswordValidator.class
 com/wimk/entity/Point.class
 com/wimk/config/AppConfig.class
+com/wimk/utils/PointProcessor.class
 com/wimk/entity/Area.class
+com/wimk/utils/EmailSender.class
+com/wimk/controllers/AreaEditorController.class
 com/wimk/repository/ParentRepository.class
 com/wimk/controllers/MainController.class
 com/wimk/config/DataConfig.class
 com/wimk/service/impl/PointServiceImpl.class
 com/wimk/controllers/AddChildController.class
-com/wiml/main/Main.class
 com/wimk/entity/Child.class
 com/wimk/config/SecurityInit.class
 com/wimk/controllers/LoginController.class
@@ -28,4 +30,5 @@ com/wimk/controllers/RegisterController.class
 com/wimk/service/ChildService.class
 com/wimk/service/AreaService.class
 com/wimk/controllers/MobileAuthorizationController.class
+com/wimk/utils/EmailSender$1.class
 com/wimk/controllers/ViewPointsController.class

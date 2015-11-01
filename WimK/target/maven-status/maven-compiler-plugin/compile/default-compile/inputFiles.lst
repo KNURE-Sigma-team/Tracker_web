@@ -1,6 +1,7 @@
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/config/AppInitializer.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/config/SecurityInit.java
-/home/someone/Tracker_web/WimK/src/main/java/com/wiml/main/Main.java
+/home/someone/Tracker_web/WimK/src/main/java/com/wimk/utils/EmailSender.java
+/home/someone/Tracker_web/WimK/src/main/java/com/wimk/utils/PointProcessor.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/service/ParentService.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/repository/AreaRepository.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/service/ChildService.java
@@ -11,6 +12,7 @@
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/controllers/ViewPointsController.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/service/impl/ChildServiceImpl.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/service/impl/PointServiceImpl.java
+/home/someone/Tracker_web/WimK/src/main/java/com/wimk/controllers/AreaEditorController.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/entity/Parent.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/service/PointService.java
 /home/someone/Tracker_web/WimK/src/main/java/com/wimk/config/DataConfig.java
