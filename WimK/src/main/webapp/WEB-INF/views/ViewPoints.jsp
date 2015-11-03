@@ -51,9 +51,27 @@
 		<br/>
 		<button onclick = changeMode() >Change mode</button>
 		<br/>
-		<button id="confirmAreaChanges" onclick = confirmChanges() >Confirm changes</button>
-		<br/>
-		<button id="changeAreaColor" onclick = changeDrawingColor() >Change drawing color</button>
+		<div id = "editAreaMenu">
+			<table>
+				<tr>
+					<td>Edit area menu</td>
+				</tr>
+				<tr>
+					<td> Area name: </td>
+					<td> <input id="textInputAreaName" type="text"/> </td>
+				</tr>
+				<tr>
+					<td> Area is allowed: </td>
+					<td> <input id="buttonAreaType" type="button" onclick="changeAreaType()" /> </td>
+				</tr>
+				<tr>
+					<td><button id="confirmAreaChanges" onclick = removeArea() >Remove area</button></td>
+				</tr>
+				<tr>
+					<td><button id="confirmAreaChanges" onclick = confirmChanges() >Confirm changes</button></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 	<div id="map"></div>
 	<script language="javascript">

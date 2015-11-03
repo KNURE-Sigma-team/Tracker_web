@@ -1,24 +1,36 @@
+/*==================================================
+			Declaring Variables
+==================================================*/
+// Google map on the page
 var map;
+// Line between common points
 var polyline = new google.maps.Polyline({
     strokeColor: '#000000',
     strokeOpacity: 1.0,
     strokeWeight: 2
  });
 
+// Flag for determinating edit mode
 var editMode = false;
 
+// URI of images for draw point on the map
 var imageOfPoint = "/wimk/resources/core/images/point.png";
 var imageOfSosPoint = "/wimk/resources/core/images/point_sos.png";
+// Alphabet for labeles on the points
 var EnglishAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var currentLetter = 0;
 
+// Colors of areas
 var allowedColor = '#00ff00';
 var forbiddenColor = '#ff8c00';
 
+// List of all area on the map
 var listArea = [];
 var sizeListArea = 0;
-
 var areaFontSize = 25;
+
+// Selected area
+var selectedArea = null;
 
 // Initial settings of drawing manager;
 var drawingManager = new google.maps.drawing.DrawingManager({
@@ -36,7 +48,115 @@ var drawingManager = new google.maps.drawing.DrawingManager({
 		zIndex : 1
 	}
 });
+/*===================================================
+ 				Page events
+===================================================*/
 
+// Function for change mode (Edit area mode, View mode).
+function changeMode() {
+	if (editMode) {
+		editMode = false;
+		drawingManager.setMap(null);
+
+		document.getElementById ( "editAreaMenu" ).style.visibility = "hidden";
+		selectedArea = null;
+		document.getElementById("textInputAreaName").oninput = null;
+	} else {
+		editMode = true;
+		drawingManager.setMap(map);
+		document.getElementById ( "editAreaMenu" ).style.visibility = "visible";
+		
+		document.getElementById("textInputAreaName").oninput = function(){
+			selectedArea.label.set('text', document.getElementById("textInputAreaName").value);
+			if(selectedArea.status == 'old'){
+				selectedArea.status = 'changed';
+			}
+		};
+	}
+	
+	for(i = 0; i < sizeListArea; ++i){
+		listArea[i].circle.setEditable(editMode);
+	}
+}
+
+function removeArea(){
+	if(selectedArea != null && confirm("Are you sure?")){
+		selectedArea.circle.setMap(null);
+		selectedArea.label.set('map',null);
+		if(selectedArea.status == 'old'){
+			selectedArea.status = 'removed';
+		} else {
+			selectedArea.status = 'removed_not_check';
+		}
+		selectedArea = null;
+	}
+}
+// Fucntion for change (color) for draw area. (Allowed or forbidden).
+function changeDrawingColor(){
+	if(drawingManager.circleOptions.fillColor == allowedColor){
+		drawingManager.circleOptions.fillColor = forbiddenColor;
+	} else {
+		drawingManager.circleOptions.fillColor = allowedColor;
+	}
+}
+/*==================================================
+			Functions for area events
+==================================================*/
+// Event: 'click' on the area
+function selectCircle(circle){
+	if(editMode){
+		for(i=0; i < sizeListArea; ++i){
+			if(compareCircles(listArea[i].circle, circle)) {
+				selectedArea = listArea[i];
+				document.getElementById("textInputAreaName").value = selectedArea.label.text;
+				break;
+			}
+		}
+	}
+}
+// Event: 'change_radius' of old area
+function radiusOldAreaChanged(circle){
+	for(i=0; i < sizeListArea; ++i){
+		if(compareCircles(listArea[i].circle, circle)) {
+			listArea[i].status = 'changed';
+			break;
+		}
+	}
+}
+// Event: 'center_changed' of old area
+function centerOldAreaChanged(circle){
+	for(i=0; i < sizeListArea; ++i){
+		if(compareCircles(listArea[i].circle, circle)) {
+			listArea[i].status = 'changed';
+			listArea[i].label.set('position', circle.getCenter());
+			break;
+		}
+	}
+}
+// Event: 'change_radius' of new area
+function radiusNewAreaChanged(circle){
+	for(i=0; i < sizeListArea; ++i){
+		if(compareCircles(listArea[i].circle, circle) && listArea[i].status == 'old') {
+			listArea[i].status = 'changed';
+			break;
+		}
+	}
+}
+// Event: 'center_changed' of new area
+function centerNewAreaChanged(circle){
+	for(i=0; i < sizeListArea; ++i){
+		if(compareCircles(listArea[i].circle, circle)) {
+			if(listArea[i].status == 'old') {
+				listArea[i].status = 'changed';
+			}
+			listArea[i].label.set('position', circle.getCenter());
+			break;
+		}
+	}
+}
+/*==================================================
+		Functions for interacting with the map
+==================================================*/
 // Function for create map on the page.
 function initMap(latitude, longitude) {
 	map = new google.maps.Map(document.getElementById('map'), {
@@ -84,35 +204,8 @@ function drawSosPoint(latitude, longitude, date, batterryStatus) {
 	});
 }
 
-// Function for change mode (Edit area mode, View mode).
-function changeMode() {
-	if (editMode) {
-		editMode = false;
-		drawingManager.setMap(null);
-		document.getElementById ( "confirmAreaChanges" ).style.visibility = "hidden";
-		document.getElementById ( "changeAreaColor" ).style.visibility = "hidden";
-	} else {
-		editMode = true;
-		drawingManager.setMap(map);
-		document.getElementById ( "confirmAreaChanges" ).style.visibility = "visible";
-		document.getElementById ( "changeAreaColor" ).style.visibility = "visible";
-	}
-	
-	for(i = 0; i < sizeListArea; ++i){
-		listArea[i].circle.setEditable(editMode);
-	}
-}
 
-// Fucntion for change (color) for draw area. (Allowed or forbidden).
-function changeDrawingColor(){
-	if(drawingManager.circleOptions.fillColor == allowedColor){
-		drawingManager.circleOptions.fillColor = forbiddenColor;
-	} else {
-		drawingManager.circleOptions.fillColor = allowedColor;
-	}
-}
-
-// Function for adding area from database.
+// Function for adding old area.
 function addArea(x, y, radius, isAllowed, id, name) {
 	var color;
 	if (isAllowed) {
@@ -144,7 +237,7 @@ function addArea(x, y, radius, isAllowed, id, name) {
         align: 'right'
     });
 	
-	listArea[sizeListArea] = {
+	listArea[sizeListArea++] = {
 		circle : circle,
 		status : 'old',
 		id : id,
@@ -152,66 +245,24 @@ function addArea(x, y, radius, isAllowed, id, name) {
 	}
 	
 	// Description events of areas
+	google.maps.event.addListener(circle, 'click', function() {
+		selectCircle(circle);
+	});
 	google.maps.event.addListener(circle, 'center_changed', function() {
-		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle)) {
-				listArea[i].status = 'changed';
-				listArea[i].label.set('position', circle.getCenter());
-				break;
-			}
-		}
+		centerOldAreaChanged(circle);
 	});
 	google.maps.event.addListener(circle, 'radius_changed', function() {
-		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle)) {
-				listArea[i].status = 'changed';
-				break;
-			}
-		}
+		radiusOldAreaChanged(circle);
 	});
-	google.maps.event.addListener(circle, 'dblclick', function() {
-		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle) && getCtrlDown()) {
-				if(editMode){
-					circle.setVisible(false);
-					listArea[i].status = 'removed';
-					listArea[i].label.set('map',null);
-				}
-				break;
-			}
-		}
-		setCtrlDown(false);
-	});
-	google.maps.event.addListener(circle, "rightclick", function (e) { 
-		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle) && getCtrlDown()) {
-				if(editMode){
-					var areaName = listArea[i].label.text;
-					areaName = prompt("Enter new name for area", areaName);
-					if(areaName != null){
-						listArea[i].label.set('text', areaName);
-						listArea[i].status = 'changed';
-					}
-				}
-				break;
-			}
-		}
-		setCtrlDown(false);
-	});
-	sizeListArea++;
 }
 
 // Description of actions for new areas.
 google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle) {
-	var areaName = prompt("Please enter name of added area", "NewArea");
-	if(areaName == null){
-		areaName = "NewArea";
-	}
 	listArea[sizeListArea++] = {
 		circle : circle,
 		status : 'new',
 		label : new MapLabel({
-	        text: areaName,
+	        text: 'NewArea',
 	        position: circle.getCenter(),
 			fontColor: '#000000',
 	        map: map,
@@ -221,54 +272,16 @@ google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle)
 	        align: 'right'
 	    }),
 	};
-	
-	google.maps.event.addListener(circle, "dblclick", function (e) { 
-		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle) && getCtrlDown()) {
-				if(editMode){
-					circle.setVisible(false);
-					listArea[i].status = 'removed_not_check';
-					listArea[i].label.set('map',null);
-				}
-				break;
-			}
-		}
-		setCtrlDown(false);
+	google.maps.event.addListener(circle, 'click', function() {
+		selectCircle(circle);
 	});
 	google.maps.event.addListener(circle, "center_changed", function (e) { 
-		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle)) {
-				if(listArea[i].status == 'old') {
-					listArea[i].status = 'changed';
-				}
-				listArea[i].label.set('position', circle.getCenter());
-				break;
-			}
-		}
+		centerNewAreaChanged(circle);
 	});
 	google.maps.event.addListener(circle, 'radius_changed', function() {
-		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle) && listArea[i].status == 'old') {
-				listArea[i].status = 'changed';
-				break;
-			}
-		}
+		radiusNewAreaChanged(circle);
 	});
-	google.maps.event.addListener(circle, "rightclick", function (e) { 
-		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle) && getCtrlDown()) {
-				if(edit_mode){
-					var areaName = listArea[i].label.text;
-					areaName = prompt("Enter new name for area", areaName);
-					if(areaName != null){
-						listArea[i].label.set('text', areaName);
-					}
-				}
-				break;
-			}
-		}
-		setCtrlDown(false);
-	});
+	selectCircle(circle);
 });
 // ======================================================================================
 // 										Work with server
@@ -324,8 +337,9 @@ function executeQuery(data){
 }
 
 // ======================================================================================
-// 										Compare circles 
+// 										Utils 
 // ======================================================================================
+// Compare circles.
 function compareCircles(circle1, circle2){
 	if(circle1.getCenter() == circle2.getCenter() && circle1.getRadius() == circle2.getRadius() 
 		&& circle1.fillColor == circle2.fillColor){
@@ -333,37 +347,3 @@ function compareCircles(circle1, circle2){
 	}
 	return false;
 }
-// ======================================================================================
-// 										Check pressed Ctrl 
-// ======================================================================================
-var ctrlDown = {
-	value : false
-};
-
-function setCtrlDown(value){
-	ctrlDown.value = value;
-}
-
-function getCtrlDown(){
-	return ctrlDown.value;
-}
-
-var addEvent = function(elem, type, handler){
-	if (elem.addEventListener){
-		elem.addEventListener(type, handler, false)
-	} else {
-		elem.attachEvent("on"+type, handler)
-	}
-	return arguments.callee;
-}
-addEvent(window.document,'keydown',function(event){
-	event = (event) ? event : window.event;
-	keyCode=(event.charCode) ? event.charCode : event.keyCode;
-	if(keyCode==17){
-		setCtrlDown(true);
-		flag = true;
-	}
-});
-addEvent(window.document,'keyup',function(){
-	setCtrlDown(false);
-});
