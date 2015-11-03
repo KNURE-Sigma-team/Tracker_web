@@ -49,4 +49,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 alter table Point add pointType varchar(20);
 alter table Area modify radius double;
-alter table Area add column name varchar(45);
+alter table Area add column name varchar(20);
+
+
+create table PointType(idType INT, name varchar(10), primary key(idType));
+alter table PointType add unique index (name);
+insert into PointType values(1, 'common');
+insert into PointType values(2, 'sos');
+alter table Point add pointType INT;
+alter table Point add constraint fk_point_type foreign key (pointType) references PointType(idType);
+update Point set PointType = 1;

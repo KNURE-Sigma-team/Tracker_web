@@ -23,6 +23,7 @@ import com.wimk.entity.Point;
 import com.wimk.service.AreaService;
 import com.wimk.service.ChildService;
 import com.wimk.service.PointService;
+import com.wimk.service.PointTypeService;
 import com.wimk.utils.PointProcessor;
 
 @Controller
@@ -37,6 +38,9 @@ public class MobileGetPointController {
 	
 	@Autowired
 	AreaService areaService;
+	
+	@Autowired
+	PointTypeService pointTypeService;
 	
 	/*
 	 * Method get request and response. Request must contain new parameters:
@@ -72,7 +76,7 @@ public class MobileGetPointController {
 				point.setY(longitude);
 				point.setBatteryStatus(battery_level);
 				point.setTime(time);
-				point.setPointType(pointType);
+				point.setPointType(pointTypeService.getByName(pointType));
 				pointService.addPoint(point);
 				
 				List<Area> areaList = areaService.getAllAreasOfChild(child);

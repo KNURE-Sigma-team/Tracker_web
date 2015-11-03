@@ -43,8 +43,9 @@ public class Point implements Serializable {
 	@Column(name = "batteryStatus")
 	private Integer batteryStatus;
 	
-	@Column(name = "pointType")
-	private String pointType;
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idType")
+	private PointType pointType;
 
 	public Integer getId() {
 		return id;
@@ -94,11 +95,11 @@ public class Point implements Serializable {
 		this.batteryStatus = batteryStatus;
 	}
 	
-	public String getPointType() {
+	public PointType getPointType() {
 		return pointType;
 	}
 
-	public void setPointType(String pointType) {
+	public void setPointType(PointType pointType) {
 		this.pointType = pointType;
 	}
 }
