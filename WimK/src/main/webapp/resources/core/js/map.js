@@ -13,7 +13,7 @@ var EnglishAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var currentLetter = 0;
 
 var allowedColor = '#00ff00';
-var forbiddenColor = '#ff0000';
+var forbiddenColor = '#ff8c00';
 
 var listArea = [];
 var sizeListArea = 0;
