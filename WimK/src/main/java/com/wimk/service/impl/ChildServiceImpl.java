@@ -27,7 +27,7 @@ public class ChildServiceImpl implements ChildService {
 		childRepository.delete(id);
 	}
 
-	public Child editParent(Child child) {
+	public Child editChild(Child child) {
 		return childRepository.saveAndFlush(child);
 	}
 

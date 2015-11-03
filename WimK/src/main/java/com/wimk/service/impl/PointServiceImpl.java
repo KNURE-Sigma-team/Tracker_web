@@ -27,7 +27,7 @@ public class PointServiceImpl implements PointService {
 
 	}
 
-	public Point editParent(Point point) {
+	public Point editPoint(Point point) {
 		return pointRepository.saveAndFlush(point);
 	}
 
