@@ -8,6 +8,9 @@ var polyline = new google.maps.Polyline({
 var editMode = false;
 
 var imageOfPoint = "/wimk/resources/core/images/point.png";
+var imageOfSosPoint = "/wimk/resources/core/images/point_sos.png";
+var EnglishAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var currentLetter = 0;
 
 var allowedColor = '#00ff00';
 var forbiddenColor = '#ff0000';
@@ -55,16 +58,30 @@ function initMap(latitude, longitude) {
 }
 
 // Function for draw point on the map.
-function drawPoint(latitude, longitude) {
+function drawPoint(latitude, longitude, date, batterryStatus) {
 	var marker = new google.maps.Marker({
 		position : {
 			lat : latitude,
 			lng : longitude
 		},
 		map : map,
-		icon : imageOfPoint
+		label : EnglishAlphabet[currentLetter++%EnglishAlphabet.length],
+		icon : imageOfPoint,
+		title : 'Date: ' + date + ';\nBattery status : '+ batterryStatus + '%',
 	});
 	polyline.getPath().push(marker.position);
+}
+
+function drawSosPoint(latitude, longitude, date, batterryStatus) {
+	var marker = new google.maps.Marker({
+		position : {
+			lat : latitude,
+			lng : longitude
+		},
+		map : map,
+		icon : imageOfSosPoint,
+		title : 'Date: ' + date + ';\nBattery status : '+ batterryStatus + '%',
+	});
 }
 
 // Function for change mode (Edit area mode, View mode).

@@ -59,7 +59,16 @@
 	<script language="javascript">
 		initMap(50.003902, 36.233614);
 		<c:forEach items="${listOfPoints}" var="point" >
-			drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>);
+			<c:choose>
+				<c:when test="${point.pointType.name=='common'}">
+					drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
+							'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>');
+				</c:when>
+				<c:when test="${point.pointType.name=='sos'}">
+					drawSosPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
+							'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>');
+				</c:when>
+			</c:choose>
 		</c:forEach>
 		<c:forEach items="${listOfAreas}" var="area" >
 			addArea(<c:out value="${area.x}"/>, <c:out value="${area.y}"/>, 
