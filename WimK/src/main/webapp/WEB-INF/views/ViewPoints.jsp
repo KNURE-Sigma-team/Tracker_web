@@ -61,8 +61,8 @@
 					<td> <input id="textInputAreaName" type="text"/> </td>
 				</tr>
 				<tr>
-					<td> Area is allowed: </td>
-					<td> <input id="buttonAreaType" type="button" onclick="changeAreaType()" /> </td>
+					<td> <div id='descriptionAreaType'></div></td>
+					<td> <input id="buttonAreaType" type="button" onclick="changeAreaType()" value="Change area type"/> </td>
 				</tr>
 				<tr>
 					<td><button id="confirmAreaChanges" onclick = removeArea() >Remove area</button></td>

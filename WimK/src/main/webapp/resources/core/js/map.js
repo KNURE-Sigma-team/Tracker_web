@@ -91,6 +91,25 @@ function removeArea(){
 		selectedArea = null;
 	}
 }
+
+function changeAreaType(){
+	if(selectedArea != null){
+		if(selectedArea.circle.fillColor == allowedColor){
+			selectedArea.circle.setOptions({fillColor: forbiddenColor});
+			setDescriptionAreaType('Area is forbidden');
+		} else {
+			selectedArea.circle.setOptions({fillColor: allowedColor});
+			setDescriptionAreaType('Area is allowed');
+		}
+		if(selectedArea.status == 'old'){
+			selectedArea.status = 'changed';
+		}
+	}
+}
+
+function setDescriptionAreaType(description){
+	document.getElementById('descriptionAreaType').innerHTML = description;
+}
 /*==================================================
 			Functions for area events
 ==================================================*/
@@ -101,6 +120,11 @@ function selectCircle(circle){
 			if(compareCircles(listArea[i].circle, circle)) {
 				selectedArea = listArea[i];
 				document.getElementById("textInputAreaName").value = selectedArea.label.text;
+				if(selectedArea.circle.fillColor == allowedColor){
+					setDescriptionAreaType('Area is allowed');
+				} else {
+					setDescriptionAreaType('Area is forbidden');
+				}
 				break;
 			}
 		}
