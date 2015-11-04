@@ -91,14 +91,6 @@ function removeArea(){
 		selectedArea = null;
 	}
 }
-// Fucntion for change (color) for draw area. (Allowed or forbidden).
-function changeDrawingColor(){
-	if(drawingManager.circleOptions.fillColor == allowedColor){
-		drawingManager.circleOptions.fillColor = forbiddenColor;
-	} else {
-		drawingManager.circleOptions.fillColor = allowedColor;
-	}
-}
 /*==================================================
 			Functions for area events
 ==================================================*/
