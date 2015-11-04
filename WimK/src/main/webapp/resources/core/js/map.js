@@ -86,6 +86,7 @@ function removeArea(){
 		selectedArea.label.set('map',null);
 		if(selectedArea.status == 'old'){
 			selectedArea.status = 'removed';
+			remeberUserAboutUnsavedData();
 		} else {
 			selectedArea.status = 'removed_not_check';
 		}
@@ -104,12 +105,33 @@ function changeAreaType(){
 		}
 		if(selectedArea.status == 'old'){
 			selectedArea.status = 'changed';
+			remeberUserAboutUnsavedData();
 		}
 	}
 }
 
+// Change text in div with id descriptionAreaType
 function setDescriptionAreaType(description){
 	document.getElementById('descriptionAreaType').innerHTML = description;
+}
+
+// If user changed area and didn't confirm changes, this function will be perfomed.
+function remeberUserAboutUnsavedData(){
+	window.onbeforeunload = function (evt) {
+		var message = "You changed areas and did not confirm your changes.";
+		if (typeof evt == "undefined") {
+			evt = window.event;
+		}
+		if (evt) {
+			evt.returnValue = message;
+		}
+		return message;
+	};
+}
+
+// This function for cancel remembering about unsaved data after confirm.
+function cancelRememberUserAboutUnsavedData(){
+	window.onbeforeunload = null;
 }
 /*==================================================
 			Functions for area events
@@ -138,6 +160,7 @@ function radiusOldAreaChanged(circle){
 			listArea[i].status = 'changed';
 			listArea[i].label.set('maxZoom', getMaxZoom(circle.radius));
 			listArea[i].label.set('minZoom', getMaxZoom(circle.radius) - scopeOfLabelZoom);
+			remeberUserAboutUnsavedData();
 			break;
 		}
 	}
@@ -148,6 +171,7 @@ function centerOldAreaChanged(circle){
 		if(compareCircles(listArea[i].circle, circle)) {
 			listArea[i].status = 'changed';
 			listArea[i].label.set('position', circle.getCenter());
+			remeberUserAboutUnsavedData();
 			break;
 		}
 	}
@@ -159,6 +183,7 @@ function radiusNewAreaChanged(circle){
 		listArea[i].label.set('minZoom', getMaxZoom(circle.radius) - scopeOfLabelZoom);
 		if(compareCircles(listArea[i].circle, circle) && listArea[i].status == 'old') {
 			listArea[i].status = 'changed';
+			remeberUserAboutUnsavedData();
 			break;
 		}
 	}
@@ -169,6 +194,7 @@ function centerNewAreaChanged(circle){
 		if(compareCircles(listArea[i].circle, circle)) {
 			if(listArea[i].status == 'old') {
 				listArea[i].status = 'changed';
+				remeberUserAboutUnsavedData();
 			}
 			listArea[i].label.set('position', circle.getCenter());
 			break;
@@ -303,6 +329,7 @@ google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle)
 		radiusNewAreaChanged(circle);
 	});
 	selectCircle(circle);
+	remeberUserAboutUnsavedData();
 });
 // ======================================================================================
 // 										Work with server
@@ -346,6 +373,7 @@ function confirmChanges(){
 			listArea[i].status = 'removed_not_check';
 		}
 	}
+	cancelRememberUserAboutUnsavedData();
 }
 
 // Function for execute query
