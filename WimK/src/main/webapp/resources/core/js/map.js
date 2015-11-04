@@ -279,7 +279,7 @@ function addArea(x, y, radius, isAllowed, id, name) {
 		fontColor: '#000000',
         map: map,
         fontSize: areaFontSize,
-        strokeWeight : 0,
+        strokeWeight : 1,
 		maxZoom: getMaxZoom(circle.radius),
 		minZoom: getMaxZoom(circle.radius) - scopeOfLabelZoom,
     });
@@ -313,7 +313,7 @@ google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle)
 	        position: circle.getCenter(),
 			fontColor: '#000000',
 	        map: map,
-	        strokeWeight : 0,
+	        strokeWeight : 1,
 	        fontSize: areaFontSize,
 			maxZoom: getMaxZoom(circle.radius),
 			minZoom: getMaxZoom(circle.radius) - scopeOfLabelZoom,
