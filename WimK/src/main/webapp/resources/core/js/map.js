@@ -27,7 +27,8 @@ var forbiddenColor = '#ff8c00';
 // List of all area on the map
 var listArea = [];
 var sizeListArea = 0;
-var areaFontSize = 25;
+var scopeOfLabelZoom = 4;
+var areaFontSize = 18;
 
 // Selected area
 var selectedArea = null;
@@ -135,6 +136,8 @@ function radiusOldAreaChanged(circle){
 	for(i=0; i < sizeListArea; ++i){
 		if(compareCircles(listArea[i].circle, circle)) {
 			listArea[i].status = 'changed';
+			listArea[i].label.set('maxZoom', getMaxZoom(circle.radius));
+			listArea[i].label.set('minZoom', getMaxZoom(circle.radius) - scopeOfLabelZoom);
 			break;
 		}
 	}
@@ -152,6 +155,8 @@ function centerOldAreaChanged(circle){
 // Event: 'change_radius' of new area
 function radiusNewAreaChanged(circle){
 	for(i=0; i < sizeListArea; ++i){
+		listArea[i].label.set('maxZoom', getMaxZoom(circle.radius));
+		listArea[i].label.set('minZoom', getMaxZoom(circle.radius) - scopeOfLabelZoom);
 		if(compareCircles(listArea[i].circle, circle) && listArea[i].status == 'old') {
 			listArea[i].status = 'changed';
 			break;
@@ -184,9 +189,9 @@ function initMap(latitude, longitude) {
 	});
 	
 	google.maps.event.addListener(map, 'zoom_changed', function() {
-		areaFontSize = (map.getZoom()-16)*5 + 28;
+		deltaAreaFontSize = (map.getZoom()-16)*5;
 		for(i=0; i < sizeListArea; ++i){
-			listArea[i].label.set('fontSize', areaFontSize);
+			//listArea[i].label.set('fontSize', listArea[i].label.fontSize + deltaAreaFontSize);
 		}
 	});
 	
@@ -248,9 +253,9 @@ function addArea(x, y, radius, isAllowed, id, name) {
 		fontColor: '#000000',
         map: map,
         fontSize: areaFontSize,
-		maxZoom:20,
-		minZoom:10,
-        align: 'right'
+        strokeWeight : 0,
+		maxZoom: getMaxZoom(circle.radius),
+		minZoom: getMaxZoom(circle.radius) - scopeOfLabelZoom,
     });
 	
 	listArea[sizeListArea++] = {
@@ -282,10 +287,10 @@ google.maps.event.addListener(drawingManager, 'circlecomplete', function(circle)
 	        position: circle.getCenter(),
 			fontColor: '#000000',
 	        map: map,
+	        strokeWeight : 0,
 	        fontSize: areaFontSize,
-			maxZoom:20,
-			minZoom:10,
-	        align: 'right'
+			maxZoom: getMaxZoom(circle.radius),
+			minZoom: getMaxZoom(circle.radius) - scopeOfLabelZoom,
 	    }),
 	};
 	google.maps.event.addListener(circle, 'click', function() {
@@ -362,4 +367,9 @@ function compareCircles(circle1, circle2){
 		return true;
 	}
 	return false;
+}
+
+function getMaxZoom(circleRadius){
+	// 21 - log(circleRadius/25,2)
+	return 21 - Math.log(circleRadius/25)/Math.log(2);
 }
