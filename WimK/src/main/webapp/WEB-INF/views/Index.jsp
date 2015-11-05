@@ -14,26 +14,30 @@
 <body>
 	<div align="center">
 		<h1>WimK.com</h1>
-		<p class="lead">WimK - это сервис ...</p>
+		<p>WimK - this is service ...</p>
 		<sec:authorize access="!isAuthenticated()">
 			<p>
-				<a class="btn btn-lg btn-success" href="<c:url value="/login" />"
-					role="button">Войти</a>
+				<a href="<c:url value="/login" />" role="button">Sing in</a>
 			</p>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
 			<p>
-				Ваш логин:
+				Your login:
 				<sec:authentication property="principal.username" />
 			</p>
 			<p>
-				<a href="<c:url value="/add_child" />" role="button">Добавить ребенка</a>
+				<a href="<c:url value="/add_child" />" role="button">Add child</a>
 			</p>
 			<p>
-				<a href="<c:url value="/view_points" />" role="button">Просмотреть точки ребенка</a>
+				<a href="<c:url value="/view_points" />" role="button">View
+					points of child</a>
 			</p>
 			<p>
-				<a href="<c:url value="/logout" />" role="button">Выйти</a>
+				<a href="<c:url value="/personal_cabinet" />" role="button">Personal
+					cabinet</a>
+			</p>
+			<p>
+				<a href="<c:url value="/logout" />" role="button">Sing out</a>
 			</p>
 		</sec:authorize>
 	</div>

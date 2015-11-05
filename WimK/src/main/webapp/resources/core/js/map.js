@@ -49,9 +49,9 @@ var drawingManager = new google.maps.drawing.DrawingManager({
 		zIndex : 1
 	}
 });
-/*===================================================
- 				Page events
-===================================================*/
+/*=====================================================================================
+ 									Page events
+======================================================================================*/
 
 // Function for change mode (Edit area mode, View mode).
 function changeMode() {
@@ -213,14 +213,6 @@ function initMap(latitude, longitude) {
 		},
 		zoom : 16
 	});
-	
-	google.maps.event.addListener(map, 'zoom_changed', function() {
-		deltaAreaFontSize = (map.getZoom()-16)*5;
-		for(i=0; i < sizeListArea; ++i){
-			//listArea[i].label.set('fontSize', listArea[i].label.fontSize + deltaAreaFontSize);
-		}
-	});
-	
 	polyline.setMap(map);
 }
 

@@ -17,15 +17,19 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);//.passwordEncoder(new MyEncoder());
+		auth.userDetailsService(userDetailsService);// .passwordEncoder(new
+													// MyEncoder());
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/register/**", "/mobile_authorization/**", "/mobile_get_point/**", "/restore_password/**")
+		http.authorizeRequests()
+				.antMatchers("/register/**", "/mobile_authorization/**", "/mobile_get_point/**", "/restore_password/**")
 				.permitAll();
-		http.authorizeRequests().antMatchers("/add_child/**", "/view_points/**", "/area_editor/**").access("hasRole('ROLE_USER')").and();
+		http.authorizeRequests()
+				.antMatchers("/add_child/**", "/view_points/**", "/area_editor/**", "/personal_cabinet/**", "/change_password/**")
+				.access("hasRole('ROLE_USER')").and();
 
 		http.formLogin().loginPage("/login").loginProcessingUrl("/j_spring_security_check").failureUrl("/login?error")
 				.usernameParameter("j_username").passwordParameter("j_password").permitAll();
