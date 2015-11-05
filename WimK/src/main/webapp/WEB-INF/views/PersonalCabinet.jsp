@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,9 +37,11 @@
 			<c:choose>
 				<c:when test="${currentChild!=null}">
 					<tr>
-						<td colspan="2"><input type="button" value="previous"
-							onclick="previousChild()"> Child <input type="button"
-							value="next" onclick="nextChild()"></td>
+						<td colspan="2">
+							<input type="button" value="previous" onclick="previousChild()"> 
+							Child 
+							<input type="button" value="next" onclick="nextChild()">
+						</td>
 					</tr>
 					<tr>
 						<td>login:</td>
@@ -48,6 +51,16 @@
 						<td>sending frequency:</td>
 						<td><div id="childSendingFrequency">${currentChild.sendingFrequency} ms</div></td>
 					</tr>
+					
+					
+					<spring:url value="/resources/core/js/personalCabinetView.js" var="personalCabinetViewJs" />
+					<script src="${personalCabinetViewJs}" type="text/javascript"></script>
+					<script language="javascript">
+						<c:forEach items="${listOfChild}" var="child" >
+							addChild('<c:out value="${child.login}"/>', '<c:out value="${child.sendingFrequency}"/>');
+						</c:forEach>
+						viewChild(0);
+					</script>
 				</c:when>
 				<c:otherwise>
 					<tr>
@@ -58,7 +71,7 @@
 			</c:choose>
 		</table>
 	</div>
-	<div>
+	<div align="center">
 		<a href="<c:url value='/' />">Back</a>
 	</div>
 </body>
