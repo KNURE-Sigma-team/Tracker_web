@@ -27,6 +27,9 @@
 				<td><a href="<c:url value='/change_password' />">Change
 						password</a></td>
 			</tr>
+			<tr>
+				<td><a href="<c:url value='/edit_profile' />">Edit profile</a></td>
+			</tr>
 		</table>
 	</div>
 	<br />
@@ -51,7 +54,9 @@
 						<td>sending frequency:</td>
 						<td><div id="childSendingFrequency">${currentChild.sendingFrequency} ms</div></td>
 					</tr>
-					
+					<tr>
+						<td colspan="2"><input type="button" value="Edit child" onclick="editChild()"/></td>
+					</tr>
 					
 					<spring:url value="/resources/core/js/personalCabinetView.js" var="personalCabinetViewJs" />
 					<script src="${personalCabinetViewJs}" type="text/javascript"></script>

@@ -22,3 +22,7 @@ function nextChild(){
 	currentChild = (currentChild + 1) % childs.length;
 	viewChild(currentChild);
 }
+
+function editChild(){
+	document.location = 'edit_child?child='+childs[currentChild % childs.length].login;
+}
