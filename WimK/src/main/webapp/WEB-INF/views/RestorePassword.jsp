@@ -17,7 +17,7 @@
 					<td><h2>Please type address your email</h2></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="email"/></td>
+					<td><input type="email" required="required" name="email"/></td>
 					<td>${email_not_exist}</td>
 				</tr>
 				<tr>
