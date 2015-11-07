@@ -54,9 +54,9 @@
 			<version>${hb.manager}</version>
 		</dependency>
 		<dependency>
-		    <groupId>commons-validator</groupId>
-		    <artifactId>commons-validator</artifactId>
-		    <version>1.4.0</version>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.4.0</version>
 		</dependency>
 
 		<!-- Spring Security -->
@@ -83,7 +83,7 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>3.2.4.RELEASE</version>
 		</dependency>
-		
+
 		<!-- Jstl Dependencies -->
 		<dependency>
 			<groupId>org.apache.taglibs</groupId>
@@ -103,6 +103,14 @@
 			<artifactId>javax.mail-api</artifactId>
 			<version>1.5.2</version>
 		</dependency>
+		
+		<!-- For generating new passwords -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
