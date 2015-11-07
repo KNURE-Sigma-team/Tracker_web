@@ -11,16 +11,16 @@ public class Sha512Encoder implements PasswordEncoder{
 		MessageDigest md = null;
 		try {
 			md = MessageDigest.getInstance("SHA-512");
+			md.update(rawPassword.toString().getBytes());
+			StringBuilder sb = new StringBuilder();
+			byte[] mdbytes = md.digest();
+			for(byte b : mdbytes){
+				sb.append(Integer.toHexString((b & 0xFF)+0x100).substring(1));
+			}
+			return sb.toString();
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		md.update(rawPassword.toString().getBytes());
-		StringBuilder sb = new StringBuilder();
-		byte[] mdbytes = md.digest();
-		for(byte b : mdbytes){
-			sb.append(Integer.toHexString((b & 0xFF)+0x100).substring(1));
-		}
-		return sb.toString();
+			throw new RuntimeException();
+		}	
 	}
 
 	public boolean matches(CharSequence rawPassword, String encodedPassword) {

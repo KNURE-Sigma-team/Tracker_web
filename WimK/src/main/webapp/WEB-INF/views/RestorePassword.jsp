@@ -18,9 +18,10 @@
 				</tr>
 				<tr>
 					<td><input type="text" name="email"/></td>
+					<td>${email_not_exist}</td>
 				</tr>
 				<tr>
-					<td><button type="submit" style="width:210x;height:20px">Send</button></td>
+					<td colspan="2"><button type="submit" style="width:210x;height:20px">Send</button></td>
 				</tr>
 			</table>
 		</form>
