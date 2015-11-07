@@ -58,4 +58,6 @@ insert into PointType values(1, 'common');
 insert into PointType values(2, 'sos');
 alter table Point add pointType INT;
 alter table Point add constraint fk_point_type foreign key (pointType) references PointType(idType);
+/*change password type because start use SHA-512*/
+alter table Parent modify password varchar(128);
 update Point set PointType = 1;
