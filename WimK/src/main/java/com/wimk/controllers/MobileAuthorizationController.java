@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wimk.entity.Child;
 import com.wimk.entity.Parent;
+import com.wimk.secure.Sha512Encoder;
 import com.wimk.service.ChildService;
 import com.wimk.service.ParentService;
 
@@ -39,7 +40,7 @@ public class MobileAuthorizationController {
 
 		if (loginParent != null || loginChild != null || password != null) {
 			Parent parent = parentService.getByLogin(loginParent);
-			if (parent != null && parent.getPassword().equals(password)) {
+			if (parent != null && parent.getPassword().equals(new Sha512Encoder().encode(password))) {
 				List<Child> childList = childService.getChildOfParent(parent);
 				for (Child c : childList) {
 					if (c.getLogin().equals(loginChild)) {
@@ -48,6 +49,6 @@ public class MobileAuthorizationController {
 				}
 			}
 		}
-		return Integer.valueOf(-1).toString();
+		return Integer.toString(-1);
 	}
 }

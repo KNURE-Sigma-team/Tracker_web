@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wimk.service.ParentService;
 import com.wimk.entity.Parent;
-import com.wimk.secure.PasswordValidator;;
+import com.wimk.secure.PasswordValidator;
+import com.wimk.secure.Sha512Encoder;;
 
 @Controller
 @RequestMapping(value = "/change_password")
@@ -32,26 +33,26 @@ public class ChangePasswordController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String login = auth.getName();
 		Parent parent = parentService.getByLogin(login);
-		
+
 		String oldPassword = request.getParameter("old_password");
 		String newPassword = request.getParameter("new_password");
 		String confirmPassword = request.getParameter("confirm_password");
-		
-		if(checkPasswords(parent, oldPassword, newPassword, confirmPassword)){
-			parent.setPassword(newPassword);
+
+		if (checkPasswords(parent, oldPassword, newPassword, confirmPassword)) {
+			parent.setPassword(new Sha512Encoder().encode(newPassword));
 			parentService.editParent(parent);
 			model.put("answer", "Changing the password was successful");
 		} else {
 			model.put("answer", "Error. Password not changed.");
 		}
-		
+
 		return "ChangePassword";
 	}
 
 	private boolean checkPasswords(Parent parent, String oldPassword, String newPassword, String confirmPassword) {
 		if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()
-				|| !parent.getPassword().equals(oldPassword) || !newPassword.equals(confirmPassword)
-				|| !new PasswordValidator().validate(newPassword)) {
+				|| !parent.getPassword().equals(new Sha512Encoder().encode(oldPassword))
+				|| !newPassword.equals(confirmPassword) || !new PasswordValidator().validate(newPassword)) {
 			return false;
 		}
 

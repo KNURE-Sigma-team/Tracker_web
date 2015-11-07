@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wimk.entity.Parent;
+import com.wimk.secure.Sha512Encoder;
 import com.wimk.service.ParentService;
 
 @Controller
@@ -43,12 +44,17 @@ public class EditProfileController {
 		
 		String login = request.getParameter("login");
 		String name = request.getParameter("name");
+		String password = request.getParameter("password");
 		Integer removingFrequency = Integer.parseInt(request.getParameter("removing_frequency"));
-		
 		
 		parent.setLogin(login);
 		parent.setName(name);
 		parent.setRemovingFrequency(removingFrequency);
+		if(!new Sha512Encoder().matches(password, parent.getPassword())){
+			model.put("parent", parent);
+			model.put("invalid_password", "Invalid password");
+			return "EditProfile";
+		}
 		if(!authLogin.equals(login) &&
 			parentService.getByLogin(login) != null){
 			model.put("parent", parent);
@@ -56,7 +62,7 @@ public class EditProfileController {
 			return "EditProfile";
 		}
 		parentService.editParent(parent);
-		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(parent.getLogin(), parent.getPassword());
+		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(parent.getLogin(), password);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		return "redirect:personal_cabinet";

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wimk.entity.Parent;
 import com.wimk.repository.ParentRepository;
+import com.wimk.secure.Sha512Encoder;
 import com.wimk.service.ParentService;
 
 @Service
@@ -19,6 +20,7 @@ public class ParentServiceImpl implements ParentService {
 	@Transactional(readOnly = false)
 	public Parent addParent(Parent parent) {
 		parent.setRemovingFrequency(10);
+		parent.setPassword(new Sha512Encoder().encode(parent.getPassword()));
 		return parentRepository.saveAndFlush(parent);
 	}
 

@@ -24,6 +24,11 @@
 			<td>days</td>
 		</tr>
 		<tr>
+			<td>Input your password for confirm changes:</td>
+			<td><input name="password" type="password" required="required"/></td>
+			<td>${invalid_password}</td>
+		</tr>
+		<tr>
 			<td colspan="2">
 				<input type="submit" value="Change profile"/>
 			</td>

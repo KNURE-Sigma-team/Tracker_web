@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.wimk.secure.Sha512Encoder;
 import com.wimk.secure.UserDetailsServiceImpl;
 
 @Configuration
@@ -17,8 +18,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);// .passwordEncoder(new
-													// MyEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(new Sha512Encoder());
 	}
 
 	@Override

@@ -35,7 +35,7 @@
                 </tr>
 				<tr>
                     <td>Confirm password:</td>
-                    <td><form:password path="password" id="confirm_password" required="required"/></td>
+                    <td><input type="password" id="confirm_password" required="required"/></td>
                     <td><div id="confirm_password_remark"></div></td>
                 </tr>
                 <tr>
