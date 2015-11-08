@@ -12,6 +12,9 @@ public class PointProcessor {
 	private static final String SOS_STRING = "sos";
 	private static final String COMMON_STRING = "common";
 
+	private PointProcessor() {
+	}
+
 	public static void pointProcess(Point point, Child child, Parent parent, List<Area> areaList) {
 		if (point.getPointType().equals(SOS_STRING)) {
 			EmailSender.sendSosMessage(child.getLogin(), parent.getLogin());

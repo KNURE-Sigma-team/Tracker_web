@@ -74,6 +74,8 @@ public class AreaEditorController {
 		Child currentChild = getChild(request);
 		if(currentChild != null){
 			Area area = setArea(request, currentChild);
+			Integer areaId = Integer.parseInt(request.getParameter("area_id"));
+			area.setId(areaId);
 			areaService.editArea(area);
 		}
 	}
