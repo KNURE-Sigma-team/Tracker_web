@@ -45,7 +45,6 @@ public class ChangePasswordController {
 		} else {
 			model.put("answer", "Error. Password not changed.");
 		}
-
 		return "ChangePassword";
 	}
 
@@ -55,7 +54,6 @@ public class ChangePasswordController {
 				|| !newPassword.equals(confirmPassword) || !new PasswordValidator().validate(newPassword)) {
 			return false;
 		}
-
 		return true;
 	}
 }

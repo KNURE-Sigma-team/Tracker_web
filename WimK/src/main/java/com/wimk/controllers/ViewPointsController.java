@@ -108,8 +108,7 @@ public class ViewPointsController {
 
 			for (int i = 0; i < listOfPoints.size(); ++i) {
 				Date temp = listOfPoints.get(i).getTime();
-				if (temp.getDate() != date.getDate() || temp.getMonth() != date.getMonth()
-						|| temp.getYear() != date.getYear()) {
+				if (date.compareTo(temp)!=0) {
 					listOfPoints.remove(i--);
 				}
 			}

@@ -46,6 +46,15 @@ public class Point implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idType")
 	private PointType pointType;
+	
+	public Point(Child child, Double x, Double y, Date time, Integer batteryStatus, PointType pointType) {
+		this.child = child;
+		this.x = x;
+		this.y = y;
+		this.time = time;
+		this.batteryStatus = batteryStatus;
+		this.pointType = pointType;
+	}
 
 	public Integer getId() {
 		return id;

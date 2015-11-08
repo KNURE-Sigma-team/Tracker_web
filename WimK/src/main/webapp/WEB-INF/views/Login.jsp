@@ -30,11 +30,12 @@
 					<td><button type="submit" style="width:210x;height:20px">Войти</button></td>
 				</tr>
 			</table>
+			<div id = "error"> ${error_message} </div>
 		</form>
-		<form action="/wimk/register">
+		<form action="register">
 			<button type="submit">Registration</button>
 		</form>
-		<form action="/wimk/restore_password">
+		<form action="restore_password">
 			<button type="submit">Forget password?</button>
 		</form>
 	</div>

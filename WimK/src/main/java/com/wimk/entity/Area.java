@@ -44,6 +44,16 @@ public class Area implements Serializable {
 	
 	@Column(name = "name")
 	private String name;
+	
+	
+	public Area(Child child, Double x, Double y, Double radius, Boolean allowed, String name) {
+		this.child = child;
+		this.x = x;
+		this.y = y;
+		this.radius = radius;
+		this.allowed = allowed;
+		this.name = name;
+	}
 
 	public Integer getId() {
 		return id;

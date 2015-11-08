@@ -2,6 +2,8 @@ package com.wimk.controllers;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,21 +30,25 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String processRegistration(@ModelAttribute("userForm") Parent user,
+	public String processRegistration(HttpServletRequest request, @ModelAttribute("userForm") Parent user,
 	Map<String, Object> model) {
 		boolean valid = EmailValidator.getInstance().isValid(user.getLogin());
 		if (!valid) {
-			return "Email is invalid";
+			request.setAttribute("error_message", "Email is invalid");
+			return "Registration";
 		}
 		if (parentService.getByLogin(user.getLogin()) != null) {
-			return "This login is already used";
+			request.setAttribute("error_message", "This login is already used");
+			return "Registration";
 		}
 
 		if (user.getName().length() > 16) {
-			return "Name is too long";
+			request.setAttribute("error_message", "Name is too long");
+			return "Registration";
 		}
 		if (user.getPassword().length() < 8 || !new PasswordValidator().validate(user.getPassword())) {
-			return "Password is too simple";
+			request.setAttribute("error_message", "Password is too simple");
+			return "Registration";
 		}
 		parentService.addParent(user);
 		return "RegistrationSuccess";

@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		Parent parent = parentService.getByLogin(login);
 
 		if (parent == null){
-			return null;
+		    throw new UsernameNotFoundException("User not found");
 		}
 
 		Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();

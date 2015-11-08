@@ -47,6 +47,7 @@
                 </tr>
             </table>
         </form:form>
+        <div id = error>${error_message}</div>
         <a href="<c:url value="/login" />">Back</a>
         <script src="${pasViewJs}" type="text/javascript"></script>
     </div>
