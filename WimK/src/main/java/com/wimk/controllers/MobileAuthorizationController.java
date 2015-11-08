@@ -27,28 +27,19 @@ public class MobileAuthorizationController {
 	@Autowired
 	ParentService parentService;
 
-	/*
-	 * Method get request and response. Request must contain next parameters:
-	 * "loginParent","loginChild","password". Method return id of child if input
-	 * data is correct, else will be write -1.
-	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody String mobileAuthorization(HttpServletRequest request, HttpServletResponse response) {
-		String loginParent = (String) request.getParameter("loginParent");
-		String loginChild = (String) request.getParameter("loginChild");
-		String password = (String) request.getParameter("password");
-
-		if (loginParent != null || loginChild != null || password != null) {
+	public @ResponseBody Child[] mobileAuthorization(HttpServletRequest request, HttpServletResponse response) {
+		String loginParent = request.getParameter("loginParent");
+		String password = request.getParameter("password");
+		Child[] res = null;
+		if (loginParent != null || password != null) {
 			Parent parent = parentService.getByLogin(loginParent);
 			if (parent != null && parent.getPassword().equals(new Sha512Encoder().encode(password))) {
 				List<Child> childList = childService.getChildOfParent(parent);
-				for (Child c : childList) {
-					if (c.getLogin().equals(loginChild)) {
-						return c.getId().toString();
-					}
-				}
+				res = childList.toArray(new Child[childList.size()]);
+				return res;
 			}
 		}
-		return Integer.toString(-1);
+		return res;
 	}
 }
