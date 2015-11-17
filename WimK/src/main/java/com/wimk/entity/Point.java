@@ -47,6 +47,9 @@ public class Point implements Serializable {
     @JoinColumn(name = "idType")
 	private PointType pointType;
 	
+	public Point(){
+	}
+	
 	public Point(Child child, Double x, Double y, Date time, Integer batteryStatus, PointType pointType) {
 		this.child = child;
 		this.x = x;

@@ -45,6 +45,8 @@ public class Area implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
+	public Area(){
+	}
 	
 	public Area(Child child, Double x, Double y, Double radius, Boolean allowed, String name) {
 		this.child = child;

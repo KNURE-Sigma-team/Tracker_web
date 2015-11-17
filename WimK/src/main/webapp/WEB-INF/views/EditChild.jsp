@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +10,7 @@
 <body>
 <form method="post">
 	<input name="old_child_login" type="hidden" value="${child.login}"/>
+	<input name="status" type="hidden" value="edit"/>
 	<table>
 		<tr>
 			<td>Login: </td>
@@ -26,5 +28,17 @@
 		</tr>
 	</table>
 </form>
+<form method="post">
+	<input name="child_login" type="hidden" value="${child.login}"/>
+	<input name="status" type="hidden" value="remove"/>
+	<table>
+		<tr>
+			<td>
+				<input type="submit" value="Remove child" onClick="return confirm('Are you sure want to remove this child?')"/>
+			</td>
+		</tr>
+	</table>
+</form>
+<a href="<c:url value="/personal_cabinet" />">Back</a>
 </body>
 </html>
