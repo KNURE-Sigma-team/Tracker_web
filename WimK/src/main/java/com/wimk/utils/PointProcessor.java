@@ -16,9 +16,9 @@ public class PointProcessor {
 	}
 
 	public static void pointProcess(Point point, Child child, Parent parent, List<Area> areaList) {
-		if (point.getPointType().equals(SOS_STRING)) {
+		if (point.getPointType().getName().equals(SOS_STRING)) {
 			EmailSender.sendSosMessage(child.getLogin(), parent.getLogin());
-		} else if (point.getPointType().equals(COMMON_STRING)) {
+		} else if (point.getPointType().getName().equals(COMMON_STRING)) {
 			boolean allowedAreasPresent = false;
 			boolean childInAllowedArea = false;
 			for (Area area : areaList) {

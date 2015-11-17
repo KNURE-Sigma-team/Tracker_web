@@ -1,11 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<spring:url value="/resources/core/css/style-personal_cabinet.css"
+	var="personalCabinetCss" />
+<spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />
+<spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
+
+<link href="${personalCabinetCss}" rel="stylesheet" type="text/css" />
+<link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -21,7 +31,7 @@
 			</tr>
 			<tr>
 				<td>Your removing frequency :</td>
-				<td>${parent.removingFrequency} days</td>
+				<td>${parent.removingFrequency}days</td>
 			</tr>
 			<tr>
 				<td><a href="<c:url value='/change_password' />">Change
@@ -35,49 +45,41 @@
 	<br />
 	<br />
 	<br />
-	<div align="center">
-		<table>
-			<c:choose>
-				<c:when test="${currentChild!=null}">
-					<tr>
-						<td colspan="2">
-							<input type="button" value="previous" onclick="previousChild()"> 
-							Child 
-							<input type="button" value="next" onclick="nextChild()">
-						</td>
-					</tr>
-					<tr>
-						<td>login:</td>
-						<td><div id="childLogin">${currentChild.login}</div></td>
-					</tr>
-					<tr>
-						<td>sending frequency:</td>
-						<td><div id="childSendingFrequency">${currentChild.sendingFrequency} ms</div></td>
-					</tr>
-					<tr>
-						<td colspan="2"><input type="button" value="Edit child" onclick="editChild()"/></td>
-					</tr>
-					
-					<spring:url value="/resources/core/js/personalCabinetView.js" var="personalCabinetViewJs" />
-					<script src="${personalCabinetViewJs}" type="text/javascript"></script>
-					<script language="javascript">
-						<c:forEach items="${listOfChild}" var="child" >
-							addChild('<c:out value="${child.login}"/>', '<c:out value="${child.sendingFrequency}"/>');
-						</c:forEach>
-						viewChild(0);
-					</script>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td>Your have not registered your child yet</td>
-						<td><a href="<c:url value="/add_child" />">Add child</a></td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-		</table>
+	<div>
+		<c:choose>
+			<c:when test="${fn:length(listOfChild) gt 0}">
+				<div class="container">
+					<c:forEach items="${listOfChild}" var="child" varStatus="status">
+						<c:if test="${status.index % 2 == 0}">
+							<div class="row">
+						</c:if>
+						<div class="child col-md-6">
+							<div>login: <c:out value="${child.login}" /></div>
+							<div>sending frequency: <c:out value="${child.sendingFrequency}" /> ms </div>
+							<form action="edit_child">
+								<input type="hidden" name="child" value="${child.login}" /> 
+								<input type="submit" value="edit" />
+							</form>
+						</div>
+						<c:if test="${status.index % 2 == 1}">
+							</div>
+						</c:if>
+					</c:forEach>
+					<c:if test="${fn:length(listOfChild) % 2 == 1}">
+						</div>
+					</c:if>
+				</div>
+			</c:when>
+			<c:otherwise>
+					Your have not registered your child yet
+					<a href="<c:url value="/add_child" />">Add child</a>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<div align="center">
 		<a href="<c:url value='/' />">Back</a>
 	</div>
+
+	<script src="${bootstrapJs}" type="text/javascript"></script>
 </body>
 </html>

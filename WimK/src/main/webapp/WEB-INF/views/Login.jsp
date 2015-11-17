@@ -12,7 +12,6 @@
 <body>
 	<div align="center">
 		<c:url value="/j_spring_security_check" var="loginUrl" />
-
 		<form action="${loginUrl}" method="post">
 			<table border="0">
 				<tr>
