@@ -17,7 +17,10 @@ public class LoginController {
 	public String viewLogin(HttpServletRequest request, Map<String, Object> model) {
 		if (request.getParameter("error") != null) {
 			request.setAttribute("error_message", "There is no such user or password is wrong");
-			System.out.println(request.getParameter("error"));
+
+		}
+		if (request.getParameter("restore_password_successful") != null) {
+			request.setAttribute("restore_password_message", "Restore password ended successfully");
 		}
 		model.put("user", new Parent());
 		return "Login";

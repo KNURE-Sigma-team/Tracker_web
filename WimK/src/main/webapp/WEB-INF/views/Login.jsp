@@ -11,6 +11,7 @@
 </head>
 <body>
 	<div align="center">
+		<div id = "message"> ${restore_password_message} </div>
 		<c:url value="/j_spring_security_check" var="loginUrl" />
 		<form action="${loginUrl}" method="post">
 			<table border="0">

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wimk.entity.Parent;
-import com.wimk.secure.Sha512Encoder;
 import com.wimk.service.ParentService;
 import com.wimk.utils.EmailSender;
 
@@ -34,13 +33,13 @@ public class RestorePasswordController {
 			return "RestorePassword";
 		}
 		
-		String newPassword = RandomStringUtils.randomAlphanumeric(10);
-		parent.setPassword(new Sha512Encoder().encode(newPassword));
-		parentService.editParent(parent);
+		String confirmingCode = RandomStringUtils.randomAlphanumeric(10);
+		EmailSender.sendRestorePasswordMessage(parent.getLogin(), confirmingCode);
 		
-		EmailSender.sendRestorePasswordMessage(parent.getLogin(), newPassword);
+		request.getSession().setAttribute("parent", parent);
+		request.getSession().setAttribute("confirmingCode", confirmingCode);
 		
-		return "Login";
+		return "redirect:restore_password_confirming";
 	}
 
 }
