@@ -14,7 +14,7 @@
 		<form action="${restoreUrl}" method="get">
 			<table border="0">
 				<tr>
-					<td><h2>Please type address your email</h2></td>
+					<td><h2>Please type address your email to start procedure of restore password.</h2></td>
 				</tr>
 				<tr>
 					<td><input type="email" required="required" name="email"/></td>
@@ -25,6 +25,7 @@
 				</tr>
 			</table>
 		</form>
+		<a href="<c:url value="/login" />">Cancel</a>
 	</div>
 </body>
 </html>

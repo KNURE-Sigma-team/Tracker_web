@@ -34,7 +34,7 @@ public class RestorePasswordController {
 		}
 		
 		String confirmingCode = RandomStringUtils.randomAlphanumeric(10);
-		EmailSender.sendRestorePasswordMessage(parent.getLogin(), confirmingCode);
+		EmailSender.sendRestorePasswordConfirmingCode(parent.getLogin(), confirmingCode);
 		
 		request.getSession().setAttribute("parent", parent);
 		request.getSession().setAttribute("confirmingCode", confirmingCode);
