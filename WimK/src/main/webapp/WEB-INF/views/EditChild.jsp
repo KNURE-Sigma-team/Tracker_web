@@ -19,7 +19,7 @@
 		</tr>
 		<tr>
 			<td>Sending frequency</td>
-			<td><input name="sending_frequency" type="text" required="required" pattern="[0-9]{1,3}" value="${child.sendingFrequency}"/></td>
+			<td><input name="sending_frequency" type="text" required="required" pattern="[0-9]{1,3}" value="${child.sendingFrequency}"/> minutes</td>
 		</tr>
 		<tr>
 			<td colspan="2">

@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td>Your removing frequency :</td>
-				<td>${parent.removingFrequency}days</td>
+				<td>${parent.removingFrequency} days</td>
 			</tr>
 			<tr>
 				<td><a href="<c:url value='/change_password' />">Change
@@ -55,7 +55,7 @@
 						</c:if>
 						<div class="child col-md-6">
 							<div>login: <c:out value="${child.login}" /></div>
-							<div>sending frequency: <c:out value="${child.sendingFrequency}" /> ms </div>
+							<div>sending frequency: <c:out value="${child.sendingFrequency}" /> minutes </div>
 							<form action="edit_child">
 								<input type="hidden" name="child" value="${child.login}" /> 
 								<input type="submit" value="edit" />
