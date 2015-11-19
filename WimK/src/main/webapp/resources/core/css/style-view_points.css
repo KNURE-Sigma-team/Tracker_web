@@ -15,5 +15,5 @@ html, body {
 	background-color: #ffffff;
 }
 #editAreaMenu{
-	visibility: hidden;
+	display: none;
 }

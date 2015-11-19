@@ -58,17 +58,20 @@ function changeMode() {
 	if (editMode) {
 		editMode = false;
 		drawingManager.setMap(null);
+		document.getElementById ( "editAreaMenu" ).style.display = "none";
+		document.getElementById ( "viewMenu" ).style.display = "block";
 
-		document.getElementById ( "editAreaMenu" ).style.visibility = "hidden";
 		selectedArea = null;
 		document.getElementById("textInputAreaName").oninput = null;
 	} else {
 		editMode = true;
 		drawingManager.setMap(map);
-		document.getElementById ( "editAreaMenu" ).style.visibility = "visible";
-		
+		document.getElementById ( "editAreaMenu" ).style.display = "block";
+		document.getElementById ( "viewMenu" ).style.display = "none";
+
 		document.getElementById("textInputAreaName").oninput = function(){
 			selectedArea.label.set('text', document.getElementById("textInputAreaName").value);
+			selectCircle(selectedArea.circle);
 			if(selectedArea.status == 'old'){
 				selectedArea.status = 'changed';
 			}
@@ -138,18 +141,20 @@ function cancelRememberUserAboutUnsavedData(){
 ==================================================*/
 // Event: 'click' on the area
 function selectCircle(circle){
-	if(editMode){
-		for(i=0; i < sizeListArea; ++i){
-			if(compareCircles(listArea[i].circle, circle)) {
-				selectedArea = listArea[i];
-				document.getElementById("textInputAreaName").value = selectedArea.label.text;
-				if(selectedArea.circle.fillColor == allowedColor){
-					setDescriptionAreaType('Area is allowed');
-				} else {
-					setDescriptionAreaType('Area is forbidden');
-				}
-				break;
+	for(i=0; i < sizeListArea; ++i){
+		if(compareCircles(listArea[i].circle, circle)) {
+			selectedArea = listArea[i];
+			document.getElementById("textInputAreaName").value = selectedArea.label.text;
+			document.getElementById("areaDescriptionViewMode").innerHTML = selectedArea.label.text;
+			if(selectedArea.circle.fillColor == allowedColor){
+				setDescriptionAreaType('Area is allowed');
+				document.getElementById("areaDescriptionViewMode").innerHTML = "Allowed";
+			} else {
+				document.getElementById("areaDescriptionViewMode").innerHTML = "Forbidden";
+				setDescriptionAreaType('Area is forbidden');
 			}
+			document.getElementById("areaDescriptionViewMode").innerHTML += ' area "' + selectedArea.label.text + '"';
+			break;
 		}
 	}
 }
@@ -164,6 +169,7 @@ function radiusOldAreaChanged(circle){
 			break;
 		}
 	}
+	selectCircle(circle);
 }
 // Event: 'center_changed' of old area
 function centerOldAreaChanged(circle){
@@ -175,6 +181,7 @@ function centerOldAreaChanged(circle){
 			break;
 		}
 	}
+	selectCircle(circle);
 }
 // Event: 'change_radius' of new area
 function radiusNewAreaChanged(circle){
@@ -187,6 +194,7 @@ function radiusNewAreaChanged(circle){
 			break;
 		}
 	}
+	selectCircle(circle);
 }
 // Event: 'center_changed' of new area
 function centerNewAreaChanged(circle){
@@ -200,6 +208,7 @@ function centerNewAreaChanged(circle){
 			break;
 		}
 	}
+	selectCircle(circle);
 }
 /*==================================================
 		Functions for interacting with the map

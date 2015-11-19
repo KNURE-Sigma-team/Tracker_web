@@ -8,10 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <!-- URLs -->
-<spring:url value="/resources/core/css/map.css" var="mapCss" />
-<spring:url value="/resources/core/js/map.js" var="mapJs" />
+<spring:url value="/resources/core/css/style-view_points.css" var="mapCss" />
+<spring:url value="/resources/core/js/script-map.js" var="mapJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
-<spring:url value="/resources/core/js/view_points.js" var="view_points" />
+<spring:url value="/resources/core/js/script-view_points.js" var="view_points" />
 
 <!-- CSS styles -->
 <link href="${mapCss}" rel="stylesheet" type="text/css"/>
@@ -30,27 +30,7 @@
 </head>
 <body>
 	<div id="menu" align="center">
-		<select id="childLogin" onchange = "childChanged()">
-			<c:forEach items="${listOfChild}" var="child" >
-				<option value = ${child.login}
-					<c:if test="${currentChild.login==child.login}">selected</c:if>> 
-					${child.login}
-				</option>
-			</c:forEach>
-		</select>
-		<select id="dateSelect" onchange = "dateChanged()">
-			<c:forEach items="${listOfDates}" var="date">
-				<option value = ${date}
-					<c:if test="${currentDate==date}">selected</c:if>> 
-					${date}
-				</option>
-			</c:forEach>
-		</select>
-		<br/>
-		<a href="<c:url value="/" />">To main menu</a>
-		<br/>
 		<button onclick = changeMode() >Change mode</button>
-		<br/>
 		<div id = "editAreaMenu">
 			<table>
 				<tr>
@@ -72,6 +52,34 @@
 				</tr>
 			</table>
 		</div>
+		<div id = "viewMenu">
+			<div>
+				Child:
+				<select id="childLogin" onchange = "childChanged()">
+					<c:forEach items="${listOfChild}" var="child" >
+						<option value = ${child.login}
+							<c:if test="${currentChild.login==child.login}">selected</c:if>> 
+							${child.login}
+						</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div>
+				Date:
+				<select id="dateSelect" onchange = "dateChanged()">
+					<c:forEach items="${listOfDates}" var="date">
+						<option value = ${date}
+							<c:if test="${currentDate==date}">selected</c:if>> 
+							${date}
+						</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div id="areaDescriptionViewMode">
+				
+			</div>
+		</div>
+		<a href="<c:url value="/" />">To main menu</a>
 	</div>
 	<div id="map"></div>
 	<script language="javascript">
