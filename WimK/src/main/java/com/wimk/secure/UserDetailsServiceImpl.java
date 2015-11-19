@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		Parent parent = parentService.getByLogin(login);
 
-		if (parent == null){
+		if (parent == null || !parent.getActivated()){
 		    throw new UsernameNotFoundException("User not found");
 		}
 

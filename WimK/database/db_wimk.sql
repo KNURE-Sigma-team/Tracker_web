@@ -63,3 +63,7 @@ alter table Point add constraint fk_point_type foreign key (idType) references P
 update Point set PointType = 1;
 /*change password type because start use SHA-512*/
 alter table Parent modify password varchar(128);
+
+/*Changes related with activated account*/
+alter table add hash varchar(10);
+alter table add activated TINYINT(1);

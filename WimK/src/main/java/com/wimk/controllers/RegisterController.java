@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.wimk.entity.Parent;
 import com.wimk.secure.PasswordValidator;
 import com.wimk.service.ParentService;
+import com.wimk.utils.EmailSender;
 
 @Controller
 @RequestMapping(value = "/register")
@@ -50,8 +52,20 @@ public class RegisterController {
 			request.setAttribute("error_message", "Password is too simple");
 			return "Registration";
 		}
+		
+		String hash = RandomStringUtils.randomAlphanumeric(10);
+		user.setActivated(false);
+		user.setHash(hash);
 		parentService.addParent(user);
+		EmailSender.sendRegistrationConfirmEmail(user.getLogin(), getAccountActivatedAddress(request), hash);
+		
+		model.put("message", "To complete your registration, follow the link which we sent to your email.");
 		return "RegistrationSuccess";
 	}
-
+	
+	private String getAccountActivatedAddress(HttpServletRequest request){
+		StringBuilder sb = new StringBuilder();
+		sb.append(request.getScheme()).append("://").append(request.getServerName()).append(':').append(request.getServerPort()).append(request.getRequestURI()).append("/activation");
+		return sb.toString();
+	}
 }

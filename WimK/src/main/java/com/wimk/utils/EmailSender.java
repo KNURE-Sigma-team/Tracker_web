@@ -69,4 +69,11 @@ public class EmailSender {
 		String message = "Recently it received a request to restore your password in WimK.\nInput this code for restore password:\n" + password;
 		sendEmail(email, subject, message);
 	}
+	
+	public static void sendRegistrationConfirmEmail(String email, String url, String hash){
+		String subject = "Activated accout";
+		StringBuilder sb = new StringBuilder();
+		sb.append("To complete your registration, please visit this URL: \n").append(url).append("?login=").append(email).append("&hash=").append(hash);
+		sendEmail(email, subject, sb.toString());
+	}
 }
