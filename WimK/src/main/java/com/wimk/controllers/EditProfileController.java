@@ -61,6 +61,11 @@ public class EditProfileController {
 			model.put("parent_exist", "Someone already has that username. Try another?");
 			return "EditProfile";
 		}
+		if(removingFrequency < 5 || removingFrequency > 90){
+			model.put("parent", parent);
+			model.put("invalid_removing_frequency", "Invalid removing frequency");
+			return "EditProfile";
+		}
 		parentService.editParent(parent);
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(parent.getLogin(), password);
 		SecurityContextHolder.getContext().setAuthentication(authentication);

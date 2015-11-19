@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<spring:url value="/resources/core/js/script-edit_profile.js" var="editProfileJs" />
+<spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
+
+<script src="${jquery}" type="text/javascript"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post">
+<form id="editProfileForm" method="post">
 	<table>
 		<tr>
 			<td>Login: </td>
@@ -20,8 +27,8 @@
 		</tr>
 		<tr>
 			<td>Removing frequency</td>
-			<td><input name="removing_frequency" type="text" required="required" pattern="[0-9]{1,3}" value="${parent.removingFrequency}"/></td>
-			<td>days</td>
+			<td><input id= "removing_frequency" name="removing_frequency" type="text" value="${parent.removingFrequency}"/> days</td>
+			<td><div id="removing_frequency_remark">${invalid_sending_frequency}</div></td>
 		</tr>
 		<tr>
 			<td>Input your password for confirm changes:</td>
@@ -35,5 +42,8 @@
 		</tr>
 	</table>
 </form>
+<a href="<c:url value="/personal_cabinet" />">Back</a>
+
+<script src="${editProfileJs}" type="text/javascript"></script>
 </body>
 </html>

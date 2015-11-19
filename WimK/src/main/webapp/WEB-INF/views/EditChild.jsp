@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<spring:url value="/resources/core/js/script-edit_child.js" var="editChildJs" />
+<spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
+
+<script src="${jquery}" type="text/javascript"></script>
 <title>Insert title here</title>
 </head>
 <body>
-<form method="post">
+<form id="editChildForm" method="post">
 	<input name="old_child_login" type="hidden" value="${child.login}"/>
 	<input name="status" type="hidden" value="edit"/>
 	<table>
@@ -19,7 +25,8 @@
 		</tr>
 		<tr>
 			<td>Sending frequency</td>
-			<td><input name="sending_frequency" type="text" required="required" pattern="[0-9]{1,3}" value="${child.sendingFrequency}"/> minutes</td>
+			<td><input id="sending_frequency" name="sending_frequency" type="text" value="${child.sendingFrequency}"/> minutes </td>
+			<td><div id="sending_frequency_remark">${invalid_sending_frequency}</div></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -40,5 +47,7 @@
 	</table>
 </form>
 <a href="<c:url value="/personal_cabinet" />">Back</a>
+
+<script src="${editChildJs}" type="text/javascript"></script>
 </body>
 </html>
