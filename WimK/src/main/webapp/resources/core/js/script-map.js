@@ -402,3 +402,16 @@ function getMaxZoom(circleRadius){
 	// 21 - log(circleRadius/25,2)
 	return 21 - Math.log(circleRadius/25)/Math.log(2);
 }
+
+// Set center of the map on the center of the biggest allowed area.
+function setCenterMapOnCenterBiggestArea(){
+	biggestCircle = null;
+	for(i = 0; i < sizeListArea; i++){
+		if(listArea[i].circle.fillColor == allowedColor && (biggestCircle == null || biggestCircle.radius < listArea[i].circle.radius)){
+			biggestCircle = listArea[i].circle;
+		}
+	}
+	if(biggestCircle != null){
+		map.setCenter(biggestCircle.getCenter());
+	}
+}

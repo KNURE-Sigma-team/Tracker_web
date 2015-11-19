@@ -24,7 +24,6 @@
 <script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel.js"></script>
 <script src="${mapJs}" type="text/javascript"></script>
 <script src="${jquery}" type="text/javascript"></script>
-<script src="${view_points}" type="text/javascript"></script>
 
 <title>Insert title here</title>
 </head>
@@ -82,6 +81,8 @@
 		<a href="<c:url value="/" />">To main menu</a>
 	</div>
 	<div id="map"></div>
+	
+	<script src="${view_points}" type="text/javascript"></script>
 	<script language="javascript">
 		initMap(50.003902, 36.233614);
 		<c:forEach items="${listOfPoints}" var="point" >
@@ -101,6 +102,7 @@
 					<c:out value="${area.radius}"/>, <c:out value="${area.allowed}"/>, 
 					<c:out value="${area.id}"/>, '<c:out value="${area.name}"/>');
 		</c:forEach>
+		setCenterMapOnCenterBiggestArea();
 	</script>
 </body>
 </html>
