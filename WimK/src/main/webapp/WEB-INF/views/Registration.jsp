@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <spring:url value="/resources/core/js/password.js" var="pasJs" />
-<spring:url value="/resources/core/js/registrationView.js" var="pasViewJs" />
+<spring:url value="/resources/core/js/script-registration_view.js" var="pasViewJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
 
 <script src="${pasJs}" type="text/javascript"></script>
@@ -31,7 +31,12 @@
                 <tr>
                     <td>Password:</td>
                     <td><form:password path="password" id="new_password" required="required"/></td>
-                    <td><div id="new_password_remark"></div></td>
+                    <td>
+                        <div>
+                            <div id="new_password_remark">Too short</div>
+                            <div ><img id="new_password_remark_image" src="/wimk/resources/core/images/pasword_strength/invalid_password.png" /></div>
+                        </div>
+                    </td>
                 </tr>
 				<tr>
                     <td>Confirm password:</td>
