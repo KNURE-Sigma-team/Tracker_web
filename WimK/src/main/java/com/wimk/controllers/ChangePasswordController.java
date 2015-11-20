@@ -43,7 +43,11 @@ public class ChangePasswordController {
 			parentService.editParent(parent);
 			model.put("answer", "Changing the password was successful");
 		} else {
-			model.put("answer", "Error. Password not changed.");
+			if(parent.getPassword().equals(new Sha512Encoder().encode(oldPassword))){
+				model.put("answer", "Error. Password not changed.");
+			} else {
+				model.put("errorOldPassword", "Old password is wrong");
+			}
 		}
 		return "ChangePassword";
 	}

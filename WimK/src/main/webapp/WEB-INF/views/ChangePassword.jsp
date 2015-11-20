@@ -28,12 +28,17 @@
 					<tr>
 						<td>Old password:</td>
 						<td><input id="old_password" name="old_password" type="password" /></td>
-						<td><div id="old_password_remark"></div></td>
+						<td><div id="old_password_remark">${errorOldPassword}</div></td>
 					</tr>
 					<tr>
 						<td>New password:</td>
 						<td><input id="new_password" name="new_password" type="password" /></td>
-						<td><div id="new_password_remark"></div></td>
+						<td>
+	                        <div>
+	                            <div id="new_password_remark">Too short</div>
+	                            <div ><img id="new_password_remark_image" src="/wimk/resources/core/images/pasword_strength/invalid_password.png" /></div>
+	                        </div>
+	                    </td>
 					</tr>
 					<tr>
 						<td>Confirm password:</td>
