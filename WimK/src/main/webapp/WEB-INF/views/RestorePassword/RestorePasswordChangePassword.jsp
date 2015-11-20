@@ -25,7 +25,7 @@
 				<td>
                     <div>
                         <div id="new_password_remark">Too short</div>
-                        <div ><img id="new_password_remark_image" src="/wimk/resources/core/images/pasword_strength/invalid_password.png" /></div>
+                        <div><img id="new_password_remark_image" src="/wimk/resources/core/images/pasword_strength/invalid_password.png" title="Strong password must contain digit, big letter, small letter, special character"/></div>
                     </div>
                 </td>
 			</tr>

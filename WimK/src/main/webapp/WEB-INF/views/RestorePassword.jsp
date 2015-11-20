@@ -17,7 +17,7 @@
 					<td><h2>Please type address your email to start procedure of restore password.</h2></td>
 				</tr>
 				<tr>
-					<td><input type="email" required="required" name="email"/></td>
+					<td><input type="email" required="required" name="email" title="Strong password must contain digit, big letter, small letter, special character"/></td>
 					<td>${email_not_exist}</td>
 				</tr>
 				<tr>

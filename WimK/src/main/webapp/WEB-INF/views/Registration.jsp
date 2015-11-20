@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><form:password path="password" id="new_password" required="required"/></td>
+                    <td><form:password path="password" id="new_password" required="required" title="Strong password must contain digit, big letter, small letter, special character"/></td>
                     <td>
                         <div>
                             <div id="new_password_remark">Too short</div>
