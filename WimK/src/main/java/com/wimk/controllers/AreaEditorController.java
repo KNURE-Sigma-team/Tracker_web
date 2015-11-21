@@ -35,79 +35,64 @@ public class AreaEditorController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody String areaEditor(HttpServletRequest request, HttpServletResponse response) {
-		String status = request.getParameter("status");
-		
-		if(status.equals("removed")){
-			String id = request.getParameter("area_id");
-			if(id != null){
-				areaService.delete(Integer.parseInt(id));
-			}
-		} else if(status.equals("new")){
-			addArea(request);
-		} else if(status.equals("changed")){
-			changeArea(request);
+		switch (request.getParameter("status")) {
+			case "new":
+				addArea(request);
+				break;
+			case "changed":
+				changeArea(request);
+				break;
+			case "removed":
+				String id = request.getParameter("area_id");
+				if(id != null){
+					areaService.delete(Integer.parseInt(id));
+				}
+				break;
 		}
-		
 		return "OK";
 	}
 	
 	private void addArea(HttpServletRequest request){
 		Child currentChild = getChild(request);
 		if(currentChild != null){
-			String x = request.getParameter("latitude");
-			String y = request.getParameter("longitude");
-			String radius = request.getParameter("radius");
-			String allowed = request.getParameter("allowed");
-			String name = request.getParameter("name");
-			
-			Area area = new Area();
-			area.setChild(currentChild);
-			area.setX(Double.parseDouble(x));
-			area.setY(Double.parseDouble(y));
-			area.setRadius(Double.parseDouble(radius));
-			area.setAllowed(Boolean.parseBoolean(allowed));
-			area.setName(name);
+			Area area = setArea(request, currentChild);
 			areaService.addArea(area);
 		}
+	}
+	
+	private Area setArea(HttpServletRequest request, Child currentChild) {
+		Double x = Double.parseDouble(request.getParameter("latitude"));
+		Double y = Double.parseDouble(request.getParameter("longitude"));
+		Double radius = Double.parseDouble(request.getParameter("radius"));
+		Boolean allowed = Boolean.parseBoolean(request.getParameter("allowed"));
+		String name = request.getParameter("name");
+		Area area = new Area(currentChild, x, y, radius, allowed, name);
+		return area;
 	}
 	
 	private void changeArea(HttpServletRequest request){
 		Child currentChild = getChild(request);
 		if(currentChild != null){
-			String areaId = request.getParameter("area_id");
-			String x = request.getParameter("latitude");
-			String y = request.getParameter("longitude");
-			String radius = request.getParameter("radius");
-			String allowed = request.getParameter("allowed");
-			String name = request.getParameter("name");
-			
-			Area area = new Area();
-			area.setId(Integer.parseInt(areaId));
-			area.setChild(currentChild);
-			area.setX(Double.parseDouble(x));
-			area.setY(Double.parseDouble(y));
-			area.setRadius(Double.parseDouble(radius));
-			area.setAllowed(Boolean.parseBoolean(allowed));
-			area.setName(name);
+			Area area = setArea(request, currentChild);
+			Integer areaId = Integer.parseInt(request.getParameter("area_id"));
+			area.setId(areaId);
 			areaService.editArea(area);
 		}
 	}
 	
 	private Child getChild(HttpServletRequest request){
+		if (request.getParameter("child") == null) {
+			return null;
+		}
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String login = auth.getName();
 		Parent parent = parentService.getByLogin(login);
 		List<Child> listOfChild = childService.getChildOfParent(parent);
-
-		Child currentChild = null;
-		if (request.getParameter("child") != null) {
 			for (Child c : listOfChild) {
 				if (c.getLogin().equals(request.getParameter("child").toString())) {
-					currentChild = c;
-					break;
+					return c;
 				}
 			}
-		}
-		return currentChild;
+		return null;
 	}
 }

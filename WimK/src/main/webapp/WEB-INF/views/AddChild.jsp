@@ -25,7 +25,7 @@
                 </tr>
             </table>
         </form:form>
-        <a href="<c:url value="/" />" role="button">Назад</a>
+        <a href="<c:url value="/" />" role="button">Back</a>
     </div>
 </body>
 </html>

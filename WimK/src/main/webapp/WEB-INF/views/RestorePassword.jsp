@@ -14,16 +14,18 @@
 		<form action="${restoreUrl}" method="get">
 			<table border="0">
 				<tr>
-					<td><h2>Please type address your email</h2></td>
+					<td><h2>Please type address your email to start procedure of restore password.</h2></td>
 				</tr>
 				<tr>
-					<td><input type="text" name="email"/></td>
+					<td><input type="email" required="required" name="email" title="Strong password must contain digit, big letter, small letter, special character"/></td>
+					<td>${email_not_exist}</td>
 				</tr>
 				<tr>
-					<td><button type="submit" style="width:210x;height:20px">Send</button></td>
+					<td colspan="2"><button type="submit" style="width:210x;height:20px">Send</button></td>
 				</tr>
 			</table>
 		</form>
+		<a href="<c:url value="/login" />">Cancel</a>
 	</div>
 </body>
 </html>

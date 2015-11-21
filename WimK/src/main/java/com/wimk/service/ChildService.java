@@ -10,7 +10,7 @@ public interface ChildService {
 
 	void delete(int id);
 
-	Child editParent(Child child);
+	Child editChild(Child child);
 
 	List<Child> getAll();
 	

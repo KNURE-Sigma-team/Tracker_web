@@ -64,9 +64,16 @@ public class EmailSender {
 		sendEmail(parentEmail, subject, message);
 	}
 	
-	public static void sendRestorePasswordMessage(String email, String password){
-		String subject = "Resore password";
-		String message = "Your password is " + password;
+	public static void sendRestorePasswordConfirmingCode(String email, String password){
+		String subject = "Restore password";
+		String message = "Recently it received a request to restore your password in WimK.\nInput this code for restore password:\n" + password;
 		sendEmail(email, subject, message);
+	}
+	
+	public static void sendRegistrationConfirmEmail(String email, String url, String hash){
+		String subject = "Activated accout";
+		StringBuilder sb = new StringBuilder();
+		sb.append("To complete your registration, please visit this URL: \n").append(url).append("?login=").append(email).append("&hash=").append(hash);
+		sendEmail(email, subject, sb.toString());
 	}
 }

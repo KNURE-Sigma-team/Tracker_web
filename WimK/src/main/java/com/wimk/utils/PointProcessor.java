@@ -8,14 +8,17 @@ import com.wimk.entity.Parent;
 import com.wimk.entity.Point;
 
 public class PointProcessor {
+	
+	private static final String SOS_STRING = "sos";
+	private static final String COMMON_STRING = "common";
 
 	private PointProcessor() {
 	}
 
 	public static void pointProcess(Point point, Child child, Parent parent, List<Area> areaList) {
-		if (point.getPointType().equals("sos")) {
+		if (point.getPointType().getName().equals(SOS_STRING)) {
 			EmailSender.sendSosMessage(child.getLogin(), parent.getLogin());
-		} else if (point.getPointType().equals("common")) {
+		} else if (point.getPointType().getName().equals(COMMON_STRING)) {
 			boolean allowedAreasPresent = false;
 			boolean childInAllowedArea = false;
 			for (Area area : areaList) {

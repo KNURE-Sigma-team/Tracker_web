@@ -32,6 +32,12 @@ public class Parent implements Serializable {
 	
 	@Column(name = "removingFrequency", columnDefinition = "int(11) default 7")
 	private Integer removingFrequency;
+	
+	@Column(name = "hash")
+	private String hash;
+	
+	@Column(name = "activated")
+	private Boolean activated;
 
 	public Integer getIdParent() {
 		return id;
@@ -71,6 +77,22 @@ public class Parent implements Serializable {
 
 	public void setRemovingFrequency(int removingFrequency) {
 		this.removingFrequency = removingFrequency;
+	}
+	
+	public String getHash() {
+		return hash;
+	}
+
+	public void setHash(String hash) {
+		this.hash = hash;
+	}
+
+	public Boolean getActivated() {
+		return activated;
+	}
+
+	public void setActivated(Boolean activated) {
+		this.activated = activated;
 	}
 
 }

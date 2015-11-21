@@ -10,7 +10,7 @@ public interface PointService {
 
 	void delete(int id);
 
-	Point editParent(Point point);
+	Point editPoint(Point point);
 
 	List<Point> getAll();
 	

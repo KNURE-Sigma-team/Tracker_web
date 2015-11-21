@@ -56,6 +56,14 @@ create table PointType(idType INT, name varchar(10), primary key(idType));
 alter table PointType add unique index (name);
 insert into PointType values(1, 'common');
 insert into PointType values(2, 'sos');
-alter table Point add pointType INT;
-alter table Point add constraint fk_point_type foreign key (pointType) references PointType(idType);
+
+alter table Point drop column pointType;
+alter table Point add idType INT;
+alter table Point add constraint fk_point_type foreign key (idType) references PointType(idType);
 update Point set PointType = 1;
+/*change password type because start use SHA-512*/
+alter table Parent modify password varchar(128);
+
+/*Changes related with activated account*/
+alter table add hash varchar(10);
+alter table add activated TINYINT(1);

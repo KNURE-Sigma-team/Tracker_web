@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wimk.entity.Child;
 import com.wimk.entity.Parent;
+import com.wimk.secure.Sha512Encoder;
 import com.wimk.service.ChildService;
 import com.wimk.service.ParentService;
 
@@ -26,28 +27,25 @@ public class MobileAuthorizationController {
 	@Autowired
 	ParentService parentService;
 
-	/*
-	 * Method get request and response. Request must contain next parameters:
-	 * "loginParent","loginChild","password". Method return id of child if input
-	 * data is correct, else will be write -1.
-	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody String mobileAuthorization(HttpServletRequest request, HttpServletResponse response) {
-		String loginParent = (String) request.getParameter("loginParent");
-		String loginChild = (String) request.getParameter("loginChild");
-		String password = (String) request.getParameter("password");
-
-		if (loginParent != null || loginChild != null || password != null) {
+		String loginParent = request.getParameter("loginParent");
+		String password = request.getParameter("password");
+		if (loginParent != null || password != null) {
 			Parent parent = parentService.getByLogin(loginParent);
-			if (parent != null && parent.getPassword().equals(password)) {
+			if (parent != null && parent.getPassword().equals(new Sha512Encoder().encode(password))) {
 				List<Child> childList = childService.getChildOfParent(parent);
-				for (Child c : childList) {
-					if (c.getLogin().equals(loginChild)) {
-						return c.getId().toString();
-					}
-				}
+				return getStringChildList(childList);
 			}
 		}
-		return Integer.valueOf(-1).toString();
+		return "Exception";
+	}
+	
+	private String getStringChildList(List<Child> childList){
+		StringBuilder sb = new StringBuilder();
+		for(Child c: childList){
+			sb.append(c.getId()).append(';').append(c.getLogin()).append('\n');
+		}
+		return sb.toString();
 	}
 }

@@ -11,25 +11,8 @@
 </head>
 <body>
     <div align="center">
-        <table border="0">
-			<tr>
-				<td colspan="2" align="center"><h2>Registration Succeeded!</h2></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-                    <h3>Thank you for registering! Here's the review of your details:</h3>
-                </td>
-			</tr>
-			<tr>
-				<td>Login:</td>
-				<td>${userForm.login}</td>
-			</tr>
-			<tr>
-				<td>Name:</td>
-				<td>${userForm.name}</td>
-			</tr>
-		</table>
-		<p><a href="<c:url value="/login" />">To main menu</a></p>
+		${message}
+		<p><a href="<c:url value="/login" />">To login page</a></p>
     </div>
 </body>
 </html>

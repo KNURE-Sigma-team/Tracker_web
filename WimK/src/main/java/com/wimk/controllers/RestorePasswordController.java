@@ -1,7 +1,10 @@
 package com.wimk.controllers;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,16 +22,24 @@ public class RestorePasswordController {
 	ParentService parentService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String restorePassword(HttpServletRequest request) {
+	public String restorePassword(HttpServletRequest request, Map<String, Object> model) {
 		String login = request.getParameter("email");
 		if (login == null) {
 			return "RestorePassword";
 		}
 		Parent parent = parentService.getByLogin(login);
-		if(parent != null){
-			EmailSender.sendRestorePasswordMessage(parent.getLogin(), parent.getPassword());
+		if(parent == null){
+			model.put("email_not_exist", "No account found with that email address.");
+			return "RestorePassword";
 		}
-		return "Login";
+		
+		String confirmingCode = RandomStringUtils.randomAlphanumeric(10);
+		EmailSender.sendRestorePasswordConfirmingCode(parent.getLogin(), confirmingCode);
+		
+		request.getSession().setAttribute("parent", parent);
+		request.getSession().setAttribute("confirmingCode", confirmingCode);
+		
+		return "redirect:restore_password_confirming";
 	}
 
 }

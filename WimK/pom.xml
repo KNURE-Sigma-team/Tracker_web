@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.WimK</groupId>
-	<artifactId>wimk</artifactId>
+	<artifactId>WimK</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -12,6 +12,7 @@
 		<hb.manager>4.2.5.Final</hb.manager>
 		<mysql.version>5.1.29</mysql.version>
 		<spring.data>1.3.4.RELEASE</spring.data>
+		<jackson.version>1.9.10</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -54,9 +55,9 @@
 			<version>${hb.manager}</version>
 		</dependency>
 		<dependency>
-		    <groupId>commons-validator</groupId>
-		    <artifactId>commons-validator</artifactId>
-		    <version>1.4.0</version>
+			<groupId>commons-validator</groupId>
+			<artifactId>commons-validator</artifactId>
+			<version>1.4.0</version>
 		</dependency>
 
 		<!-- Spring Security -->
@@ -83,7 +84,7 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>3.2.4.RELEASE</version>
 		</dependency>
-		
+
 		<!-- Jstl Dependencies -->
 		<dependency>
 			<groupId>org.apache.taglibs</groupId>
@@ -103,10 +104,32 @@
 			<artifactId>javax.mail-api</artifactId>
 			<version>1.5.2</version>
 		</dependency>
+		
+		<!-- For generating new passwords -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
+		</dependency>
+		    <dependency>
+		        <groupId>org.codehaus.jackson</groupId>
+		        <artifactId>jackson-mapper-asl</artifactId>
+		        <version>1.9.13</version>
+			</dependency>
+			<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.4.1.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>wimk</finalName>
+		<finalName>WimK</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

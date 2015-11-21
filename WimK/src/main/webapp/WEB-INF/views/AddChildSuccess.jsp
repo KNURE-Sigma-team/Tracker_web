@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Successful operation</title>
 </head>
 <body>
 	<div align="center">
@@ -17,7 +17,7 @@
 				<td>${userForm.login}</td>
 			</tr>
 		</table>
-		<p><a href="/wimk/">To main menu</a></p>
+		<p><a href="">To main menu</a></p>
     </div>
 </body>
 </html>
