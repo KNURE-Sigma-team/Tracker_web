@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wimk.entity.Parent;
+import com.wimk.secure.Sha512Encoder;
 import com.wimk.service.ParentService;
 
 @Controller
-@RequestMapping(value = "/edit_profile")
-public class EditProfileController {
+@RequestMapping(value = "/edit_profile_confirm_password")
+public class EditProfileConfirmPasswordController {
 	
 	@Autowired
 	ParentService parentService;
@@ -27,11 +29,7 @@ public class EditProfileController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String viewEditChild(Map<String, Object> model) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String login = auth.getName();
-		Parent parent = parentService.getByLogin(login);
-		model.put("parent", parent);
-		return "EditProfile";
+		return "EditProfileConfirmPassword";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -40,25 +38,22 @@ public class EditProfileController {
 		String authLogin = auth.getName();
 		Parent parent = parentService.getByLogin(authLogin);
 		
-		String login = request.getParameter("login");
-		String name = request.getParameter("name");
-		Integer removingFrequency = Integer.parseInt(request.getParameter("removing_frequency"));
+		String password = request.getParameter("password");
+		Parent newParent = (Parent) request.getSession().getAttribute("parent");
 		
-		parent.setLogin(login);
-		parent.setName(name);
-		parent.setRemovingFrequency(removingFrequency);
-		if(!authLogin.equals(login) &&
-			parentService.getByLogin(login) != null){
+		parent.setLogin(newParent.getLogin());
+		parent.setName(newParent.getName());
+		parent.setRemovingFrequency(newParent.getRemovingFrequency());
+		if(!new Sha512Encoder().matches(password, parent.getPassword())){
 			model.put("parent", parent);
-			model.put("parent_exist", "Someone already has that username. Try another?");
-			return "EditProfile";
+			model.put("invalid_password", "Invalid password");
+			return "EditProfileConfirmPassword";
 		}
-		if(removingFrequency < 5 || removingFrequency > 90){
-			model.put("parent", parent);
-			model.put("invalid_removing_frequency", "Invalid removing frequency");
-			return "EditProfile";
-		}
-		request.getSession().setAttribute("parent", parent);
-		return "redirect:edit_profile_confirm_password";
+		
+		parentService.editParent(parent);
+		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(parent.getLogin(), password);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		return "redirect:personal_cabinet";
 	}
 }
