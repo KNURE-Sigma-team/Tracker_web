@@ -28,18 +28,24 @@ public class MobileAuthorizationController {
 	ParentService parentService;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody Child[] mobileAuthorization(HttpServletRequest request, HttpServletResponse response) {
+	public @ResponseBody String mobileAuthorization(HttpServletRequest request, HttpServletResponse response) {
 		String loginParent = request.getParameter("loginParent");
 		String password = request.getParameter("password");
-		Child[] res = null;
 		if (loginParent != null || password != null) {
 			Parent parent = parentService.getByLogin(loginParent);
 			if (parent != null && parent.getPassword().equals(new Sha512Encoder().encode(password))) {
 				List<Child> childList = childService.getChildOfParent(parent);
-				res = childList.toArray(new Child[childList.size()]);
-				return res;
+				return getStringChildList(childList);
 			}
 		}
-		return res;
+		return "Exception";
+	}
+	
+	private String getStringChildList(List<Child> childList){
+		StringBuilder sb = new StringBuilder();
+		for(Child c: childList){
+			sb.append(c.getId()).append(';').append(c.getLogin()).append('\n');
+		}
+		return sb.toString();
 	}
 }
