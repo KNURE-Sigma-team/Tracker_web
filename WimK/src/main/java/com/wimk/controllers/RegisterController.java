@@ -48,6 +48,9 @@ public class RegisterController {
 			request.setAttribute("error_message", "Name is too long");
 			return "Registration";
 		}
+		System.out.println(user.getPassword().length());
+		System.out.println(user.getPassword());
+		System.out.println(!new PasswordValidator().validate(user.getPassword()));
 		if (user.getPassword().length() < 8 || !new PasswordValidator().validate(user.getPassword())) {
 			request.setAttribute("error_message", "Password is too simple");
 			return "Registration";

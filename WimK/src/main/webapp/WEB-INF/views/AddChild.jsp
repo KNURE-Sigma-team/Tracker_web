@@ -21,6 +21,9 @@
 				<td><form:input path="login" required="required" pattern="[A-Za-z0-9]{3,20}" /></td>
                 </tr>
                 <tr>
+                	<td>${error}</td>
+                </tr>
+                <tr>
                     <td colspan="2" align="center"><input type="submit" value="Add child" /></td>
                 </tr>
             </table>
