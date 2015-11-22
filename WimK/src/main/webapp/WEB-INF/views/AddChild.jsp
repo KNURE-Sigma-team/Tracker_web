@@ -10,7 +10,7 @@
 <title>Add new child</title>
 </head>
 <body>
-	<div align="center">
+	<div align="center" class = >
         <form:form action="add_child" method="post" commandName="userForm">
             <table border="0">
                 <tr>
