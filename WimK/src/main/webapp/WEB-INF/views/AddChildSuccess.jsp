@@ -14,7 +14,7 @@
 			</tr>
 			<tr>
 				<td>Login:</td>
-				<td>${userForm.login}</td>
+				<td>${child.login}</td>
 			</tr>
 		</table>
 		<p><a href="">To main menu</a></p>

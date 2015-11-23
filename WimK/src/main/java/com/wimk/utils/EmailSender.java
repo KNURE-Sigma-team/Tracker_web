@@ -38,7 +38,8 @@ public class EmailSender {
 			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailTo));
 			mimeMessage.setSubject(subject);
 			mimeMessage.setText(message);
-
+			mimeMessage.setHeader("X-Priority", "5");
+			
 			Transport.send(mimeMessage);
 
 		} catch (MessagingException e) {

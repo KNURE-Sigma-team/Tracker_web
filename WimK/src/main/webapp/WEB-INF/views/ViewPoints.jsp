@@ -53,6 +53,10 @@
 		</div>
 		<div id = "viewMenu">
 			<div>
+				<spring:url value="${currentChild.avatar}" var="imageChild" />
+				<img id="child_avatar" src="${imageChild}"/>
+			</div>
+			<div>
 				Child:
 				<select id="childLogin" onchange = "childChanged()">
 					<c:forEach items="${listOfChild}" var="child" >

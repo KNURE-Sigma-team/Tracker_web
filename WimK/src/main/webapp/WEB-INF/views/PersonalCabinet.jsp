@@ -54,6 +54,10 @@
 							<div class="row">
 						</c:if>
 						<div class="child col-md-6">
+							<div>
+								<spring:url value="${child.avatar}" var="imageChild" />
+								<img id="child_avatar" src="${imageChild}"/>
+							</div>
 							<div>login: <c:out value="${child.login}" /></div>
 							<div>sending frequency: <c:out value="${child.sendingFrequency}" /> minutes </div>
 							<form action="edit_child">

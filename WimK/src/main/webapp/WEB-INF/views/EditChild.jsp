@@ -9,15 +9,26 @@
 
 <spring:url value="/resources/core/js/script-edit_child.js" var="editChildJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
+<spring:url value="/resources/core/css/style-edit_child.css" var="editChildCss" />
+
+<link href="${editChildCss}" rel="stylesheet" type="text/css" />
 
 <script src="${jquery}" type="text/javascript"></script>
 <title>Insert title here</title>
 </head>
 <body>
-<form id="editChildForm" method="post">
+<form id="editChildForm" method="post" enctype="multipart/form-data">
 	<input name="old_child_login" type="hidden" value="${child.login}"/>
 	<input name="status" type="hidden" value="edit"/>
 	<table>
+		<tr>
+        	<td> Child image </td>
+            <td>
+            	<input id="input_child_avatar" type="file" name="avatar" accept="image/jpeg,image/png" onchange="readURL(this);"/>
+            	<spring:url value="${child.avatar}" var="imageChild" />
+                <img id="child_avatar" src="${imageChild}" />
+           	</td>
+		</tr>	
 		<tr>
 			<td>Login: </td>
 			<td><input name="child_login" type="text" required="required" pattern="[A-Za-z0-9]{4,20}" value="${child.login}"/></td>

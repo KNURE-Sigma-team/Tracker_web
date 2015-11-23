@@ -36,6 +36,9 @@ public class Child implements Serializable{
 	@Column(name = "sendingFrequency")
 	private Integer sendingFrequency;
 	
+	@Column(name = "avatar")
+	private String avatar;
+
 	public Integer getId() {
 		return id;
 	}
@@ -68,4 +71,11 @@ public class Child implements Serializable{
 		this.sendingFrequency = sendingFrequency;
 	}
 	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 }
