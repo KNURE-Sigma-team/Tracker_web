@@ -65,5 +65,8 @@ update Point set PointType = 1;
 alter table Parent modify password varchar(128);
 
 /*Changes related with activated account*/
-alter table add hash varchar(10);
-alter table add activated TINYINT(1);
+alter table Parent add hash varchar(10);
+alter table Parent add activated TINYINT(1);
+
+/*Changes related with activated account*/
+alter table Child add avatar varchar(100);
