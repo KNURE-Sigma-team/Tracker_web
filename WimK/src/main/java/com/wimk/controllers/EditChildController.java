@@ -1,6 +1,7 @@
 package com.wimk.controllers;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import com.wimk.entity.Child;
 import com.wimk.entity.Parent;
 import com.wimk.service.ChildService;
 import com.wimk.service.ParentService;
+import com.wimk.utils.ImageValidator;
 
 @Controller
 @RequestMapping(value = "/edit_child")
@@ -86,7 +88,7 @@ public class EditChildController {
 		} else {
 			status = request.getParameter("status");
 		}
-		
+
 		switch (status) {
 		case "edit":
 			address = editChild(multiparts, listOfChild, model, login);
@@ -98,7 +100,8 @@ public class EditChildController {
 		return address;
 	}
 
-	private String editChild(List<FileItem> multiparts, List<Child> listOfChild, Map<String, Object> model, String parentLogin) {
+	private String editChild(List<FileItem> multiparts, List<Child> listOfChild, Map<String, Object> model,
+			String parentLogin) {
 		String childLogin = null;
 		String oldChildLogin = null;
 		Integer sendingFrequency = null;
@@ -113,6 +116,10 @@ public class EditChildController {
 					sendingFrequency = Integer.parseInt(item.getString());
 				}
 			} else if (item.getFieldName().equals("avatar") && item.getSize() > 0) {
+				if (!ImageValidator.isImage(item)) {
+					model.put("bad_image", "Bad type of image.");
+					return "EditChild";
+				}
 				avatar = item;
 			}
 		}

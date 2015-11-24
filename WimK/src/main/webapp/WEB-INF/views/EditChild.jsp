@@ -28,6 +28,9 @@
             	<spring:url value="${child.avatar}" var="imageChild" />
                 <img id="child_avatar" src="${imageChild}" />
            	</td>
+           	<td>
+           		${bad_image}
+           	</td>
 		</tr>	
 		<tr>
 			<td>Login: </td>

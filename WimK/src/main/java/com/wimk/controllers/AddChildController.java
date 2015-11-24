@@ -1,9 +1,14 @@
 package com.wimk.controllers;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +26,7 @@ import com.wimk.entity.Child;
 import com.wimk.entity.Parent;
 import com.wimk.service.ChildService;
 import com.wimk.service.ParentService;
+import com.wimk.utils.ImageValidator;
 
 @Controller
 @RequestMapping(value = "/add_child")
@@ -60,6 +66,10 @@ public class AddChildController {
 				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 				for (FileItem item : multiparts) {
 					if (!item.isFormField() && item.getFieldName().equals("avatar") && item.getSize() > 0) {
+						if(!ImageValidator.isImage(item)){
+							model.put("error", "Bad type of image.");
+							return "AddChild";
+						}
 						avatar = item;
 					} else if (item.getFieldName().equals("login")) {
 						childLogin = item.getString();
@@ -106,4 +116,5 @@ public class AddChildController {
 		model.put("child", child);
 		return "AddChildSuccess";
 	}
+	
 }
