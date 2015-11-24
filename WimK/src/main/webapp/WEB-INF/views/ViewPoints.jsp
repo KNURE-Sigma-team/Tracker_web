@@ -47,7 +47,10 @@
 					<td><button id="confirmAreaChanges" onclick = removeArea() >Remove area</button></td>
 				</tr>
 				<tr>
-					<td><button id="confirmAreaChanges" onclick = confirmChanges() >Confirm changes</button></td>
+					<td>
+						<button id="confirmAreaChanges" onclick = confirmChanges() >Confirm changes</button>
+						<div id="confirmChangesResult"></div>
+					</td>
 				</tr>
 			</table>
 		</div>

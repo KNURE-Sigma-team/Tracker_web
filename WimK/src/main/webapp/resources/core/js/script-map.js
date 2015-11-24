@@ -377,13 +377,33 @@ function confirmChanges(){
 	cancelRememberUserAboutUnsavedData();
 }
 
-// Function for execute query
+//Function for execute query
 function executeQuery(data){
 	$.ajax({
 		type: "POST",
 		url:  "/wimk/area_editor",
-		data: data
+		data: data,
+		success : function(message){
+			if(message=="OK"){
+				goodResult();
+			} else {
+				badResult();
+			}
+		}
 	});
+}
+
+// Functions for show user the result query
+function goodResult(){
+	document.getElementById('confirmChangesResult').innerHTML = "Changes was confirmed.";
+	setTimeout(removeResult, 800);
+}
+function badResult(){
+	document.getElementById('confirmChangesResult').innerHTML = "Changes was not confirmed.";
+	setTimeout(removeResult, 800);
+}
+function removeResult(){
+	document.getElementById('confirmChangesResult').innerHTML = "";
 }
 
 // ======================================================================================
