@@ -20,7 +20,7 @@ public class EmailSender {
 	private static final String SENDER_PASSWORD = "Wimk.30102015";
 
 	private static final String HIGH_PRIORITY = "1";
-	private static final String COMMON_PRIORITY = "1";
+	private static final String COMMON_PRIORITY = "3";
 	
 	private static void sendEmail(String emailTo, String subject, String message, String xPriority) {
 		Properties props = new Properties();
