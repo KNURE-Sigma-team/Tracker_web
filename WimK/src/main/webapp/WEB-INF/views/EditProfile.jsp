@@ -18,8 +18,7 @@
 	<table>
 		<tr>
 			<td>Login: </td>
-			<td><input name="login" type="email" required="required" value="${parent.login}"/></td>
-			<td>${parent_exist}</td>
+			<td>${parent.login}. If you want to change login, then contact with support team.</td>
 		</tr>
 		<tr>
 			<td>Name:</td>
