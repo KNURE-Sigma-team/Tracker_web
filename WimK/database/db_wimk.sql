@@ -70,3 +70,6 @@ alter table Parent add activated TINYINT(1);
 
 /*Changes related with activated account*/
 alter table Child add avatar varchar(100);
+
+alter table Child add authorizatedNumber INT;
+alter table Child add googleToken varchar(512);

@@ -81,9 +81,9 @@
 					</c:forEach>
 				</select>
 			</div>
-			<div id="areaDescriptionViewMode">
-				
-			</div>
+			<div id="areaDescriptionViewMode"></div>
+			<div><button id="whereIsChild" onclick = whereIsChild() >See where is my child</button></div>
+			<div id="resultWhereIsChildQuery"></div>
 		</div>
 		<a href="<c:url value="/" />">To main menu</a>
 	</div>
