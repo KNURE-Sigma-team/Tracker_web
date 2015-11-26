@@ -43,14 +43,10 @@ public class RegisterController {
 			request.setAttribute("error_message", "This login is already used");
 			return "Registration";
 		}
-
 		if (user.getName().length() > 16) {
 			request.setAttribute("error_message", "Name is too long");
 			return "Registration";
 		}
-		System.out.println(user.getPassword().length());
-		System.out.println(user.getPassword());
-		System.out.println(!new PasswordValidator().validate(user.getPassword()));
 		if (user.getPassword().length() < 8 || !new PasswordValidator().validate(user.getPassword())) {
 			request.setAttribute("error_message", "Password is too simple");
 			return "Registration";
@@ -60,7 +56,7 @@ public class RegisterController {
 		user.setActivated(false);
 		user.setHash(hash);
 		parentService.addParent(user);
-		EmailSender.sendRegistrationConfirmEmail(user.getLogin(), getAccountActivatedAddress(request), hash);
+		EmailSender.sendRegistrationConfirmEmail(user, getAccountActivatedAddress(request), hash);
 		
 		model.put("message", "To complete your registration, follow the link which we sent to your email.");
 		return "RegistrationSuccess";

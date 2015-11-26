@@ -11,6 +11,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.wimk.entity.Parent;
+
 public class EmailSender {
 
 	private EmailSender() {
@@ -40,7 +42,7 @@ public class EmailSender {
 			mimeMessage.setFrom(new InternetAddress(SENDER_EMAIL));
 			mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailTo));
 			mimeMessage.setSubject(subject);
-			mimeMessage.setText(message);
+			mimeMessage.setContent(message, "text/html");
 			mimeMessage.setHeader("X-Priority", xPriority);
 			
 			Transport.send(mimeMessage);
@@ -68,16 +70,28 @@ public class EmailSender {
 		sendEmail(parentEmail, subject, message, HIGH_PRIORITY);
 	}
 	
-	public static void sendRestorePasswordConfirmingCode(String email, String password){
+	public static void sendRestorePasswordConfirmingCode(String email, String confirmingCode, String url){
 		String subject = "Restore password";
-		String message = "Recently it received a request to restore your password in WimK.\nInput this code for restore password:\n" + password;
+		String message = "<div style='color:#000000'><div>Recently it received a request to restore your password in <a href='" + url + "'>WimK.</a></div>"
+				+ "<br/><div>Input this code for restore password:</div>"
+				+ "<div style='background-color:#F8F8FF; border:solid 1px black; font-size:20pt; display: inline-block' align='center'>" + confirmingCode + "</div></div>";
 		sendEmail(email, subject, message, COMMON_PRIORITY);
 	}
 	
-	public static void sendRegistrationConfirmEmail(String email, String url, String hash){
+	public static void sendRegistrationConfirmEmail(Parent parent, String url, String hash) {
 		String subject = "Activated accout";
+		String siteAddress = url.substring(0, url.indexOf('/', url.indexOf("/register")));
 		StringBuilder sb = new StringBuilder();
-		sb.append("To complete your registration, please visit this URL: \n").append(url).append("?login=").append(email).append("&hash=").append(hash);
-		sendEmail(email, subject, sb.toString(), COMMON_PRIORITY);
+		sb.append("<div style='font-size:12pt'>Hello, ").append(parent.getName()).append("!<br/>")
+				.append("Congratulations with the registration in <a href='").append(siteAddress).append("'>WimK</a><br/>")
+				.append("To complete your registration, please visit this URL: </div>")
+				.append("<div style='font-size:12pt'>").append(url).append("?login=").append(parent.getLogin()).append("&hash=").append(hash).append("</div><br/>")
+				.append("<div style='font-size:10pt'>Attention!<br/>")
+				.append("Account activation only at this link. <br/>")
+				.append("You mustn't responding on this message <br/>")
+				.append("You received this message because your e-mail address has been registered on the site <a href='").append(siteAddress).append("'>WimK</a><br/>") 
+				.append("If you are not registered on this site, please ignore this letter. <br/>")
+				.append("Best wishes, the site administration <a href='").append(siteAddress).append("'>WimK</a></div><br/>");
+		sendEmail(parent.getLogin(), subject, sb.toString(), COMMON_PRIORITY);
 	}
 }
