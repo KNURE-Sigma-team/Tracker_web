@@ -73,3 +73,6 @@ alter table Child add avatar varchar(100);
 
 alter table Child add authorizatedNumber INT;
 alter table Child add googleToken varchar(512);
+
+/*New point type*/
+Insert into PointType values(3, 'on_demand');

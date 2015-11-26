@@ -16,6 +16,7 @@ var editMode = false;
 // URI of images for draw point on the map
 var imageOfPoint = "/wimk/resources/core/images/point.png";
 var imageOfSosPoint = "/wimk/resources/core/images/point_sos.png";
+var imageOfPointOnDemand = "/wimk/resources/core/images/point_on_demand.png";
 // Alphabet for labeles on the points
 var EnglishAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var currentLetter = 0;
@@ -226,7 +227,12 @@ function initMap(latitude, longitude) {
 }
 
 // Function for draw point on the map.
-function drawPoint(latitude, longitude, date, batterryStatus) {
+function drawPoint(latitude, longitude, date, batterryStatus, pointType) {
+	currentImageOfPoint = imageOfPoint;
+	if(pointType = 2){
+		currentImageOfPoint = imageOfPointOnDemand
+	}
+	
 	var marker = new google.maps.Marker({
 		position : {
 			lat : latitude,

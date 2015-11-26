@@ -87,7 +87,9 @@ public class EditChildController {
 		} else {
 			status = request.getParameter("status");
 		}
-
+		if(status == null){
+			throw new RuntimeException();
+		}
 		switch (status) {
 		case "edit":
 			address = editChild(multiparts, listOfChild, model, login);

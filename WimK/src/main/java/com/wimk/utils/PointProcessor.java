@@ -11,31 +11,36 @@ public class PointProcessor {
 	
 	private static final String SOS_STRING = "sos";
 	private static final String COMMON_STRING = "common";
+	private static final String ON_DEMAND_STRING = "on_demand";
 
 	private PointProcessor() {
 	}
 
 	public static void pointProcess(Point point, Child child, Parent parent, List<Area> areaList) {
-		if (point.getPointType().getName().equals(SOS_STRING)) {
-			EmailSender.sendSosMessage(child.getLogin(), parent.getLogin());
-		} else if (point.getPointType().getName().equals(COMMON_STRING)) {
-			boolean allowedAreasPresent = false;
-			boolean childInAllowedArea = false;
-			for (Area area : areaList) {
-				if (area.getAllowed()) {
-					allowedAreasPresent = true;
-					if (pointIntoArea(point, area)) {
-						childInAllowedArea = true;
+		switch(point.getPointType().getName()){
+				case SOS_STRING:
+					EmailSender.sendSosMessage(child.getLogin(), parent.getLogin());
+					break;
+				case ON_DEMAND_STRING:
+				case COMMON_STRING:
+					boolean allowedAreasPresent = false;
+					boolean childInAllowedArea = false;
+					for (Area area : areaList) {
+						if (area.getAllowed()) {
+							allowedAreasPresent = true;
+							if (pointIntoArea(point, area)) {
+								childInAllowedArea = true;
+							}
+						} else if (pointIntoArea(point, area)) {
+							EmailSender.sendMessageChildIntoForbiddenArea(child.getLogin(), point.getTime(), parent.getLogin());
+							return;
+						}
 					}
-				} else if (pointIntoArea(point, area)) {
-					EmailSender.sendMessageChildIntoForbiddenArea(child.getLogin(), point.getTime(), parent.getLogin());
-					return;
-				}
-			}
-			
-			if (allowedAreasPresent && !childInAllowedArea) {
-				EmailSender.sendMessageChildLeaveAllowedArea(child.getLogin(), point.getTime(), parent.getLogin());
-			}
+					
+					if (allowedAreasPresent && !childInAllowedArea) {
+						EmailSender.sendMessageChildLeaveAllowedArea(child.getLogin(), point.getTime(), parent.getLogin());
+					}
+					break;
 		}
 	}
 
