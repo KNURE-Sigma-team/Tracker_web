@@ -48,6 +48,7 @@
 	<div>
 		<c:choose>
 			<c:when test="${fn:length(listOfChild) gt 0}">
+				Children:
 				<div class="container">
 					<c:forEach items="${listOfChild}" var="child" varStatus="status">
 						<c:if test="${status.index % 2 == 0}">
@@ -70,6 +71,16 @@
 						</c:if>
 					</c:forEach>
 					<c:if test="${fn:length(listOfChild) % 2 == 1}">
+							<div class="child col-md-6">
+								<a href="<c:url value="/add_child" />">Add child</a>
+							</div>
+						</div>
+					</c:if>
+					<c:if test="${fn:length(listOfChild) % 2 == 0}">
+						<div class="row">
+							<div class="child col-md-6">
+								<a href="<c:url value="/add_child" />">Add child</a>
+							</div>
 						</div>
 					</c:if>
 				</div>
