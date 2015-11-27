@@ -1,6 +1,5 @@
 package com.wimk.utils;
 
-import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -11,7 +10,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.wimk.entity.Area;
 import com.wimk.entity.Parent;
+import com.wimk.entity.Point;
 
 public class EmailSender {
 
@@ -30,13 +31,11 @@ public class EmailSender {
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
-
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(SENDER_EMAIL, SENDER_PASSWORD);
 			}
 		});
-
 		try {
 			Message mimeMessage = new MimeMessage(session);
 			mimeMessage.setFrom(new InternetAddress(SENDER_EMAIL));
@@ -44,30 +43,40 @@ public class EmailSender {
 			mimeMessage.setSubject(subject);
 			mimeMessage.setContent(message, "text/html");
 			mimeMessage.setHeader("X-Priority", xPriority);
-			
 			Transport.send(mimeMessage);
-
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
 	}
 	
-	public static void sendSosMessage(String childName, String parentEmail){
+	public static void sendSosMessage(String childName, String parentEmail, Point point, String wimkUrl){
 		String subject = "Sos message from " + childName;
-		String message = "Your child " + childName + " sent to our service sos message.";
-		sendEmail(parentEmail, subject, message, HIGH_PRIORITY);
+		StringBuilder message = new StringBuilder();
+		message.append("Your child ").append(childName).append(" sent to <a href='").append(wimkUrl).append("'> WimK </a> SOS message. <br/>")
+			.append("Address: ").append(Geodecoder.geodecode(point.getX(), point.getY())).append("<br/>")
+			.append("Time: ").append(point.getTime());
+		sendEmail(parentEmail, subject, message.toString(), HIGH_PRIORITY);
 	}
 	
-	public static void sendMessageChildIntoForbiddenArea(String childName, Date date, String parentEmail){
+	public static void sendMessageChildIntoForbiddenArea(String childName, String parentEmail, Point point, Area area, String wimkUrl){
 		String subject = "Child " + childName + " into forbidden area";
-		String message = "Child " + childName + " is into forbidden area. " + date.toString();
-		sendEmail(parentEmail, subject, message, HIGH_PRIORITY);
+		StringBuilder message = new StringBuilder();
+		message.append("<a href='").append(wimkUrl).append("'> WimK </a> detected that your child came in forbiddenn area. <br/>")
+			.append("<table><tr><td>Child: </td><td>").append(childName).append("</td></tr>")
+			.append("<tr><td>Forbiddenn area: </td><td>").append(area.getName()).append("</td></tr>")
+			.append("<tr><td>Address: </td><td>").append(Geodecoder.geodecode(point.getX(), point.getY())).append("</td></tr>")
+			.append("<tr><td>Time: </td><td>").append(point.getTime()).append("</td></tr></table>");
+		sendEmail(parentEmail, subject, message.toString(), HIGH_PRIORITY);
 	}
 	
-	public static void sendMessageChildLeaveAllowedArea(String childName, Date date, String parentEmail){
+	public static void sendMessageChildLeaveAllowedArea(String childName, String parentEmail, Point point, String wimkUrl){
 		String subject = "Child " + childName + " outside allowed area";
-		String message = "Child " + childName + " is outside allowed area. " + date.toString();
-		sendEmail(parentEmail, subject, message, HIGH_PRIORITY);
+		StringBuilder message = new StringBuilder();
+		message.append("<a href='").append(wimkUrl).append("'> WimK </a> detected that your child came out from allowed areas. <br/>")
+			.append("<table><tr><td>Child: </td><td>").append(childName).append("</td></tr>")
+			.append("<tr><td>Address: </td><td>").append(Geodecoder.geodecode(point.getX(), point.getY())).append("</td></tr>")
+			.append("<tr><td>Time: </td><td>").append(point.getTime()).append("</td></tr></table>");
+		sendEmail(parentEmail, subject, message.toString(), HIGH_PRIORITY);
 	}
 	
 	public static void sendRestorePasswordConfirmingCode(String email, String confirmingCode, String url){

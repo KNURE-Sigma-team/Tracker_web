@@ -75,11 +75,11 @@ public class MobileGetPointController {
 				
 				List<Area> areaList = areaService.getAllAreasOfChild(child);
 				Parent parent = child.getParent();
-				PointProcessor.pointProcess(point, child, parent, areaList);
+				PointProcessor.pointProcess(point, child, parent, areaList, request);
 				return "OK";
 			}
 		}
 		return "Exception";
 	}
-
+	
 }
