@@ -1,5 +1,7 @@
 package com.wimk.utils;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -90,8 +92,8 @@ public class EmailSender {
 	public static void sendRegistrationConfirmEmail(Parent parent, String url, String hash) {
 		String subject = "Activated accout";
 		String siteAddress = url.substring(0, url.indexOf('/', url.indexOf("/register")));
-		StringBuilder sb = new StringBuilder();
-		sb.append("<div style='font-size:12pt'>Hello, ").append(parent.getName()).append("!<br/>")
+		StringBuilder message = new StringBuilder();
+		message.append("<div style='font-size:12pt'>Hello, ").append(parent.getName()).append("!<br/>")
 				.append("Congratulations with the registration in <a href='").append(siteAddress).append("'>WimK</a><br/>")
 				.append("To complete your registration, please visit this URL: </div>")
 				.append("<div style='font-size:12pt'>").append(url).append("?login=").append(parent.getLogin()).append("&hash=").append(hash).append("</div><br/>")
@@ -101,6 +103,15 @@ public class EmailSender {
 				.append("You received this message because your e-mail address has been registered on the site <a href='").append(siteAddress).append("'>WimK</a><br/>") 
 				.append("If you are not registered on this site, please ignore this letter. <br/>")
 				.append("Best wishes, the site administration <a href='").append(siteAddress).append("'>WimK</a></div><br/>");
-		sendEmail(parent.getLogin(), subject, sb.toString(), COMMON_PRIORITY);
+		sendEmail(parent.getLogin(), subject, message.toString(), COMMON_PRIORITY);
+	}
+	
+	public static void sendGeoDropEmail(String parentEmail, String childName, String wimkUrl){
+		StringBuilder message = new StringBuilder();
+		String subject = childName + " dropped geolocation";
+		message.append("<a href='").append(wimkUrl).append("'> WimK </a> detected that your child came in forbiddenn area. <br/>")
+			.append("<table><tr><td>Child: </td><td>").append(childName).append("</td></tr>")
+			.append("<tr><td>Time: </td><td>").append(Date.from(Instant.now())).append("</td></tr></table>");
+		sendEmail(parentEmail, subject, message.toString(), COMMON_PRIORITY);
 	}
 }

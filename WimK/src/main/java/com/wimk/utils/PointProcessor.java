@@ -68,7 +68,7 @@ public class PointProcessor {
 	private static String getAccountActivatedAddress(HttpServletRequest request) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(request.getScheme()).append("://").append(request.getServerName()).append(':')
-				.append(request.getServerPort()).append(request.getRequestURI()).append("/activation");
+				.append(request.getServerPort()).append(request.getRequestURI());
 		String url = sb.toString();
 		return url.substring(0, url.indexOf('/', url.indexOf("/mobile_get_point")));
 	}
