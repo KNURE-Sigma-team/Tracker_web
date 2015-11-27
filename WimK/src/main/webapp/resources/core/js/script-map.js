@@ -17,6 +17,7 @@ var editMode = false;
 var imageOfPoint = "/wimk/resources/core/images/point.png";
 var imageOfSosPoint = "/wimk/resources/core/images/point_sos.png";
 var imageOfPointOnDemand = "/wimk/resources/core/images/point_on_demand.png";
+var imageOfPointStoraged = "/wimk/resources/core/images/point_storaged.png";
 // Alphabet for labeles on the points
 var EnglishAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var currentLetter = 0;
@@ -228,18 +229,27 @@ function initMap(latitude, longitude) {
 
 // Function for draw point on the map.
 function drawPoint(latitude, longitude, date, batterryStatus, pointType) {
-	currentImageOfPoint = imageOfPoint;
-	if(pointType = 2){
-		currentImageOfPoint = imageOfPointOnDemand
+	currentImageOfPoint = null;
+	letter = "";
+	switch(pointType){
+		case 1:
+			currentImageOfPoint = imageOfPoint;
+			letter = EnglishAlphabet[currentLetter++%EnglishAlphabet.length];
+			break;
+		case 2:
+			currentImageOfPoint = imageOfPointOnDemand;
+			break;
+		case 3:
+			currentImageOfPoint = imageOfPointStoraged;
+			break;
 	}
-	
 	var marker = new google.maps.Marker({
 		position : {
 			lat : latitude,
 			lng : longitude
 		},
 		map : map,
-		label : EnglishAlphabet[currentLetter++%EnglishAlphabet.length],
+		label : letter,
 		icon : imageOfPoint,
 		title : 'Date: ' + date + ';\nBattery status : '+ batterryStatus + '%',
 	});

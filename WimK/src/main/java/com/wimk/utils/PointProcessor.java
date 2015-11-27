@@ -14,6 +14,7 @@ public class PointProcessor {
 	private static final String SOS_STRING = "sos";
 	private static final String COMMON_STRING = "common";
 	private static final String ON_DEMAND_STRING = "on_demand";
+	private static final String STORAGED = "storaged";
 
 	private PointProcessor() {
 	}
@@ -25,6 +26,7 @@ public class PointProcessor {
 					EmailSender.sendSosMessage(child.getLogin(), parent.getLogin(), point, getAccountActivatedAddress(request));
 					break;
 				case ON_DEMAND_STRING:
+				case STORAGED:
 				case COMMON_STRING:
 					boolean allowedAreasPresent = false;
 					boolean childInAllowedArea = false;

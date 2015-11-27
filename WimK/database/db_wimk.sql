@@ -76,3 +76,4 @@ alter table Child add googleToken varchar(512);
 
 /*New point type*/
 Insert into PointType values(3, 'on_demand');
+Insert into PointType values(4, 'storaged');

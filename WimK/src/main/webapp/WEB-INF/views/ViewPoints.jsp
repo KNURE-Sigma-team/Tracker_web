@@ -102,6 +102,10 @@
 					drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
 						'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>', 2);
 				</c:when>
+				<c:when test="${point.pointType.name=='storaged'}">
+					drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
+						'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>', 3);
+				</c:when>
 				<c:when test="${point.pointType.name=='sos'}">
 					drawSosPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
 							'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>');
