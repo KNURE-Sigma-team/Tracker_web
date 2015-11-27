@@ -13,34 +13,38 @@ public class PointProcessor {
 
 	private static final String SOS_STRING = "sos";
 	private static final String COMMON_STRING = "common";
+	private static final String ON_DEMAND_STRING = "on_demand";
 
 	private PointProcessor() {
 	}
 
 	public static void pointProcess(Point point, Child child, Parent parent, List<Area> areaList,
 			HttpServletRequest request) {
-		if (point.getPointType().getName().equals(SOS_STRING)) {
-			EmailSender.sendSosMessage(child.getLogin(), parent.getLogin(), point, getAccountActivatedAddress(request));
-		} else if (point.getPointType().getName().equals(COMMON_STRING)) {
-			boolean allowedAreasPresent = false;
-			boolean childInAllowedArea = false;
-			for (Area area : areaList) {
-				if (area.getAllowed()) {
-					allowedAreasPresent = true;
-					if (pointIntoArea(point, area)) {
-						childInAllowedArea = true;
-					}
-				} else if (pointIntoArea(point, area)) {
-					EmailSender.sendMessageChildIntoForbiddenArea(child.getLogin(), parent.getLogin(), point, area,
+		switch(point.getPointType().getName()){
+				case SOS_STRING:
+					EmailSender.sendSosMessage(child.getLogin(), parent.getLogin(), point, getAccountActivatedAddress(request));
+					break;
+				case ON_DEMAND_STRING:
+				case COMMON_STRING:
+					boolean allowedAreasPresent = false;
+					boolean childInAllowedArea = false;
+					for (Area area : areaList) {
+						if (area.getAllowed()) {
+						allowedAreasPresent = true;
+						if (pointIntoArea(point, area)) {
+							childInAllowedArea = true;
+						}
+						} else if (pointIntoArea(point, area)) {
+						EmailSender.sendMessageChildIntoForbiddenArea(child.getLogin(), parent.getLogin(), point, area,
 							getAccountActivatedAddress(request));
-					return;
-				}
-			}
-
-			if (allowedAreasPresent && !childInAllowedArea) {
-				EmailSender.sendMessageChildLeaveAllowedArea(child.getLogin(), parent.getLogin(), point,
-						getAccountActivatedAddress(request));
-			}
+						return;
+						}
+					}	
+					if (allowedAreasPresent && !childInAllowedArea) {
+						EmailSender.sendMessageChildLeaveAllowedArea(child.getLogin(), parent.getLogin(), point,
+							getAccountActivatedAddress(request));
+					}	
+					break;
 		}
 	}
 

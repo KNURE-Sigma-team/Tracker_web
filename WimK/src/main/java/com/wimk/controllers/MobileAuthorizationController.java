@@ -45,7 +45,7 @@ public class MobileAuthorizationController {
 		StringBuilder sb = new StringBuilder();
 		for (Child c : childList) {
 			sb.append(c.getId()).append(';').append(c.getLogin()).append(';').append(c.getSendingFrequency())
-					.append('\n');
+					.append(';').append(c.getAuthorizatedNumber()).append('\n');
 		}
 		return sb.toString();
 	}

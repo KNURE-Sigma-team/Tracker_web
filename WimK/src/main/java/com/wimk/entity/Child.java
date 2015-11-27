@@ -38,6 +38,12 @@ public class Child implements Serializable{
 	
 	@Column(name = "avatar")
 	private String avatar;
+	
+	@Column(name = "authorizatedNumber")
+	private Integer authorizatedNumber;
+	
+	@Column(name = "googleToken")
+	private String googleToken;
 
 	public Integer getId() {
 		return id;
@@ -77,5 +83,21 @@ public class Child implements Serializable{
 
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
+	}
+	
+	public Integer getAuthorizatedNumber() {
+		return authorizatedNumber;
+	}
+
+	public void setAuthorizatedNumber(Integer authorizatedNumber) {
+		this.authorizatedNumber = authorizatedNumber;
+	}
+
+	public String getGoogleToken() {
+		return googleToken;
+	}
+	
+	public void setGoogleToken(String googleToken) {
+		this.googleToken = googleToken;
 	}
 }

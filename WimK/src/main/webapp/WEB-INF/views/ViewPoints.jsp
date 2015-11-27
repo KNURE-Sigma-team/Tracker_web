@@ -81,9 +81,9 @@
 					</c:forEach>
 				</select>
 			</div>
-			<div id="areaDescriptionViewMode">
-				
-			</div>
+			<div id="areaDescriptionViewMode"></div>
+			<div><button id="whereIsChild" onclick = whereIsChild() >See where is my child</button></div>
+			<div id="resultWhereIsChildQuery"></div>
 		</div>
 		<a href="<c:url value="/" />">To main menu</a>
 	</div>
@@ -96,7 +96,11 @@
 			<c:choose>
 				<c:when test="${point.pointType.name=='common'}">
 					drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
-							'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>');
+						'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>', 1);
+				</c:when>
+				<c:when test="${point.pointType.name=='on_demand'}">
+					drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
+						'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>', 2);
 				</c:when>
 				<c:when test="${point.pointType.name=='sos'}">
 					drawSosPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
