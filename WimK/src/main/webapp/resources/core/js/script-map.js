@@ -250,7 +250,7 @@ function drawPoint(latitude, longitude, date, batterryStatus, pointType) {
 		},
 		map : map,
 		label : letter,
-		icon : imageOfPoint,
+		icon : currentImageOfPoint,
 		title : 'Date: ' + date + ';\nBattery status : '+ batterryStatus + '%',
 	});
 	polyline.getPath().push(marker.position);
