@@ -63,9 +63,9 @@ public class EmailSender {
 	public static void sendMessageChildIntoForbiddenArea(String childName, String parentEmail, Point point, Area area, String wimkUrl){
 		String subject = "Child " + childName + " into forbidden area";
 		StringBuilder message = new StringBuilder();
-		message.append("<a href='").append(wimkUrl).append("'> WimK </a> detected that your child came in forbiddenn area. <br/>")
+		message.append("<a href='").append(wimkUrl).append("'> WimK </a> detected that your child came in forbidden area. <br/>")
 			.append("<table><tr><td>Child: </td><td>").append(childName).append("</td></tr>")
-			.append("<tr><td>Forbiddenn area: </td><td>").append(area.getName()).append("</td></tr>")
+			.append("<tr><td>Forbidden area: </td><td>").append(area.getName()).append("</td></tr>")
 			.append("<tr><td>Address: </td><td>").append(Geodecoder.geodecode(point.getX(), point.getY())).append("</td></tr>")
 			.append("<tr><td>Time: </td><td>").append(point.getTime()).append("</td></tr></table>");
 		sendEmail(parentEmail, subject, message.toString(), HIGH_PRIORITY);
@@ -109,7 +109,7 @@ public class EmailSender {
 	public static void sendGeoDropEmail(String parentEmail, String childName, String wimkUrl){
 		StringBuilder message = new StringBuilder();
 		String subject = childName + " dropped geolocation";
-		message.append("<a href='").append(wimkUrl).append("'> WimK </a> detected that your child came in forbiddenn area. <br/>")
+		message.append("<a href='").append(wimkUrl).append("'> WimK </a> detected that your child dropped geolaction. <br/>")
 			.append("<table><tr><td>Child: </td><td>").append(childName).append("</td></tr>")
 			.append("<tr><td>Time: </td><td>").append(Date.from(Instant.now())).append("</td></tr></table>");
 		sendEmail(parentEmail, subject, message.toString(), COMMON_PRIORITY);

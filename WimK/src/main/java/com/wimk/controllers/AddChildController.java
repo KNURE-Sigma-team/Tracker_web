@@ -107,6 +107,7 @@ public class AddChildController {
 			child.setAvatar(DEFUALT_CHILD_AVATAR.replace(File.separatorChar, '/'));
 		}
 		child.setParent(parent);
+		child.setAuthorizatedNumber(0);
 		childService.addChild(child);
 		model.put("child", child);
 		return "AddChildSuccess";
