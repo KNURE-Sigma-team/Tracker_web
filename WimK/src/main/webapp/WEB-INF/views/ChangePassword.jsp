@@ -14,45 +14,62 @@
 
 <script src="${pasJs}" type="text/javascript"></script>
 <script src="${jquery}" type="text/javascript"></script>
+<spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />
+<spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
+<spring:url value="/resources/core/css/style.css" var="styleCss" />
 
-<title>Insert title here</title>
+<link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
+<link href="${styleCss}" rel="stylesheet" type="text/css" />
+
+<title>Change password</title>
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+        <ul class="nav navbar-nav">
+        <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
+        <li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
+        <li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
+        </ul>
+	<div class = "navbar-right">
+	<sec:authorize access="isAuthenticated()">
+	<p>
+		<sec:authentication property="principal.username" />
+	</p>
+	</sec:authorize>
+	<a href="<c:url value="/logout" />" role="button">Sign out</a>
+	</div>
+  </div>
+</nav>
+<div class = "content container">
 	<c:choose>
 		<c:when test="${answer != null}">
 			${answer}
 		</c:when>
 		<c:otherwise>
+	    <div class="form-group">
 			<form id="changePasForm" method="post">
-				<table>
-					<tr>
-						<td>Old password:</td>
-						<td><input id="old_password" name="old_password" type="password" /></td>
-						<td><div id="old_password_remark">${errorOldPassword}</div></td>
-					</tr>
-					<tr>
-						<td>New password:</td>
-						<td><input id="new_password" name="new_password" type="password" /></td>
-						<td>
+						Old password:
+						<input class = "form-control" id="old_password" name="old_password" type="password" />
+						<div id="old_password_remark">${errorOldPassword}</div>
+						New password:
+						<input class = "form-control" id="new_password" name="new_password" type="password" />
 	                        <div>
 	                            <div id="new_password_remark">Too short</div>
 	                            <div ><img id="new_password_remark_image" src="/wimk/resources/core/images/pasword_strength/invalid_password.png" /></div>
 	                        </div>
-	                    </td>
-					</tr>
-					<tr>
-						<td>Confirm password:</td>
-						<td><input id="confirm_password" name="confirm_password" type="password" /></td>
-						<td><div id="confirm_password_remark"></div></td>
-					</tr>
-					<tr>
-						<td><input type="submit" value="Change password" /></td>
-					</tr>
-				</table>
+						Confirm password:
+						<input class = "form-control" id="confirm_password" name="confirm_password" type="password" />
+						<div id="confirm_password_remark"></div>
+						<button class = "btn btn-success" type="submit"> Change password</button>
 			</form>
+	 </div>
 		</c:otherwise>
 	</c:choose>
-	<a href="<c:url value="/personal_cabinet" />">Back</a>
+</div>
 	<script src="${pasViewJs}" type="text/javascript"></script>
+<footer>
+    <jsp:include page="footer.jsp"/>
+</footer>
 </body>
 </html>

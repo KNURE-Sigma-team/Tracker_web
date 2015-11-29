@@ -12,9 +12,14 @@
 <spring:url value="/resources/core/js/script-map.js" var="mapJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
 <spring:url value="/resources/core/js/script-view_points.js" var="view_points" />
+<spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />
+<spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
+<spring:url value="/resources/core/css/style.css" var="styleCss" />
 
 <!-- CSS styles -->
+<link href="${styleCss}" rel="stylesheet" type="text/css" />
 <link href="${mapCss}" rel="stylesheet" type="text/css"/>
+<link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
 
 <!-- JS scripts -->
 <script
@@ -25,11 +30,28 @@
 <script src="${mapJs}" type="text/javascript"></script>
 <script src="${jquery}" type="text/javascript"></script>
 
-<title>Insert title here</title>
+<title>View points</title>
 </head>
 <body>
-	<div id="menu" align="center">
-		<button onclick = changeMode() >Change mode</button>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container content">
+        <ul class="nav navbar-nav">
+        <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
+        <li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
+        <li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
+        </ul>
+	<div class = "navbar-right">
+	<sec:authorize access="isAuthenticated()">
+	<p>
+		<sec:authentication property="principal.username" />
+	</p>
+	</sec:authorize>
+	<a href="<c:url value="/logout" />" role="button">Sign out</a>
+	</div>
+  </div>
+</nav>
+	<div id="menu" class = "container" align="center">
+		<button class="btn btn-primary" onclick = changeMode() >Change mode</button>
 		<div id = "editAreaMenu">
 			<table>
 				<tr>
@@ -60,6 +82,20 @@
 				<img id="child_avatar" src="${imageChild}"/>
 			</div>
 			<div>
+<!-- 
+=======
+			<h3>Edit area menu</h3>
+        	<ul class = "list-group">
+   				<li class="list-group-item">Area name:</li>
+   			</ul>
+					<div id='descriptionAreaType'></div>
+					<button id="buttonAreaType" class = "btn btn-default" onclick="changeAreaType()"> Change area type</button>
+					<button id="confirmAreaChanges"  class = "btn btn-warning" onclick = removeArea() >Remove area</button>
+					<button id="confirmAreaChanges" class = "btn btn-success" onclick = confirmChanges() >Confirm changes</button>
+		</div>
+		<div id = "viewMenu">
+			<div class = "form-group">
+>>>>>>> Stashed changes  -->
 				Child:
 				<select id="childLogin" onchange = "childChanged()">
 					<c:forEach items="${listOfChild}" var="child" >
@@ -85,7 +121,6 @@
 			<div><button id="whereIsChild" onclick = whereIsChild() >See where is my child</button></div>
 			<div id="resultWhereIsChildQuery"></div>
 		</div>
-		<a href="<c:url value="/" />">To main menu</a>
 	</div>
 	<div id="map"></div>
 	
@@ -119,5 +154,8 @@
 		</c:forEach>
 		setCenterMapOnCenterBiggestArea();
 	</script>
+	<footer>
+    <jsp:include page="footer.jsp"/>
+	</footer>
 </body>
 </html>

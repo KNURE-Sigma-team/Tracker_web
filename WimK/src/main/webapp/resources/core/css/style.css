@@ -1,5 +1,5 @@
 .form_group {
-	width: 300px;
+	width: 400px;
 	margin: 25px;
 }
 
@@ -60,7 +60,7 @@ body {
 	font-family: "jaf-facitweb","Helvetica Neue",Arial,sans-serif;
 	font-weight: 300;
 	line-height: 1.44em;
-	margin-bottom:150px;
+	margin-bottom:10%;
 }
 
 .btn {
@@ -72,4 +72,20 @@ body {
     margin-bottom: 10px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+}
+
+
+.container {
+    margin-top: 10px;
+}
+.menu {
+	margin-left: 10px;
+}
+
+.content {
+	margin-top: 30px;
+}
+
+.login-group {
+	margin-bottom: 20%;
 }

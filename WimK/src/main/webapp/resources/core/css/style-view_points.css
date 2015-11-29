@@ -7,12 +7,13 @@ html, body {
 	height: 100%;
 	width: 80%;
 	float: right;
+	margin-top: 80px;
 }
 #menu{
 	height: 100%;
 	width: 20%;
 	float: left;
-	background-color: #ffffff;
+	margin-top: 10%;
 }
 #editAreaMenu{
 	display: none;

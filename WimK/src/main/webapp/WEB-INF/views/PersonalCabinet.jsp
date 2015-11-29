@@ -10,16 +10,37 @@
 	var="personalCabinetCss" />
 <spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />
 <spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
+<spring:url value="/resources/core/css/style.css" var="styleCss" />
 
 <link href="${personalCabinetCss}" rel="stylesheet" type="text/css" />
 <link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
+<link href="${styleCss}" rel="stylesheet" type="text/css" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Insert title here</title>
+<title>Personal cabinet</title>
 </head>
 <body>
-	<div align="center">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+        <ul class="nav navbar-nav">
+        <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
+        <li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
+        <li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
+        </ul>
+	<div class = "navbar-right">
+	<sec:authorize access="isAuthenticated()">
+	<p>
+		<sec:authentication property="principal.username" />
+	</p>
+	</sec:authorize>
+	<a href="<c:url value="/logout" />" role="button">Sign out</a>
+	</div>
+  </div>
+</nav>
+
+	<div class = "container content" align="center">
 		<table>
 			<tr>
 				<td>Your name:</td>
@@ -42,10 +63,7 @@
 			</tr>
 		</table>
 	</div>
-	<br />
-	<br />
-	<br />
-	<div>
+	<div class = "container content" align = "center">
 		<c:choose>
 			<c:when test="${fn:length(listOfChild) gt 0}">
 				Children:
@@ -82,7 +100,7 @@
 								<a href="<c:url value="/add_child" />">Add child</a>
 							</div>
 						</div>
-					</c:if>
+			</c:if>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -91,10 +109,11 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<div align="center">
-		<a href="<c:url value='/' />">Back</a>
-	</div>
 
 	<script src="${bootstrapJs}" type="text/javascript"></script>
+    <footer>
+        <jsp:include page="footer.jsp"/>
+    </footer>
+	
 </body>
 </html>

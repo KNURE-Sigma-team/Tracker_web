@@ -8,35 +8,51 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <spring:url value="/resources/core/js/script-edit_profile.js" var="editProfileJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
+<spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />
+<spring:url value="/resources/core/css/style.css" var="styleCss" />
+<spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
+<link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
+<link href="${styleCss}" rel="stylesheet" type="text/css" />
 
 <script src="${jquery}" type="text/javascript"></script>
 
-<title>Insert title here</title>
+<title>Edit profile</title>
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+        <ul class="nav navbar-nav">
+        <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
+        <li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
+        <li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
+        </ul>
+	<div class = "navbar-right">
+	<sec:authorize access="isAuthenticated()">
+	<p>
+		<sec:authentication property="principal.username" />
+	</p>
+	</sec:authorize>
+	<a href="<c:url value="/logout" />" role="button">Sign out</a>
+	</div>
+  </div>
+</nav>
+<div class = "content container form_group">
 <form id="editProfileForm" method="post">
-	<table>
-		<tr>
-			<td>Login: </td>
-			<td>${parent.login}. If you want to change login, then contact with support team.</td>
-		</tr>
-		<tr>
-			<td>Name:</td>
-			<td><input name="name" required="required" pattern="[A-Za-z0-9][A-Za-z0-9 ]{4,16}" value="${parent.name}"/></td>
-		</tr>
-		<tr>
-			<td>Removing frequency</td>
-			<td><input id= "removing_frequency" name="removing_frequency" type="text" value="${parent.removingFrequency}"/> days</td>
-			<td><div id="removing_frequency_remark">${invalid_sending_frequency}</div></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="submit" value="Change profile"/>
-			</td>
-		</tr>
-	</table>
+			Login:
+			<div class = "form-control"> ${parent.login}. If you want to change login, then contact with support team. </div>
+			${parent_exist}
+			Name:
+			<input class = "form-control" name="name" required="required" pattern="[A-Za-z0-9][A-Za-z0-9 ]{4,16}" value="${parent.name}"/>
+			Removing frequency
+			<input class = "form-control"  id= "removing_frequency" name="removing_frequency" type="text" value="${parent.removingFrequency}"/>
+			<div id="removing_frequency_remark">${invalid_sending_frequency}</div>
+			<button class = "btn btn-success" type="submit">Change profile </button>
 </form>
 <a href="<c:url value="/personal_cabinet" />">Back</a>
+</div>
+<footer>
+   <jsp:include page="footer.jsp"/>
+</footer>
 
 <script src="${editProfileJs}" type="text/javascript"></script>
 </body>
