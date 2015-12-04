@@ -49,16 +49,16 @@
 
 	<div align="center" class = "container content">
 	    <div class="form_group">
-        <form:form action="add_child" method="post" commandName="userForm">
+        <form action="add_child" method="post" enctype="multipart/form-data" >
                <h2  class = "form-signin-heading">Add your child</h2>
           		Child name:
-				<form:input path="login" required="required" pattern="[A-Za-z0-9]{3,20}" />
+				<input name="login" required="required" pattern="[A-Za-z0-9]{3,20}" />
                	${error}
              	<input id="input_child_avatar" type="file" name="avatar" accept="image/jpeg,image/png" onchange="readURL(this);"/>
              	<img id="child_avatar" src="/wimk/resources/core/images/child_avatars/default.png" />
                	
 				<input type="submit" value="Add child" />
-        </form:form>
+        </form>
         </div>
     </div>
 <footer>
