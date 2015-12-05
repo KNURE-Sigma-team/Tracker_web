@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -48,16 +50,16 @@
 </nav>
 
 	<div align="center" class = "container content">
-	    <div class="form_group">
-        <form action="add_child" method="post" enctype="multipart/form-data" >
+	    <div class = "simple_form">
+        <form class = "form" action="add_child" method="post" enctype="multipart/form-data" >
                <h2  class = "form-signin-heading">Add your child</h2>
-          		Child name:
-				<input name="login" required="required" pattern="[A-Za-z0-9]{3,20}" />
+          		<label for = "login">Child name:</label>
+				<input class = "form-control" placeholder = "Child's name" name="login" required="required" pattern="[A-Za-z0-9]{3,20}" />
                	${error}
              	<input id="input_child_avatar" type="file" name="avatar" accept="image/jpeg,image/png" onchange="readURL(this);"/>
              	<img id="child_avatar" src="/wimk/resources/core/images/child_avatars/default.png" />
                	
-				<input type="submit" value="Add child" />
+				<input class = "btn btn-success btn-block" type="submit" value="Add child" />
         </form>
         </div>
     </div>

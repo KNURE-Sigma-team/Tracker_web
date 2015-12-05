@@ -23,10 +23,10 @@
 		<c:url value="/restore_password" var="restoreUrl" />
 	    <div class="form_group">
 			<form action="${restoreUrl}" method="get">
-				<h3 class = "form-signin-heading">Please type address your email to start procedure of restore password.</h2>
-				<input type="email" required="required" name="email" title="Strong password must contain digit, big letter, small letter, special character"/>
+				<h3 class = "form-signin-heading">Your address</h2>
+				<input type="email" class = "form-control" required="required" name="email" title="Strong password must contain digit, big letter, small letter, special character"/>
 				<div>${email_not_exist}</div>
-				<button type="submit" style="width:210x;height:20px">Send</button>
+				<button type="submit" class = "btn btn-default">Restore</button>
 			</form>
 		</div>
 	</div>

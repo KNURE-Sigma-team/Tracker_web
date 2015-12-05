@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,33 +42,26 @@
   </div>
 </nav>
 
-	<div class = "container content" align="center">
+	<div class = "content info" align="center">
 		<table>
 			<tr>
 				<td>Your name:</td>
 				<td>${parent.name}</td>
 			</tr>
 			<tr>
-				<td>Your email:</td>
-				<td>${parent.login}</td>
-			</tr>
-			<tr>
 				<td>Your removing frequency :</td>
 				<td>${parent.removingFrequency} days</td>
 			</tr>
 			<tr>
-				<td><a href="<c:url value='/change_password' />">Change
+				<td><a class="btn btn-info" href="<c:url value='/change_password' />">Change
 						password</a></td>
-			</tr>
-			<tr>
-				<td><a href="<c:url value='/edit_profile' />">Edit profile</a></td>
+				<td><a class="btn btn-info" href="<c:url value='/edit_profile' />">Edit profile</a></td>
 			</tr>
 		</table>
 	</div>
 	<div class = "container content" align = "center">
 		<c:choose>
 			<c:when test="${fn:length(listOfChild) gt 0}">
-				Children:
 				<div class="container">
 					<c:forEach items="${listOfChild}" var="child" varStatus="status">
 						<c:if test="${status.index % 2 == 0}">
@@ -81,7 +76,7 @@
 							<div>sending frequency: <c:out value="${child.sendingFrequency}" /> minutes </div>
 							<form action="edit_child">
 								<input type="hidden" name="child" value="${child.login}" /> 
-								<input type="submit" value="edit" />
+								<button class = "btn btn-primary" type="submit" value="edit">Edit</button>
 							</form>
 						</div>
 						<c:if test="${status.index % 2 == 1}">
@@ -90,6 +85,11 @@
 					</c:forEach>
 					<c:if test="${fn:length(listOfChild) % 2 == 1}">
 							<div class="child col-md-6">
+							<br />
+							<br />
+							<br />
+							<br />	
+							<br />
 								<a href="<c:url value="/add_child" />">Add child</a>
 							</div>
 						</div>
@@ -97,6 +97,11 @@
 					<c:if test="${fn:length(listOfChild) % 2 == 0}">
 						<div class="row">
 							<div class="child col-md-6">
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />						
 								<a href="<c:url value="/add_child" />">Add child</a>
 							</div>
 						</div>
