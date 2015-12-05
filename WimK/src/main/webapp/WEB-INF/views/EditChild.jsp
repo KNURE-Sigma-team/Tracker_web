@@ -65,10 +65,12 @@
 		<tr>
 			<td>Sending frequency</td>
 			<td>
-			<div class = "input-box">
-			<input class = "form-control" id="sending_frequency" name="sending_frequency" type="text" value="${child.sendingFrequency}"/>
-			  <span class="unit">minutes</span>
-			 </div>
+				<div class = "input-box">
+					<div class="input-group">
+						<input class = "form-control" id="sending_frequency" name="sending_frequency" type="text" value="${child.sendingFrequency}"/>
+						<span class="input-group-addon">days</span>
+					</div>
+				 </div>
 			 </td>
 			<td><div id="sending_frequency_remark">${invalid_sending_frequency}</div></td>
 		</tr>

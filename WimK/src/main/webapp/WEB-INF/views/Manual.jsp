@@ -16,7 +16,7 @@
 <body>
 	<h5>User manual</h5>
 	
-	<h3>Terms</h3>
+	<h2>Terms</h2>
 	<p> 
 		Point - is point on the map, which contain coordinated, time and battery status. Points are sending by children from phone.
 		Point can be four types:
@@ -33,7 +33,7 @@
 	 </p>
 	
 	
-	<h3>Map view</h3>
+	<h2>Map view</h2>
 	<p> 
 		Map view is page where you can view points of your child and add, edit and remove areas. This page contain two modes:
 		1. View mode. In this mode you can view points of child.
@@ -41,11 +41,12 @@
 	</p>
 	<p> To get to the page, press  menu item "View points of child" in top menu </p>
 	
-	<h2>Change mode</h2>
+	<h3>Change mode</h3>
 	<p> For change mode of page, follow next steps: </p> 
 	<p> 1) Press button "Change mode".</p>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/FjoalCyqAEs" frameborder="0" allowfullscreen></iframe>
 	
-	<h2>View child points</h2>
+	<h3>View child points</h3>
 	<p> For view points of child for current day, follow next steps: </p>
 	<p> 1) You must be in view mode.</p> 
 	<p> 2) Select child from drop menu "Child", which points you want to view.</p>
@@ -54,7 +55,7 @@
 	<p> Note: Default location of pointer on the map is center of center of the biggest allowed area, otherwise is center of Earth. </p>
 	<p> Note: To scale map use mouse wheel</p>
 	
-	<h2>Demand current location of child</h2>
+	<h3>Demand current location of child</h3>
 	<p> For see current location of child, follow next steps: </p>
 	<p> 1) You must be in view mode.</p> 
 	<p> 2) Press button "See where is my child"</p>
@@ -62,7 +63,7 @@
 	<p> Note: If you authorize child in several devices, then will demand location only last child. </p>
 	<p> Note: If you authorize child in several devices and logout last authorize. Point will not demand. </p>
 	
-	<h2>Add area</h2>
+	<h3>Add area</h3>
 	<p> For add area, follow next steps: </p>
 	<p> 1) You must be in edit mode.</p> 
 	<p> 2) Select circle symbol from menu on top of the map.</p>
@@ -72,8 +73,9 @@
 	<p> 6) Press up left mouse button </p>
 	<p> 7) Press button "Confirm changes" for save this area on server </p>
 	<p> Note: Area will be added only for current child which select in drop menu.</p>
-	
-	<h2>Change area center</h2>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/bb1tUaVhq44" frameborder="0" allowfullscreen></iframe>
+
+	<h3>Change area center</h3>
 	<p> For edit area center, follow next steps: </p>
 	<p> 1) You must be in edit mode.</p> 
 	<p> 2) Select hand symbol from menu on top of the map.</p>
@@ -85,8 +87,9 @@
 	<p> 7) Press up left mouse button </p>
 	<p> 8) Press button "Confirm changes" for save this changes on server </p>
 	<p> Note: Area will be changed only for current child which select in drop menu.</p>
-	
-	<h2>Change area size</h2>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/JPnKVXWW2Bk" frameborder="0" allowfullscreen></iframe>
+
+	<h3>Change area size</h3>
 	<p> For edit area size, follow next steps: </p>
 	<p> 1) You must be in edit mode.</p> 
 	<p> 2) Select hand symbol from menu on top of the map.</p>
@@ -98,8 +101,9 @@
 	<p> 7) Press up left mouse button </p>
 	<p> 8) Press button "Confirm changes" for save this changes on server </p>
 	<p> Note: Area will be changed only for current child which select in drop menu.</p>
-	
-	<h2>Change area name</h2>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/EEQzazkIQLw" frameborder="0" allowfullscreen></iframe>
+
+	<h3>Change area name</h3>
 	<p> For edit area name, follow next steps: </p>
 	<p> 1) You must be in edit mode.</p> 
 	<p> 2) Select hand symbol from menu on top of the map.</p>
@@ -108,8 +112,9 @@
 	<p> 4) Input area name what are you want for this area in "Area name" field</p>
 	<p> 5) Press button "Confirm changes" for save this changes on server </p>
 	<p> Note: Area will be changed only for current child which select in drop menu.</p>
-	
-	<h2>Change area type</h2>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/2Q2hi4PFH7c" frameborder="0" allowfullscreen></iframe>
+
+	<h3>Change area type</h3>
 	<p> For edit area type, follow next steps: </p>
 	<p> 1) You must be in edit mode.</p> 
 	<p> 2) Select hand symbol from menu on top of the map.</p>
@@ -118,8 +123,9 @@
 	<p> 4) Press "Change area type" button</p>
 	<p> 5) Press button "Confirm changes" for save this changes on server </p>
 	<p> Note: Area will be changed only for current child which select in drop menu.</p>
-	
-	<h2>Remove</h2>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/HrfsDsDjMTw" frameborder="0" allowfullscreen></iframe>
+
+	<h3>Remove area</h3>
 	<p> For edit area type, follow next steps: </p>
 	<p> 1) You must be in edit mode.</p> 
 	<p> 2) Select hand symbol from menu on top of the map.</p>
@@ -129,14 +135,14 @@
 	<p> 5) In pop-up window press "OK" </p>
 	<p> 6) Press button "Confirm changes" for save this changes on server </p>
 	<p> Note: Area will be removed only for current child which select in drop menu.</p>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/VYsbc8ye8Kk" frameborder="0" allowfullscreen></iframe>
 	
 	
-	
-	<h3>Personal cabinet</h3>
+	<h2>Personal cabinet</h2>
 	<p> Personal cabinet is page where you can view, add and edit personal data and information about your child. </p>
 	<p> To get to the page, press  menu item "Personal cabinet" in top menu </p>
 	
-	<h2>For change password follow next steps: </h2>
+	<h3>For change password follow next steps: </h3>
 	<p> 1) Press button "Change password", so that go to special page for change password</p>
 	<p> 2) Input your old password in field "Old password".	</p>
 	<p> 3) Input your new password in field "New password"</p>
@@ -151,8 +157,9 @@
 	<p> 5) After filling all fields press button "Change password" for confirm changes</p>
 	<p> Note: If old password is wrong, after pressing button "Change password" will be show label "Old password is wrong" </p>
 	<p> 6) In success case you will go to personal cabinet</p>
-	
-	<h2>For edit personal data (name, removing frequency) of you account follow next steps: </h2>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/uGrVIUZyalk" frameborder="0" allowfullscreen></iframe>
+
+	<h3>For edit personal data (name, removing frequency) of you account follow next steps: </h3>
 	<p> 1) Press button "Edit profile", so that go to special page for edit profile</p>
 	<p> 2) Input your right name in field "Name"</p>
 	<p>	Note: Value of name can contain only latin characters, numbers and symbol of space; and must length between 4 and 16 symbols</p>
@@ -160,8 +167,9 @@
 	<p> Note: Field "Removing frequency" can contain only numbers. Number in field cannot be smaller than 5 or bigger than 90 days. 
 	<p> 4) After filling all fields press button "Change profile" for confirm changes</p>
 	<p> 5) In success case you will go to personal cabinet</p>
-	
-	<h2>For add child follow next steps: </h2>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/oTfMsj9D3Ow" frameborder="0" allowfullscreen></iframe>
+
+	<h3>For add child follow next steps: </h3>
 	<p> 1) Press button "Add child" in end of child list, so that go to special page for add child </p>
 	<p> 2) Input login of child in field "Login"</p>
 	<p> Note: Child login can contain only latin characters and numbers and must length between 4 and 20 symbols</p>	
@@ -171,8 +179,9 @@
 	<p> Note: Field "Removing frequency" by default set in 30 minutes.</p>
 	<p> 4) After filling all fields press button "Save child" for confirm changes</p>
 	<p> 5) In success case you will go to personal cabinet</p>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/Xt66ITyP3wY" frameborder="0" allowfullscreen></iframe>
 
-	<h2>For change child information follow next steps: </h2>
+	<h3>For change child information follow next steps: </h3>
 	<p> 1) Press button "edit" under child which you want to change, so that go to special page for edit child</p>
 	<p> 2) For change child login you must input right login of child in field "Login"</p>
 	<p> Note: Child login can contain only latin characters and numbers and must length between 4 and 20 symbols</p>
@@ -182,12 +191,15 @@
 	<p> Note: Format of child avatars can be only PNG (.png) or JPEG (.jpg).</p>
 	<p> 5) After filling all fields press button "Save child" for confirm changes</p>
 	<p> 6) In success case you will go to personal cabinet</p>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/JmxgvR3YWlA" frameborder="0" allowfullscreen></iframe>
 	
-	<h2>For remove child information follow next steps: </h2>
+	<h3>For remove child information follow next steps: </h3>
 	<p> 1) Press button "edit" under child which you want to remove, so that go to special page for edit child</p>
 	<p> 2) Press button "Remove child". </p>
 	<p> 3) In pop-up window press "OK" </p>
 	<p> 4) In success case you will go to personal cabinet</p>
 	
+
+	<p>If you did not find there ask on your question. Contact with our support team - company.wimk@gmail.com. </p>
 </body>
 </html>

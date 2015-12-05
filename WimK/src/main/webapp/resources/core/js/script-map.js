@@ -449,5 +449,6 @@ function setCenterMapOnCenterBiggestArea(){
 	}
 	if(biggestCircle != null){
 		map.setCenter(biggestCircle.getCenter());
+		map.setZomm(16);
 	}
 }
