@@ -219,10 +219,10 @@ function centerNewAreaChanged(circle){
 function initMap(latitude, longitude) {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : {
-			lat : latitude,
-			lng : longitude
+			lat : 0,
+			lng : 0
 		},
-		zoom : 16
+		zoom : 2
 	});
 	polyline.setMap(map);
 }
@@ -412,11 +412,11 @@ function executeQuery(data){
 // Functions for show user the result query
 function goodResult(){
 	document.getElementById('confirmChangesResult').innerHTML = "Changes was confirmed.";
-	setTimeout(removeResult, 800);
+	setTimeout(removeResult, 3000);
 }
 function badResult(){
 	document.getElementById('confirmChangesResult').innerHTML = "Changes was not confirmed.";
-	setTimeout(removeResult, 800);
+	setTimeout(removeResult, 3000);
 }
 function removeResult(){
 	document.getElementById('confirmChangesResult').innerHTML = "";

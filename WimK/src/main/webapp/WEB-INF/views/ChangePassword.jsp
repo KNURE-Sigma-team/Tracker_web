@@ -53,7 +53,7 @@
 						<input class = "form-control" id="old_password" name="old_password" type="password" />
 						<div id="old_password_remark">${errorOldPassword}</div>
 						New password:
-						<input class = "form-control" id="new_password" name="new_password" type="password" />
+						<input class = "form-control" id="new_password" name="new_password" type="password" title="Strong password must contain digit, big letter, small letter, special character"/>
 	                        <div>
 	                            <div id="new_password_remark">Too short</div>
 	                            <div ><img id="new_password_remark_image" src="/wimk/resources/core/images/pasword_strength/invalid_password.png" /></div>

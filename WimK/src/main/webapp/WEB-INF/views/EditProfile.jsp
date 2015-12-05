@@ -39,8 +39,7 @@
 <div class = "content container form_group">
 <form id="editProfileForm" method="post">
 			Login:
-			<div class = "form-control"> ${parent.login}. If you want to change login, then contact with support team. </div>
-			${parent_exist}
+			<div style="font-size:14pt"> ${parent.login} <span style="font-size:10pt" title="If you want to change login, then contact with support team."> (?)</span></div>
 			Name:
 			<input class = "form-control" name="name" required="required" pattern="[A-Za-z0-9][A-Za-z0-9 ]{4,16}" value="${parent.name}"/>
 			Removing frequency

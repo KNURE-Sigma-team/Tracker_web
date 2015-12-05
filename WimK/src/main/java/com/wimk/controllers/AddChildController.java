@@ -75,7 +75,6 @@ public class AddChildController {
 			}
 		}
 		
-		System.out.println(childLogin);
 		if (childLogin == null || childLogin.length() < 3 || childLogin.length() > 20) {
 			model.put("error", "Child's name must be 3-20 letters");
 			return "AddChild";
@@ -111,7 +110,7 @@ public class AddChildController {
 		child.setAuthorizatedNumber(0);
 		childService.addChild(child);
 		model.put("child", child);
-		return "AddChildSuccess";
+		return "redirect:personal_cabinet";
 	}
 	
 }
