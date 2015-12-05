@@ -3,6 +3,21 @@
 	margin: 25px;
 }
 
+.navbar-bottom {
+    bottom: 0;
+	background-color: #2ecc71;
+	height:10%;
+    width: 100%;
+    left: 0;
+}
+body, html {
+	height:95%; margin:0;
+}
+.container{
+   min-height: 100%;
+ 	position: relative;
+   padding-bottom:20px;
+}
 .navbar-fixed-bottom {
 	background-color: #2ecc71;
 	height:83px;
@@ -15,7 +30,6 @@
 
 body {
   padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #eee;
 }
 
@@ -74,10 +88,6 @@ body {
     border-top-right-radius: 0px;
 }
 
-
-.container {
-    margin-top: 10px;
-}
 .menu {
 	margin-left: 10px;
 }
@@ -89,12 +99,29 @@ body {
 .login-group {
 	margin-bottom: 20%;
 }
-
+		
 #editProfileForm {
 	margin-right : 15%;
 	margin-top: 4%;
 }
 
-body {
-	
+.simple_form {
+	width: 40%;
+}
+
+.simple_form input {
+	margin-bottom: 5%;
+}
+
+.info {
+	margin-top : 5%;
+}
+
+.form {
+	width: 85%;
+}
+
+.edit_child_form {
+	padding-left: 10%;
+	padding-top: 3%;
 }

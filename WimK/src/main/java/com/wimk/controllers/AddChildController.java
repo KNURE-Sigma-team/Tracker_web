@@ -111,7 +111,7 @@ public class AddChildController {
 		child.setAuthorizatedNumber(0);
 		childService.addChild(child);
 		model.put("child", child);
-		return "AddChildSuccess";
+		return "redirect:personal_cabinet";
 	}
 	
 }

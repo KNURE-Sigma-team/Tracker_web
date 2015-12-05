@@ -50,16 +50,16 @@
 </nav>
 
 	<div align="center" class = "container content">
-	    <div class="form_group">
-        <form action="add_child" method="post" enctype="multipart/form-data" >
+	    <div class = "simple_form">
+        <form class = "form" action="add_child" method="post" enctype="multipart/form-data" >
                <h2  class = "form-signin-heading">Add your child</h2>
-          		Child name:
-				<input name="login" required="required" pattern="[A-Za-z0-9]{3,20}" />
+          		<label for = "login">Child name:</label>
+				<input class = "form-control" placeholder = "Child's name" name="login" required="required" pattern="[A-Za-z0-9]{3,20}" />
                	${error}
              	<input id="input_child_avatar" type="file" name="avatar" accept="image/jpeg,image/png" onchange="readURL(this);"/>
              	<img id="child_avatar" src="/wimk/resources/core/images/child_avatars/default.png" />
                	
-				<input type="submit" value="Add child" />
+				<input class = "btn btn-success btn-block" type="submit" value="Add child" />
         </form>
         </div>
     </div>

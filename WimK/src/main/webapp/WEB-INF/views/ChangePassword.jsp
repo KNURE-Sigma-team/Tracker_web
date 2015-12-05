@@ -44,10 +44,10 @@
 <div class = "content container">
 	<c:choose>
 		<c:when test="${answer != null}">
-			${answer}
+			<h2> ${answer} </h2>
 		</c:when>
 		<c:otherwise>
-	    <div class="form-group">
+	    <div class="form-group form">
 			<form id="changePasForm" method="post">
 						Old password:
 						<input class = "form-control" id="old_password" name="old_password" type="password" />
@@ -61,7 +61,7 @@
 						Confirm password:
 						<input class = "form-control" id="confirm_password" name="confirm_password" type="password" />
 						<div id="confirm_password_remark"></div>
-						<button class = "btn btn-success" type="submit"> Change password</button>
+						<button class = "btn btn-success pull-right" type="submit"> Change password</button>
 			</form>
 	 </div>
 		</c:otherwise>
