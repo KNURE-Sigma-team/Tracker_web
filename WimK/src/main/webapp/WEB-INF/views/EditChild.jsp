@@ -10,11 +10,16 @@
 <spring:url value="/resources/core/js/script-edit_child.js" var="editChildJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
 <spring:url value="/resources/core/css/style-edit_child.css" var="editChildCss" />
+<spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />
+<spring:url value="/resources/core/css/style.css" var="styleCss" />
+<spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
+<link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
+<link href="${styleCss}" rel="stylesheet" type="text/css" />
 
 <link href="${editChildCss}" rel="stylesheet" type="text/css" />
 
 <script src="${jquery}" type="text/javascript"></script>
-<title>Insert title here</title>
+<title>Edit child</title>
 </head>
 <body>
 <form id="editChildForm" method="post" enctype="multipart/form-data">

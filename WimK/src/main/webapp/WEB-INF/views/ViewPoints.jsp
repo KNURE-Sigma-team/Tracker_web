@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,7 +37,7 @@
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container content">
+  <div class="container">
         <ul class="nav navbar-nav">
         <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
         <li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
@@ -53,28 +56,16 @@
 	<div id="menu" class = "container" align="center">
 		<button class="btn btn-primary" onclick = changeMode() >Change mode</button>
 		<div id = "editAreaMenu">
-			<table>
-				<tr>
-					<td>Edit area menu</td>
-				</tr>
-				<tr>
-					<td> Area name: </td>
-					<td> <input id="textInputAreaName" type="text"/> </td>
-				</tr>
-				<tr>
-					<td> <div id='descriptionAreaType'></div></td>
-					<td> <input id="buttonAreaType" type="button" onclick="changeAreaType()" value="Change area type"/> </td>
-				</tr>
-				<tr>
-					<td><button id="confirmAreaChanges" onclick = removeArea() >Remove area</button></td>
-				</tr>
-				<tr>
-					<td>
-						<button id="confirmAreaChanges" onclick = confirmChanges() >Confirm changes</button>
+				<br />
+				<h2>Edit area menu</h2>
+				<br /><br /><br />
+					Area name:
+					<input class = "form-control" id="textInputAreaName" type="text"/>
+					<div id='descriptionAreaType'></div>
+					<input class = "form-control"  id="buttonAreaType" type="button" onclick="changeAreaType()" value="Change area type"/>
+					<button class = "btn btn-warning" id="confirmAreaChanges" onclick = removeArea() >Remove area</button>
+						<button class = "btn btn-primary" id="confirmAreaChanges" onclick = confirmChanges() >Confirm changes</button>
 						<div id="confirmChangesResult"></div>
-					</td>
-				</tr>
-			</table>
 		</div>
 		<div id = "viewMenu">
 			<div>
@@ -96,8 +87,9 @@
 		<div id = "viewMenu">
 			<div class = "form-group">
 >>>>>>> Stashed changes  -->
-				Child:
-				<select id="childLogin" onchange = "childChanged()">
+ 			 <label for="sel1">Child:</label>
+ 			 	<form class = "form-group">
+  				<select class = "form-control" id="childLogin" onchange = "childChanged()">
 					<c:forEach items="${listOfChild}" var="child" >
 						<option value = ${child.login}
 							<c:if test="${currentChild.login==child.login}">selected</c:if>> 
@@ -105,10 +97,11 @@
 						</option>
 					</c:forEach>
 				</select>
+ 			 	</form>
 			</div>
 			<div>
-				Date:
-				<select id="dateSelect" onchange = "dateChanged()">
+ 			 <label for="sel1">Date:</label>
+				<select class = "form-control" id="dateSelect" onchange = "dateChanged()">
 					<c:forEach items="${listOfDates}" var="date">
 						<option value = ${date}
 							<c:if test="${currentDate==date}">selected</c:if>> 
@@ -118,7 +111,7 @@
 				</select>
 			</div>
 			<div id="areaDescriptionViewMode"></div>
-			<div><button id="whereIsChild" onclick = whereIsChild() >See where is my child</button></div>
+			<div><button class = "btn btn-warning" id="whereIsChild" onclick = whereIsChild() >See where is my child</button></div>
 			<div id="resultWhereIsChildQuery"></div>
 		</div>
 	</div>

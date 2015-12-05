@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,20 +49,12 @@
 				<td>${parent.name}</td>
 			</tr>
 			<tr>
-				<td>Your email:</td>
-				<td>${parent.login}</td>
-			</tr>
-			<tr>
 				<td>Your removing frequency :</td>
 				<td>${parent.removingFrequency} days</td>
 			</tr>
-			<tr>
-				<td><a href="<c:url value='/change_password' />">Change
-						password</a></td>
-			</tr>
-			<tr>
-				<td><a href="<c:url value='/edit_profile' />">Edit profile</a></td>
-			</tr>
+				<a class="btn btn-info" href="<c:url value='/change_password' />">Change
+						password</a>
+				<a class="btn btn-info" href="<c:url value='/edit_profile' />">Edit profile</a>
 		</table>
 	</div>
 	<div class = "container content" align = "center">
