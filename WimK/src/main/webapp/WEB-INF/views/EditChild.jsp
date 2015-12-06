@@ -33,6 +33,7 @@
         <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
         <li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
         <li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
+        <li><a href="<c:url value="/user_manual" />">Help</a></li>
         </ul>
 	<div class = "navbar-right">
 	<sec:authorize access="isAuthenticated()">
