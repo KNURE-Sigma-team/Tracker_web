@@ -10,18 +10,23 @@
 <spring:url value="/resources/core/js/password.js" var="pasJs" />
 <spring:url value="/resources/core/js/script-restore_password_change_password_view.js" var="pasViewJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
+<spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />
+<spring:url value="/resources/core/css/style.css" var="styleCss" />
+<spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
+<link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
+<link href="${styleCss}" rel="stylesheet" type="text/css" />
 
 <script src="${pasJs}" type="text/javascript"></script>
 <script src="${jquery}" type="text/javascript"></script>
 
-<title>Insert title here</title>
+<title>New password</title>
 </head>
 <body>
-	<form id="changePasForm" method="post">
+<div class ="content container">
+	<form id="changePasForm" method="post" class = "form">
 		<table>
 			<tr>
-				<td>New password:</td>
-				<td><input id="new_password" name="new_password" type="password" /></td>
+				<td><input placeholder = "New password" class = "form-control" id="new_password" name="new_password" type="password" /></td>
 				<td>
                     <div>
                         <div id="new_password_remark">Too short</div>
@@ -30,17 +35,16 @@
                 </td>
 			</tr>
 			<tr>
-				<td>Confirm password:</td>
-				<td><input id="confirm_password" name="confirm_password" type="password" /></td>
+				<td><input placeholder = "Confirm password" class = "form-control" id="confirm_password" name="confirm_password" type="password" /></td>
 				<td><div id="confirm_password_remark"></div></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="Change password" /></td>
+				<td><button type="submit" class="btn btn-success">Change password</button></td>
 			</tr>
 		</table>
 	</form>
 	<a href="<c:url value="/login" />">Cancel</a>
-	
+	</div>
 	<script src="${pasViewJs}" type="text/javascript"></script>
 </body>
 </html>

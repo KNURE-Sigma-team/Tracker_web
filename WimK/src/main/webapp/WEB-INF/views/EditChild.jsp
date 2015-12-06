@@ -29,6 +29,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
         <ul class="nav navbar-nav">
+        <li><img class = "cover" src = "http://cs612117.vk.me/u59503884/docs/13f4436f9f33/logo1.png" /></li>
         <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
         <li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
         <li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
@@ -87,9 +88,6 @@
 </form>
 </div>
 <script src="${editChildJs}" type="text/javascript"></script>
-<footer>
-   <jsp:include page="footer.jsp"/>
-</footer>
 
 </body>
 </html>

@@ -28,16 +28,15 @@
 							required autofocus class="form-control"/></td>
 					<input type="password" name="j_password"
 							placeholder="Password" required class="form-control"/>
-					<button type="submit" class = "btn btn-lg btn-success btn-block">Войти</button>
+					<button type="submit" class = "btn btn-lg btn-success btn-block">Log in</button>
 				<div id = "error"> ${error_message} </div>
 			</form>
 			</div>
 			<form action="restore_password">
-				<button type="submit" class = "btn btn-warning">Forget password?</button>
+				<button type="submit" class = "btn btn-warning">Forgot password?</button>
 			</form>
+        <a href="<c:url value="/" />">Back</a>			
 	</div>
-    <footer>
-        <jsp:include page="footer.jsp"/>
-    </footer>
+
 </body>
 </html>

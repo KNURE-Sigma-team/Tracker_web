@@ -23,16 +23,14 @@
 		<c:url value="/restore_password" var="restoreUrl" />
 	    <div class="form_group">
 			<form action="${restoreUrl}" method="get">
-				<h3 class = "form-signin-heading">Your address</h2>
-				<input type="email" class = "form-control" required="required" name="email" title="Strong password must contain digit, big letter, small letter, special character"/>
+				<h3 class = "form-signin-heading">Password restoration</h2>
+				<input type="email" placeholder = "Your email" class = "form-control" required="required" name="email" title="Strong password must contain digit, big letter, small letter, special character"/>
 				<div>${email_not_exist}</div>
-				<button type="submit" class = "btn btn-default">Restore</button>
+				<button type="submit" class = "btn btn-success">Restore</button>
 			</form>
 		</div>
+       <a href="<c:url value="/" />">Back</a>
 	</div>
-    <footer>
-        <jsp:include page="footer.jsp"/>
-    </footer>
 	
 </body>
 </html>
