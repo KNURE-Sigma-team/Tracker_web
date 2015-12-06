@@ -26,7 +26,16 @@ function setViewStrongPassword(){
 	setTextStrongPassword(document.getElementById("new_password_remark"));
 }
 
+function ready() {
+    document.getElementById("new_password_remark_image").style.visibility = "hidden";
+    document.getElementById("new_password_remark").style.visibility = "hidden";
+  }
+
+document.addEventListener("DOMContentLoaded", ready);
+
 document.getElementById("new_password").oninput = function(){
+    document.getElementById("new_password_remark_image").style.visibility = "visible";
+    document.getElementById("new_password_remark").style.visibility = "visible";
 	var pas = document.getElementById("new_password").value;
 	var result = validatePassword(pas);
 	if(result == passwordAccept){

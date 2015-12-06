@@ -15,8 +15,9 @@ body, html {
 }
 .container{
    min-height: 100%;
- 	position: relative;
+   position: relative;
    padding-bottom:20px;
+   padding-top: 1%;
 }
 .navbar-fixed-bottom {
 	background-color: #2ecc71;
@@ -118,10 +119,42 @@ body {
 }
 
 .form {
-	width: 85%;
+	width: 80%;
+	margin: 2px auto;
 }
 
 .edit_child_form {
 	padding-left: 10%;
 	padding-top: 3%;
+}
+
+.form-signup input {
+	margin-bottom: 5px;
+}
+
+.form-signup form-heading {
+	margin-bottom: 10px;
+}
+
+.col-md-6 {
+	padding-top: 10%;
+}
+
+.registration {
+	margin-left: 30%;
+	width: 900px;
+}
+
+.cover {
+  object-fit: cover;
+  width: 60px;
+  height: 50px;
+}
+
+.logo {
+	background-image: url('http://cs612117.vk.me/u59503884/docs/13f4436f9f33/logo1.png');
+}
+
+input {
+	margin: 5px auto 15px;
 }
