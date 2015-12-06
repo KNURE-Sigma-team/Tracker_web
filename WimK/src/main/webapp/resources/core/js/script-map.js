@@ -26,6 +26,10 @@ var currentLetter = 0;
 var allowedColor = '#00ff00';
 var forbiddenColor = '#ff8c00';
 
+// List of all points on the map
+var listPoint = [];
+var sizeListPoint = 0;
+
 // List of all area on the map
 var listArea = [];
 var sizeListArea = 0;
@@ -229,45 +233,73 @@ function initMap(latitude, longitude) {
 
 // Function for draw point on the map.
 function drawPoint(latitude, longitude, date, batterryStatus, pointType) {
-	currentImageOfPoint = null;
-	letter = "";
-	switch(pointType){
-		case 1:
-			currentImageOfPoint = imageOfPoint;
-			letter = EnglishAlphabet[currentLetter++%EnglishAlphabet.length];
-			break;
-		case 2:
-			currentImageOfPoint = imageOfPointOnDemand;
-			break;
-		case 3:
-			currentImageOfPoint = imageOfPointStoraged;
-			break;
+	if(sizeListPoint != 0 && listPoint[sizeListPoint-1].latitude == latitude 
+			&& listPoint[sizeListPoint-1].longitude == longitude 
+			&& listPoint[sizeListPoint-1].pointType == pointType){
+		listPoint[sizeListPoint-1].date2 = date;
+	} else {
+		listPoint[sizeListPoint++] = {
+			latitude : latitude,
+			longitude : longitude,
+			date : date,
+			date2 : date,
+			batterryStatus : batterryStatus,
+			pointType : pointType
+		};
 	}
-	var marker = new google.maps.Marker({
-		position : {
-			lat : latitude,
-			lng : longitude
-		},
-		map : map,
-		label : letter,
-		icon : currentImageOfPoint,
-		title : 'Date: ' + date + ';\nBattery status : '+ batterryStatus + '%',
-	});
-	polyline.getPath().push(marker.position);
 }
 
 function drawSosPoint(latitude, longitude, date, batterryStatus) {
-	var marker = new google.maps.Marker({
-		position : {
-			lat : latitude,
-			lng : longitude
-		},
-		map : map,
-		icon : imageOfSosPoint,
-		title : 'Date: ' + date + ';\nBattery status : '+ batterryStatus + '%',
-	});
+	if(sizeListPoint != 0 && listPoint[sizeListPoint-1].latitude == latitude 
+			&& listPoint[sizeListPoint-1].longitude == longitude 
+			&& listPoint[sizeListPoint-1].pointType == 4){
+		listPoint[sizeListPoint-1].date2 = date;
+	} else {
+		listPoint[sizeListPoint++] = {
+			latitude : latitude,
+			longitude : longitude,
+			date : date,
+			date2 : date,
+			batterryStatus : batterryStatus,
+			pointType : 4
+		};
+	}
 }
 
+function drawAllPoint(){
+	letter = "";
+	currentImageOfPoint = null;
+	for(var i = 0; i < sizeListPoint; ++i){
+		switch(listPoint[i].pointType){
+			case 1:
+				currentImageOfPoint = imageOfPoint;
+				letter = EnglishAlphabet[currentLetter++%EnglishAlphabet.length];
+				break;
+			case 2:
+				currentImageOfPoint = imageOfPointOnDemand;
+				break;
+			case 3:
+				currentImageOfPoint = imageOfPointStoraged;
+				break;
+			case 4:
+				currentImageOfPoint = imageOfSosPoint;
+				break;
+		}
+		var marker = new google.maps.Marker({
+			position : {
+				lat : listPoint[i].latitude,
+				lng : listPoint[i].longitude
+			},
+			map : map,
+			icon : currentImageOfPoint,
+			label : letter,
+			title : 'Date: ' + listPoint[i].date + ' - ' + listPoint[i].date2 + ';\nBattery status : '+ listPoint[i].batterryStatus + '%',
+		});
+		if(listPoint[i].pointType < 4){
+			polyline.getPath().push(marker.position);
+		}
+	}
+}
 
 // Function for adding old area.
 function addArea(x, y, radius, isAllowed, id, name) {
@@ -441,6 +473,7 @@ function getMaxZoom(circleRadius){
 
 // Set center of the map on the center of the biggest allowed area.
 function setCenterMapOnCenterBiggestArea(){
+	drawAllPoint();
 	biggestCircle = null;
 	for(i = 0; i < sizeListArea; i++){
 		if(listArea[i].circle.fillColor == allowedColor && (biggestCircle == null || biggestCircle.radius < listArea[i].circle.radius)){
