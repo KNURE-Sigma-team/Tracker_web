@@ -11,10 +11,6 @@
 <link href="${personalCabinetCss}" rel="stylesheet" type="text/css" />
 <link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
 
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="$js/bootstrap.js" rel="stylesheet" type="text/css" />
-
-
 <title>User manual</title>
 </head>
 <body>
@@ -99,6 +95,7 @@
 	<p> 3) Reload page in 1 - 2 minutes</p>
 	<p> <b>Note:</b> If you authorize child in several devices, then will demand location only last child. </p>
 	<p> <b>Note:</b> If you authorize child in several devices and logout last authorize. Point will not demand. </p>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/L7ZHWs4TwcI" frameborder="0" allowfullscreen></iframe>
 	
 	<h3><a name="addArea"/></a>Add area</h3>
 	<p> For add area, follow next steps: </p>
