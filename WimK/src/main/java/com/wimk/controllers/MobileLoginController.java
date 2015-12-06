@@ -16,9 +16,9 @@ import com.wimk.service.ChildService;
 import com.wimk.service.ParentService;
 
 @Controller
-@RequestMapping(value = "/mobile_set_child_token")
-public class MobileSetGoogleToken {
-
+@RequestMapping(value = "/mobile_login")
+public class MobileLoginController {
+	
 	@Autowired
 	ChildService childService;
 	
@@ -38,13 +38,12 @@ public class MobileSetGoogleToken {
 				break;
 			}
 		}
-		String token = request.getParameter("token");
-		if (child != null && token != null) {
-			child.setGoogleToken(token);
+		if (child != null) {
+			child.setAuthorizatedNumber(child.getAuthorizatedNumber() + 1);
+			child.setGoogleToken(null);
 			childService.editChild(child);
 			result = "OK";
 		}
 		return result;
 	}
-
 }

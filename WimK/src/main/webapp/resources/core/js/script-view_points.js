@@ -9,16 +9,23 @@ function childChanged(){
 	document.location = 'view_points?currentChild='+e.options[e.selectedIndex].value;
 }
 function whereIsChild(){
+	document.getElementById('resultWhereIsChildQuery').innerHTML = "";
 	$.ajax({
 		type: "POST",
 		url:  "/wimk/where_is_child",
 		data: "child=" + document.getElementById("childLogin").value,
 		success : function(message){
-			document.getElementById('resultWhereIsChildQuery').innerHTML = "Request has sent. Reload this page in 1-2 minutes";
-			setTimeout(clearResultWhereIsChildQuery, 800);
+			if(message == "OK"){
+				setTimeout(setOkResult, 500);
+			} else {
+				setTimeout(setNotOkResult, 500);
+			}
 		}
 	});
 }
-function clearResultWhereIsChildQuery(){
-	document.getElementById('resultWhereIsChildQuery').innerHTML = "";
+function setOkResult(){
+	document.getElementById('resultWhereIsChildQuery').innerHTML = "Request has sent. Reload this page in 1-2 minutes";
+}
+function setNotOkResult(){
+	document.getElementById('resultWhereIsChildQuery').innerHTML = "Service can't request location of your child, now";
 }

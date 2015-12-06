@@ -120,7 +120,7 @@
 	
 	<script src="${view_points}" type="text/javascript"></script>
 	<script language="javascript">
-		initMap(50.003902, 36.233614);
+		initMap();
 		<c:forEach items="${listOfPoints}" var="point" >
 			<c:choose>
 				<c:when test="${point.pointType.name=='common'}">

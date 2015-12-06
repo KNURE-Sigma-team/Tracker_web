@@ -43,13 +43,14 @@
 <div class = "content container">
 <form id="editProfileForm" method="post">
 			Login:
-			<div class = "form-control"> ${parent.login}.  </div>
-			If you want to change login, then contact with support team.
-			<br />
+			<div style="font-size:14pt"> ${parent.login} <span style="font-size:10pt" title="If you want to change login, then contact with support team."> (?)</span></div>
 			Name:
 			<input class = "form-control" name="name" required="required" pattern="[A-Za-z0-9][A-Za-z0-9 ]{4,16}" value="${parent.name}"/>
 			Removing frequency
-			<input class = "form-control"  id= "removing_frequency" name="removing_frequency" type="text" value="${parent.removingFrequency}"/>
+			<div class="input-group">
+				<input class = "form-control"  id= "removing_frequency" name="removing_frequency" type="text" value="${parent.removingFrequency}"/>
+				<span class="input-group-addon">days</span>
+			</div>
 			<div id="removing_frequency_remark">${invalid_sending_frequency}</div>
 			<button class = "btn btn-success pull-right btn-lg" type="submit">Change profile </button>
 </form>
