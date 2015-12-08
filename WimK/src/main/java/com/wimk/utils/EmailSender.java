@@ -112,6 +112,13 @@ public class EmailSender {
 		message.append("<a href='").append(wimkUrl).append("'> WimK </a> detected that your child dropped geolaction. <br/>")
 			.append("<table><tr><td>Child: </td><td>").append(childName).append("</td></tr>")
 			.append("<tr><td>Time: </td><td>").append(Date.from(Instant.now())).append("</td></tr></table>");
-		sendEmail(parentEmail, subject, message.toString(), COMMON_PRIORITY);
+		sendEmail(parentEmail, subject, message.toString(), HIGH_PRIORITY);
+	}
+	
+	public static void sendDropChildConnection(String parentEmail, String childName){
+		StringBuilder message = new StringBuilder();
+		String subject = childName + " dropped geolocation";
+		message.append(" WimK detected that your child, " + childName + ", dropped connection with service.");
+		sendEmail(parentEmail, subject, message.toString(), HIGH_PRIORITY);
 	}
 }

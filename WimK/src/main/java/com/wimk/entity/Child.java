@@ -44,7 +44,10 @@ public class Child implements Serializable{
 	
 	@Column(name = "googleToken")
 	private String googleToken;
-
+	
+	@Column(name = "checked")
+	private Boolean checked;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -99,5 +102,13 @@ public class Child implements Serializable{
 	
 	public void setGoogleToken(String googleToken) {
 		this.googleToken = googleToken;
+	}
+
+	public Boolean getChecked() {
+		return checked;
+	}
+
+	public void setChecked(Boolean checked) {
+		this.checked = checked;
 	}
 }

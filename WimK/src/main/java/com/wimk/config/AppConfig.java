@@ -13,6 +13,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import com.wimk.secure.UserDetailsServiceImpl;
+import com.wimk.sqljobs.ContextClosedListener;
+import com.wimk.sqljobs.ContextRefreshedListener;
 
 @Configuration
 @EnableWebMvc
@@ -37,4 +39,14 @@ public class AppConfig extends WebMvcConfigurerAdapter{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
+	
+	@Bean
+    public ContextClosedListener contextClosedListener() {
+        return new ContextClosedListener();
+    }
+	@Bean
+    public ContextRefreshedListener contextRefreshedListener() {
+        return new ContextRefreshedListener();
+    }
+
 }

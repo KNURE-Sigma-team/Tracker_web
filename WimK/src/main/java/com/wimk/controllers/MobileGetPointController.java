@@ -85,7 +85,10 @@ public class MobileGetPointController {
 			Point point = new Point(child, latitude, longitude, time, battery_level,
 					pointTypeService.getByName(pointType));
 			pointService.addPoint(point);
-
+			
+			child.setChecked(false);
+			childService.editChild(child);
+			
 			List<Area> areaList = areaService.getAllAreasOfChild(child);
 			Parent parent = child.getParent();
 			PointProcessor.pointProcess(point, child, parent, areaList, request);

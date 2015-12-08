@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.ServletContextAware;
 
 import com.wimk.entity.Child;
 import com.wimk.entity.Parent;
@@ -25,14 +26,13 @@ import com.wimk.utils.ImageValidator;
 
 @Controller
 @RequestMapping(value = "/add_child")
-public class AddChildController {
+public class AddChildController implements  ServletContextAware{
 
 	private final String DIRECTORY_CHILD_AVATARS = File.separator + "resources" + File.separator + "core"
 			+ File.separator + "images" + File.separator + "child_avatars";
 	private final String DEFUALT_CHILD_AVATAR = DIRECTORY_CHILD_AVATARS + File.separator + "default.png";
 
-	@Autowired
-	ServletContext context;
+	private ServletContext context;
 
 	@Autowired
 	ChildService childService;
@@ -111,6 +111,11 @@ public class AddChildController {
 		childService.addChild(child);
 		model.put("child", child);
 		return "redirect:personal_cabinet";
+	}
+
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.context = servletContext;
 	}
 	
 }

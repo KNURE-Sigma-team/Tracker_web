@@ -15,4 +15,6 @@ public interface PointService {
 	List<Point> getAll();
 	
 	List<Point> getAllPointsOfChild(Child child);
+	
+	void clearingPoints();
 }

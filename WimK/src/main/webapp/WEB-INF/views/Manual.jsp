@@ -13,7 +13,7 @@
 
 <title>User manual</title>
 </head>
-<body>
+<body style="margin : 10pt">
 	<h1>User manual</h1>
 	<br/>
 	<br/>

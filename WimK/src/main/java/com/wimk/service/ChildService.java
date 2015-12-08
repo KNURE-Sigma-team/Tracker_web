@@ -16,5 +16,7 @@ public interface ChildService {
 	
 	List<Child> getChildOfParent(Parent parent);
 	
+	List<Child> getUnconnectedChild();
+	
 	Child getById(Integer id);
 }

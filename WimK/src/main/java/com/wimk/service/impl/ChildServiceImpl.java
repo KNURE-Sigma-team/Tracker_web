@@ -43,4 +43,12 @@ public class ChildServiceImpl implements ChildService {
 		return childRepository.findById(id);
 	}
 
+	@Override
+	@Transactional(readOnly = false)
+	public List<Child> getUnconnectedChild() {
+		List<Child> temp = childRepository.getUnconnectedChilds();
+		childRepository.checkUnconnectedChilds();
+		return temp;
+	}
+
 }
