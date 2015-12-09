@@ -27,7 +27,9 @@ import com.wimk.utils.ImageValidator;
 @Controller
 @RequestMapping(value = "/add_child")
 public class AddChildController implements  ServletContextAware{
-
+	
+	private final int DEFAULT_SENDING_FREQUENCY = 30;
+	
 	private final String DIRECTORY_CHILD_AVATARS = File.separator + "resources" + File.separator + "core"
 			+ File.separator + "images" + File.separator + "child_avatars";
 	private final String DEFUALT_CHILD_AVATAR = DIRECTORY_CHILD_AVATARS + File.separator + "default.png";
@@ -108,6 +110,8 @@ public class AddChildController implements  ServletContextAware{
 		}
 		child.setParent(parent);
 		child.setAuthorizatedNumber(0);
+		child.setSendingFrequency(DEFAULT_SENDING_FREQUENCY);
+		child.setChecked(false);
 		childService.addChild(child);
 		model.put("child", child);
 		return "redirect:personal_cabinet";

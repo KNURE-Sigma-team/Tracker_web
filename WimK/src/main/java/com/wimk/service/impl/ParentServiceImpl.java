@@ -19,7 +19,6 @@ public class ParentServiceImpl implements ParentService {
 
 	@Transactional(readOnly = false)
 	public Parent addParent(Parent parent) {
-		parent.setRemovingFrequency(10);
 		parent.setPassword(new Sha512Encoder().encode(parent.getPassword()));
 		return parentRepository.saveAndFlush(parent);
 	}

@@ -21,6 +21,8 @@ import com.wimk.utils.EmailSender;
 @RequestMapping(value = "/register")
 public class RegisterController {
 	
+	private final int DEFAULT_REMOVING_FREQUENCY = 10;
+	
 	@Autowired
 	ParentService parentService;
 	
@@ -55,6 +57,7 @@ public class RegisterController {
 		String hash = RandomStringUtils.randomAlphanumeric(10);
 		user.setActivated(false);
 		user.setHash(hash);
+		user.setRemovingFrequency(DEFAULT_REMOVING_FREQUENCY);
 		parentService.addParent(user);
 		EmailSender.sendRegistrationConfirmEmail(user, getAccountActivatedAddress(request), hash);
 		

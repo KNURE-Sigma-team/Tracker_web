@@ -86,6 +86,7 @@ public class MobileGetPointController {
 					pointTypeService.getByName(pointType));
 			pointService.addPoint(point);
 			
+			// Set that this child will check by job. Again.
 			child.setChecked(false);
 			childService.editChild(child);
 			
