@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+
 <spring:url value="/resources/core/js/password.js" var="pasJs" />
 <spring:url value="/resources/core/js/changePasswordView.js"
 	var="pasViewJs" />

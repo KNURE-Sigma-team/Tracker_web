@@ -10,6 +10,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
+<link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+
 <!-- URLs -->
 <spring:url value="/resources/core/css/style-view_points.css" var="mapCss" />
 <spring:url value="/resources/core/js/script-map.js" var="mapJs" />

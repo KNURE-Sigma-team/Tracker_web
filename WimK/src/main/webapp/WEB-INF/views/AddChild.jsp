@@ -12,6 +12,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+
 <spring:url value="/resources/core/js/style-add_child.css" var="addChildCss" />
 <spring:url value="/resources/core/js/script-add_child.js" var="addChildJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />

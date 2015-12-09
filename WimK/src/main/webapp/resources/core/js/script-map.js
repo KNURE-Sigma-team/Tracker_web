@@ -14,10 +14,10 @@ var polyline = new google.maps.Polyline({
 var editMode = false;
 
 // URI of images for draw point on the map
-var imageOfPoint = "/wimk/resources/core/images/point.png";
-var imageOfSosPoint = "/wimk/resources/core/images/point_sos.png";
-var imageOfPointOnDemand = "/wimk/resources/core/images/point_on_demand.png";
-var imageOfPointStoraged = "/wimk/resources/core/images/point_storaged.png";
+var imageOfPoint = "/wimk/resources/core/images/points/point.png";
+var imageOfSosPoint = "/wimk/resources/core/images/points/point_sos.png";
+var imageOfPointOnDemand = "/wimk/resources/core/images/points/point_on_demand.png";
+var imageOfPointStoraged = "/wimk/resources/core/images/points/point_storaged.png";
 // Alphabet for labeles on the points
 var EnglishAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var currentLetter = 0;

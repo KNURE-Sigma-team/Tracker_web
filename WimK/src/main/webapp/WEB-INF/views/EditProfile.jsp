@@ -9,6 +9,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+
 <spring:url value="/resources/core/js/script-edit_profile.js" var="editProfileJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
 <spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />

@@ -8,6 +8,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+
 <spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />
 <spring:url value="/resources/core/css/style.css" var="styleCss" />
 <spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
