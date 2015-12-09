@@ -58,6 +58,7 @@
   </div>
 </nav>
 	<div id="menu" class = "container" align="center">
+		<c:if test="${fn:length(listOfChild) gt 0}">
 		<button class="btn btn-primary" onclick = changeMode() >Change mode</button>
 		<div id = "editAreaMenu">
 				<br />
@@ -104,19 +105,26 @@
  			 	</form>
 			</div>
 			<div>
- 			 <label for="sel1">Date:</label>
-				<select class = "form-control" id="dateSelect" onchange = "dateChanged()">
-					<c:forEach items="${listOfDates}" var="date">
-						<option value = ${date}
-							<c:if test="${currentDate==date}">selected</c:if>> 
-							${date}
-						</option>
-					</c:forEach>
-				</select>
+				 <c:if test="${fn:length(listOfDates) gt 0}">
+	 			 	<label for="sel1">Date:</label>
+					<select class = "form-control" id="dateSelect" onchange = "dateChanged()">
+						<c:forEach items="${listOfDates}" var="date">
+							<option value = ${date}
+								<c:if test="${currentDate==date}">selected</c:if>> 
+								${date}
+							</option>
+						</c:forEach>
+					</select>
+				</c:if>
 			</div>
 			<div id="areaDescriptionViewMode"></div>
 			<div><button class = "btn btn-warning" id="whereIsChild" onclick = whereIsChild() >See where is my child</button></div>
 			<div id="resultWhereIsChildQuery"></div>
+		</c:if>
+		<c:if test="${fn:length(listOfChild) == 0}">
+			<div> You don't have any child </div>
+			<div><a href="<c:url value="/add_child" />" class="btn btn-success" role="button">Add child</a></div>
+		</c:if>
 		</div>
 	</div>
 	<div id="map"></div>
@@ -126,7 +134,7 @@
 		initMap();
 		<c:forEach items="${listOfPoints}" var="point" >
 			addPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
-				'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>', '${point.pointType.name}'	);
+						'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>', '${point.pointType.name}'	);
 		</c:forEach>
 		<c:forEach items="${listOfAreas}" var="area" >
 			addArea(<c:out value="${area.x}"/>, <c:out value="${area.y}"/>, 
