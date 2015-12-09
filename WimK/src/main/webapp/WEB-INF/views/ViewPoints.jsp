@@ -125,24 +125,8 @@
 	<script language="javascript">
 		initMap();
 		<c:forEach items="${listOfPoints}" var="point" >
-			<c:choose>
-				<c:when test="${point.pointType.name=='common'}">
-					drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
-						'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>', 1);
-				</c:when>
-				<c:when test="${point.pointType.name=='on_demand'}">
-					drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
-						'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>', 2);
-				</c:when>
-				<c:when test="${point.pointType.name=='storaged'}">
-					drawPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
-						'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>', 3);
-				</c:when>
-				<c:when test="${point.pointType.name=='sos'}">
-					drawSosPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
-							'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>');
-				</c:when>
-			</c:choose>
+			addPoint(<c:out value="${point.x}"/>, <c:out value="${point.y}"/>,
+				'<c:out value="${point.time}"/>', '<c:out value="${point.batteryStatus}"/>', '${point.pointType.name}'	);
 		</c:forEach>
 		<c:forEach items="${listOfAreas}" var="area" >
 			addArea(<c:out value="${area.x}"/>, <c:out value="${area.y}"/>, 

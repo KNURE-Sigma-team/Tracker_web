@@ -232,56 +232,58 @@ function initMap(latitude, longitude) {
 }
 
 // Function for draw point on the map.
-function drawPoint(latitude, longitude, date, batterryStatus, pointType) {
-	if(sizeListPoint != 0 && listPoint[sizeListPoint-1].latitude == latitude 
-			&& listPoint[sizeListPoint-1].longitude == longitude 
-			&& listPoint[sizeListPoint-1].pointType == pointType){
-		listPoint[sizeListPoint-1].date2 = date;
-	} else {
+function addPoint(latitude, longitude, date, batterryStatus, pointType) {
+	var isPreviousPointInSamePoint = false;
+	for(var i = 0; i < sizeListPoint; ++i){
+		if(listPoint[i].latitude == latitude && listPoint[i].longitude){
+			listPoint[i].title += '\n\nPoint type : ' + pointType + ';\nDate: ' + date + ';\nBattery status : '+ batterryStatus + '%';
+			switch(pointType){
+				case 'storaged':
+					if(listPoint[i].pointType == 'common'){
+						listPoint[i].pointType = 'storaged';
+					}
+					break;
+				case 'on_demand':
+					if(listPoint[i].pointType == 'common' || listPoint[i].pointType == 'storaged'){
+						listPoint[i].pointType = 'on_demand';
+					}
+					break;
+				case 'sos':
+					if(listPoint[i].pointType == 'common' || listPoint[i].pointType == 'storaged' || listPoint[i].pointType == 'on_demand'){
+						listPoint[i].pointType = 'sos';
+					}
+					break;
+			}
+			isPreviousPointInSamePoint = true;
+			break;
+		}
+	}
+	if(!isPreviousPointInSamePoint){
 		listPoint[sizeListPoint++] = {
 			latitude : latitude,
 			longitude : longitude,
-			date : date,
-			date2 : date,
-			batterryStatus : batterryStatus,
-			pointType : pointType
+			pointType : pointType,
+			title : 'Point type : ' + pointType + ';\nDate: ' + date + ';\nBattery status : '+ batterryStatus + '%',
 		};
 	}
-}
-
-function drawSosPoint(latitude, longitude, date, batterryStatus) {
-	if(sizeListPoint != 0 && listPoint[sizeListPoint-1].latitude == latitude 
-			&& listPoint[sizeListPoint-1].longitude == longitude 
-			&& listPoint[sizeListPoint-1].pointType == 4){
-		listPoint[sizeListPoint-1].date2 = date;
-	} else {
-		listPoint[sizeListPoint++] = {
-			latitude : latitude,
-			longitude : longitude,
-			date : date,
-			date2 : date,
-			batterryStatus : batterryStatus,
-			pointType : 4
-		};
-	}
+	polyline.getPath().push(new google.maps.LatLng(latitude, longitude));
+	//polyline.getPath().push(latitude, longitude);
 }
 
 function drawAllPoint(){
-	letter = "";
 	currentImageOfPoint = null;
 	for(var i = 0; i < sizeListPoint; ++i){
 		switch(listPoint[i].pointType){
-			case 1:
+			case 'common':
 				currentImageOfPoint = imageOfPoint;
-				letter = EnglishAlphabet[currentLetter++%EnglishAlphabet.length];
 				break;
-			case 2:
+			case 'on_demand':
 				currentImageOfPoint = imageOfPointOnDemand;
 				break;
-			case 3:
+			case 'storaged':
 				currentImageOfPoint = imageOfPointStoraged;
 				break;
-			case 4:
+			case 'sos':
 				currentImageOfPoint = imageOfSosPoint;
 				break;
 		}
@@ -292,12 +294,8 @@ function drawAllPoint(){
 			},
 			map : map,
 			icon : currentImageOfPoint,
-			label : letter,
-			title : 'Date: ' + listPoint[i].date + ' - ' + listPoint[i].date2 + ';\nBattery status : '+ listPoint[i].batterryStatus + '%',
+			title : listPoint[i].title,
 		});
-		if(listPoint[i].pointType < 4){
-			polyline.getPath().push(marker.position);
-		}
 	}
 }
 
