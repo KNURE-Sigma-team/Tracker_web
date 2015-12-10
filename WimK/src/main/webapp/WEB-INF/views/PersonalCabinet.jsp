@@ -74,7 +74,9 @@
 						<div class="child col-md-6">
 							<div>
 								<spring:url value="${child.avatar}" var="imageChild" />
+								<a href="view_points?currentChild=${child.login}">
 								<img id="child_avatar" src="${imageChild}"/>
+								</a>
 							</div>
 							<div>login: <c:out value="${child.login}" /></div>
 							<div>sending frequency: <c:out value="${child.sendingFrequency}" /> minutes </div>
@@ -94,7 +96,7 @@
 							<br />
 							<br />	
 							<br />
-								<a href="<c:url value="/add_child" />">Add child</a>
+								<a href="<c:url value="/add_child" />" class="btn btn-success" role="button">Add child</a>
 							</div>
 						</div>
 					</c:if>
@@ -106,7 +108,7 @@
 							<br />
 							<br />
 							<br />						
-								<a href="<c:url value="/add_child" />">Add child</a>
+								<a href="<c:url value="/add_child" />" class="btn btn-success" role="button">Add child</a>
 							</div>
 						</div>
 			</c:if>
@@ -114,7 +116,7 @@
 			</c:when>
 			<c:otherwise>
 					Your have not registered your child yet
-					<a href="<c:url value="/add_child" />">Add child</a>
+					<a href="<c:url value="/add_child" />" class="btn btn-success" role="button">Add child</a>
 			</c:otherwise>
 		</c:choose>
 	</div>
