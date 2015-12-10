@@ -16,7 +16,7 @@
 <script src="${jquery}" type="text/javascript"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Confirm restoration</title>
+<title>Restore password</title>
 </head>
 <body>
 	<div class = "container content">

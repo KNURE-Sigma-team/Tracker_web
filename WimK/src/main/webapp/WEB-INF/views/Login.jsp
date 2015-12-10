@@ -17,7 +17,7 @@
 <link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
 <link href="${styleCss}" rel="stylesheet" type="text/css" />
 
-<title>Registration</title>
+<title>Welcome to WimK</title>
 </head>
 <body>
 	<div class="container center" align="center">
