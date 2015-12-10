@@ -32,7 +32,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 						"/change_password/**", "/edit_profile/**", "/edit_child/**")
 				.access("hasRole('ROLE_USER')").and();
 
-		http.formLogin().loginPage("/login").loginProcessingUrl("/j_spring_security_check").failureUrl("/login?error")
+		http.formLogin().defaultSuccessUrl("/personal_cabinet").loginPage("/login").loginProcessingUrl("/j_spring_security_check").failureUrl("/login?error")
 				.usernameParameter("j_username").passwordParameter("j_password").permitAll();
 
 		http.logout().permitAll().logoutUrl("/logout").logoutSuccessUrl("/login?logout").invalidateHttpSession(true);
