@@ -59,7 +59,7 @@
                <h2  class = "form-signin-heading">Add your child</h2>
           		<label for = "login">Child name:</label>
 				<input class = "form-control" placeholder = "Child's name" name="login" required="required" pattern="[A-Za-z0-9]{3,20}" />
-               	${error}
+               	<div id="error">${error}</div>
              	<input id="input_child_avatar" type="file" name="avatar" accept="image/jpeg,image/png" onchange="readURL(this);"/>
              	<img id="child_avatar" src="/wimk/resources/core/images/child_avatars/default.png" />
                	

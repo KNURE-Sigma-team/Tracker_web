@@ -56,7 +56,7 @@
 	<br />
 	<br />	
            	<input id="input_child_avatar" type="file" name="avatar" accept="image/jpeg,image/png" onchange="readURL(this);"/>
-     		${bad_image}
+     		<div id="image_error">${bad_image}</div>
     </div>
     <div class = "col-md-4">
 	<input name="status" type="hidden" value="edit"/>
