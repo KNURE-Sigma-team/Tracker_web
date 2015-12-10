@@ -141,7 +141,8 @@
 					<c:out value="${area.radius}"/>, <c:out value="${area.allowed}"/>, 
 					<c:out value="${area.id}"/>, '<c:out value="${area.name}"/>');
 		</c:forEach>
-		setCenterMapOnCenterBiggestArea();
+		drawAllPoint();
+		updateMapCenter();
 	</script>
 </body>
 </html>

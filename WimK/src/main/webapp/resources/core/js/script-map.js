@@ -18,9 +18,6 @@ var imageOfPoint = "/wimk/resources/core/images/points/point.png";
 var imageOfSosPoint = "/wimk/resources/core/images/points/point_sos.png";
 var imageOfPointOnDemand = "/wimk/resources/core/images/points/point_on_demand.png";
 var imageOfPointStoraged = "/wimk/resources/core/images/points/point_storaged.png";
-// Alphabet for labeles on the points
-var EnglishAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var currentLetter = 0;
 
 // Colors of areas
 var allowedColor = '#00ff00';
@@ -29,6 +26,7 @@ var forbiddenColor = '#ff8c00';
 // List of all points on the map
 var listPoint = [];
 var sizeListPoint = 0;
+var lastPoint = null;
 
 // List of all area on the map
 var listArea = [];
@@ -265,9 +263,9 @@ function addPoint(latitude, longitude, date, batterryStatus, pointType) {
 			pointType : pointType,
 			title : 'Point type : ' + pointType + ';\nDate: ' + date + ';\nBattery status : '+ batterryStatus + '%',
 		};
+		lastPoint = listPoint[sizeListPoint - 1];
 	}
 	polyline.getPath().push(new google.maps.LatLng(latitude, longitude));
-	//polyline.getPath().push(latitude, longitude);
 }
 
 function drawAllPoint(){
@@ -470,16 +468,20 @@ function getMaxZoom(circleRadius){
 }
 
 // Set center of the map on the center of the biggest allowed area.
-function setCenterMapOnCenterBiggestArea(){
-	drawAllPoint();
-	biggestCircle = null;
-	for(i = 0; i < sizeListArea; i++){
-		if(listArea[i].circle.fillColor == allowedColor && (biggestCircle == null || biggestCircle.radius < listArea[i].circle.radius)){
-			biggestCircle = listArea[i].circle;
+function updateMapCenter(){
+	if(lastPoint != null){
+		map.setCenter(new google.maps.LatLng(lastPoint.latitude, lastPoint.longitude));
+		map.setZoom(16);
+	} else if(sizeListArea > 0){
+		biggestCircle = null;
+		for(i = 0; i < sizeListArea; i++){
+			if(listArea[i].circle.fillColor == allowedColor && (biggestCircle == null || biggestCircle.radius < listArea[i].circle.radius)){
+				biggestCircle = listArea[i].circle;
+			}
 		}
-	}
-	if(biggestCircle != null){
-		map.setCenter(biggestCircle.getCenter());
-		map.setZomm(16);
+		if(biggestCircle != null){
+			map.setCenter(biggestCircle.getCenter());
+			map.setZoom(16);
+		}
 	}
 }
