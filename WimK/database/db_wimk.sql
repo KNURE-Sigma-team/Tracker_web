@@ -60,7 +60,6 @@ insert into PointType values(2, 'sos');
 alter table Point drop column pointType;
 alter table Point add idType INT;
 alter table Point add constraint fk_point_type foreign key (idType) references PointType(idType);
-update Point set PointType = 1;
 /*change password type because start use SHA-512*/
 alter table Parent modify password varchar(128);
 
@@ -80,4 +79,3 @@ Insert into PointType values(4, 'storaged');
 
 /*Checked connect of child*/
 Alter table Child add checked TINYINT(1);
-Update Child Set checked = 0;
