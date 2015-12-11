@@ -17,7 +17,7 @@
 <spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
 <link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
 <link href="${styleCss}" rel="stylesheet" type="text/css" />
-<title>Registration</title>
+<title>Registration Success</title>
 </head>
 <body>
     <div align="center">

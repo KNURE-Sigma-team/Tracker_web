@@ -18,7 +18,7 @@
 <link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
 <link href="${styleCss}" rel="stylesheet" type="text/css" />
 
-<title>WimK</title>
+<title>Registration</title>
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">

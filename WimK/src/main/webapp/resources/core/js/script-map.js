@@ -235,23 +235,7 @@ function addPoint(latitude, longitude, date, batterryStatus, pointType) {
 	for(var i = 0; i < sizeListPoint; ++i){
 		if(listPoint[i].latitude == latitude && listPoint[i].longitude){
 			listPoint[i].title += '\n\nPoint type : ' + pointType + ';\nDate: ' + date + ';\nBattery status : '+ batterryStatus + '%';
-			switch(pointType){
-				case 'storaged':
-					if(listPoint[i].pointType == 'common'){
-						listPoint[i].pointType = 'storaged';
-					}
-					break;
-				case 'on_demand':
-					if(listPoint[i].pointType == 'common' || listPoint[i].pointType == 'storaged'){
-						listPoint[i].pointType = 'on_demand';
-					}
-					break;
-				case 'sos':
-					if(listPoint[i].pointType == 'common' || listPoint[i].pointType == 'storaged' || listPoint[i].pointType == 'on_demand'){
-						listPoint[i].pointType = 'sos';
-					}
-					break;
-			}
+			listPoint[i].pointType = pointType;
 			isPreviousPointInSamePoint = true;
 			break;
 		}

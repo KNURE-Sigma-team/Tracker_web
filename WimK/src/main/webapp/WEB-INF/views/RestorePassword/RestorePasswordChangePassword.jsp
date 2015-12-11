@@ -19,7 +19,7 @@
 <script src="${pasJs}" type="text/javascript"></script>
 <script src="${jquery}" type="text/javascript"></script>
 
-<title>Restore password</title>
+<title>New password</title>
 </head>
 <body>
 <div class ="content container">
