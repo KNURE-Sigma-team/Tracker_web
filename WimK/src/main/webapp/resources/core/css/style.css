@@ -4,7 +4,11 @@ body {
 
 .form_group {
 	width: 400px;
-	margin: 25px;
+    box-shadow: none;
+    border: 0;
+    background: #fff;
+    margin: 25px;
+}
 }
 
 .navbar-bottom {
@@ -203,4 +207,44 @@ div#login {
 .pass-reset {
 	width: 60%;
 	margin: 20px auto;
+}
+
+#registrationForm input, .form-signin input {
+	margin-top: 20px;
+	display: block;
+	border: 0;
+    border-color: transparent;
+    padding: 20px;
+    padding-left: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#registrationForm h2, .form-signin h2 {
+	color: #596163;
+}
+
+#registrationForm button, .form-signin button {
+	display: block;
+	margin-top: 20px;
+	border: 0;
+	border-radius: 3px;	
+	text-transform: uppercase;
+	font-weight: 400;
+}
+
+div.form_group {
+	border-radius: 4px;
+}
+
+.form-signin button {
+	margin-bottom: 20px;
+}
+
+.form-signin input:hover, .form-signin input:focus {
+	border-color: rgba(92,184,92,0.5);
+	box-shadow: none;
 }

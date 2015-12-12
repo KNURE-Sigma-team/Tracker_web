@@ -60,5 +60,6 @@
 </form>
 </div>
 <script src="${editProfileJs}" type="text/javascript"></script>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
