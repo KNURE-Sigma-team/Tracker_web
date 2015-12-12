@@ -1,6 +1,24 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+button.btn {
+	border: 0;
+	border-radius: 2px;
+	padding: 10px;
+}
+
+button.btn-primary,  a.btn-info {
+	padding: 10px 25px;
+}
+
 .form_group {
 	width: 400px;
-	margin: 25px;
+    box-shadow: none;
+    border: 0;
+    background: #fff;
+    margin: 25px;
+}
 }
 
 .navbar-bottom {
@@ -107,7 +125,7 @@ body {
 }
 
 .simple_form {
-	width: 40%;
+	/*width: 40%;*/
 }
 
 .simple_form input {
@@ -157,4 +175,93 @@ body {
 
 input {
 	margin: 5px auto 15px;
+}
+
+
+.email {
+	display: inline-block;
+	margin: 15px 10px;
+	pading: 10px;
+}
+
+#removing_frequency {
+	margin-top: 0;
+}
+
+#editProfileForm {
+	font-size: 1.2em;
+	width: 30%;
+	margin: 40px auto;
+}
+
+#editProfileForm .name, #editProfileForm .form-rf {
+	padding: 20px auto;
+	margin: 15px auto 25px auto;
+}
+
+div#login {
+	padding: 10px auto;
+	margin: 5px auto 10px;
+}
+
+#editProfileForm button {
+	padding: 10px;
+}
+
+.pass-form {
+	font-size: 1.2em;
+	width: 40%;
+	margin: 80px auto;
+}
+
+.pass-reset {
+	width: 60%;
+	margin: 20px auto;
+}
+
+#registrationForm input, .form-signin input, .restore-form input, input.form-control {
+	margin-top: 20px;
+	display: block;
+	border: 0;
+    border-color: transparent;
+    padding: 20px;
+    padding-left: 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#registrationForm h2, .form-signin h2, .restore-form h3, h2, h3 {
+	color: #596163;
+}
+
+#registrationForm button, .form-signin button, .restore-form button, button, .btn {
+	display: block;
+	margin-top: 20px;
+	border: 0;
+	border-radius: 3px;	
+	font-weight: 400;
+}
+
+#registrationForm button, .form-signin button, .restore-form button {
+	text-transform: uppercase;	
+}
+
+div.form_group {
+	border-radius: 4px;
+}
+
+.form-signin button {
+	margin-bottom: 20px;
+}
+
+.form-signin input:hover, .form-signin input:focus, .restore-form input:focus, input.form-control:focus, input.form-control:hover {
+	border-color: rgba(92,184,92,0.5);
+	box-shadow: none;
+}
+
+.restore-form {
+	padding: 20px;
 }

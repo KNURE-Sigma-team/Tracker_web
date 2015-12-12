@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
 
 <spring:url value="/resources/core/js/password.js" var="pasJs" />
 <spring:url value="/resources/core/js/script-registration_view.js" var="pasViewJs" />
@@ -27,10 +28,10 @@
 <body>
     <div class = "container" align="center">
     <div class = "row registration">
-    <div class="form_group form-signup col-md-12">
+    <div class="form_group form-signup col-md-12 well">
         <form:form action="register" method="post" id="registrationForm" commandName="userForm" class="form form-signup">
 			<h2 class = "form-heading">Registration</h2>
-				<form:input placeholder = "User email" type="email" required="required" path="login" class= "form-control"/>
+				<form:input placeholder = "E-mail" type="email" required="required" path="login" class= "form-control"/>
                 <form:password placeholder ="Password" class = "form-control" path="password" id="new_password" required="required" title="Strong password must contain digit, big letter, small letter, special character"/>
                  <input placeholder = "Confirm password" type="password" id="confirm_password" required="required" class = "form-control" />
                  <div id="confirm_password_remark"></div>

@@ -13,6 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
 
 <spring:url value="/resources/core/js/style-add_child.css" var="addChildCss" />
 <spring:url value="/resources/core/js/script-add_child.js" var="addChildJs" />
@@ -44,7 +45,7 @@
         </ul>
 	<div class = "navbar-right">
 	<sec:authorize access="isAuthenticated()">
-	<p>
+	<p class="email">
 		<sec:authentication property="principal.username" />
 	</p>
 	</sec:authorize>
@@ -54,16 +55,21 @@
 </nav>
 
 	<div align="center" class = "container content">
+	    <h2  class = "form-signin-heading">Add your child</h2>
 	    <div class = "simple_form">
-        <form class = "form" action="add_child" method="post" enctype="multipart/form-data" >
-               <h2  class = "form-signin-heading">Add your child</h2>
-          		<label for = "login">Child name:</label>
-				<input class = "form-control" placeholder = "Child's name" name="login" required="required" pattern="[A-Za-z0-9]{3,20}" />
-               	${error}
-             	<input id="input_child_avatar" type="file" name="avatar" accept="image/jpeg,image/png" onchange="readURL(this);"/>
-             	<img id="child_avatar" src="/wimk/resources/core/images/child_avatars/default.png" />
-               	
-				<input class = "btn btn-success btn-block" type="submit" value="Add child" />
+        <form class = "form add-child-form" action="add_child" method="post" enctype="multipart/form-data" >
+          		<div class="row">
+          			<!-- <label for = "login">Child name:</label> -->
+	          		<div class="col-md-5 col-md-offset-1">
+	          			<img id="child_avatar" src="/wimk/resources/core/images/child_avatars/default.png" />
+	             		<input id="input_child_avatar" type="file" name="avatar" accept="image/jpeg,image/png" onchange="readURL(this);"/>
+	          		</div>
+	          		<div class="col-md-4 col-md-offset-1">
+						<input class = "form-control" placeholder = "Child's name" name="login" required="required" pattern="[A-Za-z0-9]{3,20}" />
+		               	${error}
+						<input class = "btn btn-success btn-block" type="submit" value="Add child" />
+					</div>
+          		</div>
         </form>
         </div>
     </div>

@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
 
 <spring:url value="/resources/core/js/password.js" var="pasJs" />
 <spring:url value="/resources/core/js/changePasswordView.js"
@@ -51,7 +52,7 @@
 			<h2> ${answer} </h2>
 		</c:when>
 		<c:otherwise>
-	    <div class="form-group form">
+	    <div class="form-group form pass-form">
 			<form id="changePasForm" method="post">
 						Old password:
 						<input class = "form-control" id="old_password" name="old_password" type="password" />

@@ -4,3 +4,22 @@
 	width: 180pt;
 	height: 180pt;
 }
+
+div.content.info {
+	margin-top: 100px;
+}
+
+div.content.info table td {
+	font-size: 1.2em;
+	padding: 10px 15px;
+}
+
+div.content.info table td {
+	padding: 10px;
+}
+
+a.btn.btn-success {
+	display: table;
+	padding: 10px 20px;
+	font-size: 1.3em;
+}
