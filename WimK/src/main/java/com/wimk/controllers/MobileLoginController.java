@@ -40,7 +40,6 @@ public class MobileLoginController {
 		}
 		if (child != null) {
 			child.setAuthorizatedNumber(child.getAuthorizatedNumber() + 1);
-			child.setGoogleToken(null);
 			childService.editChild(child);
 			result = "OK";
 		}
