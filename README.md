@@ -23,3 +23,7 @@ Dependencies
     # Download db_wimk.sql (Wimk/databases/db_wimk.sql) and use it to create database in mysql
     # Restart tomcat (/opt/tomcat/bin/catalina.sh restart)
     # go to http://localhost:8080/WimK/
+    # if nesessary:  
+        # configure your mysql access in app.properties file:
+        # /opt/tomcat.webapps/wimk/WEB-INF/classes/app.properties
+        # and restart tomcat
