@@ -2,6 +2,16 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+button.btn {
+	border: 0;
+	border-radius: 2px;
+	padding: 10px;
+}
+
+button.btn-primary,  a.btn-info {
+	padding: 10px 25px;
+}
+
 .form_group {
 	width: 400px;
     box-shadow: none;
@@ -209,7 +219,7 @@ div#login {
 	margin: 20px auto;
 }
 
-#registrationForm input, .form-signin input {
+#registrationForm input, .form-signin input, .restore-form input, input.form-control {
 	margin-top: 20px;
 	display: block;
 	border: 0;
@@ -223,17 +233,20 @@ div#login {
     box-shadow: none;
 }
 
-#registrationForm h2, .form-signin h2 {
+#registrationForm h2, .form-signin h2, .restore-form h3, h2, h3 {
 	color: #596163;
 }
 
-#registrationForm button, .form-signin button {
+#registrationForm button, .form-signin button, .restore-form button, button, .btn {
 	display: block;
 	margin-top: 20px;
 	border: 0;
 	border-radius: 3px;	
-	text-transform: uppercase;
 	font-weight: 400;
+}
+
+#registrationForm button, .form-signin button, .restore-form button {
+	text-transform: uppercase;	
 }
 
 div.form_group {
@@ -244,7 +257,11 @@ div.form_group {
 	margin-bottom: 20px;
 }
 
-.form-signin input:hover, .form-signin input:focus {
+.form-signin input:hover, .form-signin input:focus, .restore-form input:focus, input.form-control:focus, input.form-control:hover {
 	border-color: rgba(92,184,92,0.5);
 	box-shadow: none;
+}
+
+.restore-form {
+	padding: 20px;
 }
