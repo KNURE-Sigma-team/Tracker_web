@@ -39,4 +39,9 @@ public class PointServiceImpl implements PointService {
 		return pointRepository.findPointsByChild(child.getId());
 	}
 
+	@Override
+	public void clearingPoints() {
+		pointRepository.clearingPoints();
+	}
+
 }

@@ -19,7 +19,6 @@ public class ChildServiceImpl implements ChildService {
 	@Transactional(readOnly = false)
 	public Child addChild(Child child) {
 		child.setId(-1);
-		child.setSendingFrequency(30);
 		return childRepository.saveAndFlush(child);
 	}
 
@@ -41,6 +40,14 @@ public class ChildServiceImpl implements ChildService {
 
 	public Child getById(Integer id) {
 		return childRepository.findById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public List<Child> getUnconnectedChild() {
+		List<Child> temp = childRepository.getUnconnectedChilds();
+		childRepository.checkUnconnectedChilds();
+		return temp;
 	}
 
 }

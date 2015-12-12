@@ -9,6 +9,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
+
 <spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />
 <spring:url value="/resources/core/css/style.css" var="styleCss" />
 <spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
@@ -18,7 +22,27 @@
 <title>Registration</title>
 </head>
 <body>
-	<div align="center">
+<sec:authorize access="isAuthenticated()">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+        <ul class="nav navbar-nav">
+        <li><img class = "cover" src = "/wimk/resources/core/images/logo.png" /></li>
+        <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
+        <li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
+        <li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
+        <li><a href="<c:url value="/user_manual" />">Help</a></li>
+        
+        </ul>
+	<div class = "navbar-right">
+	<p>
+		<sec:authentication property="principal.username" />
+	</p>
+		<a href="<c:url value="/logout" />" role="button">Sign out</a>
+	</div>
+  </div>
+  </nav>
+</sec:authorize>	
+ <div class = "container info" align="center">
 		<h1>WimK.com is free and helpful</h1>
 		<div class = "desc">
 		<p class = "text-centered">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?.</p>
@@ -26,36 +50,16 @@
 		<div style="background:url(http://cs610124.vk.me/u32958192/docs/539a27a6496d/gFM_5z3vVYk.png)">
 		</div>
 		<sec:authorize access="!isAuthenticated()">
+			<div class = "login-group">
 			<form action="register">
 				<button type="submit" class = "btn btn-lg btn-success">Register. It's free...</button>
 			</form>
 			<p>
 				<a href="<c:url value="/login" />" role="button">Sign in</a>
 			</p>
-		</sec:authorize>
-		<sec:authorize access="isAuthenticated()">
-			<p>
-				Your login:
-				<sec:authentication property="principal.username" />
-			</p>
-			<p>
-				<a href="<c:url value="/add_child" />" role="button">Add child</a>
-			</p>
-			<p>
-				<a href="<c:url value="/view_points" />" role="button">View
-					points of child</a>
-			</p>
-			<p>
-				<a href="<c:url value="/personal_cabinet" />" role="button">Personal
-					cabinet</a>
-			</p>
-			<p>
-				<a href="<c:url value="/logout" />" role="button">Sign out</a>
-			</p>
+			</div>
 		</sec:authorize>
 	</div>
-    <footer>
-        <jsp:include page="footer.jsp"/>
-    </footer>
+
 </body>
 </html>

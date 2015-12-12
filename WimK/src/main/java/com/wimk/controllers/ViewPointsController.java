@@ -86,8 +86,11 @@ public class ViewPointsController {
 		if (listOfPoints.size() > 0) {
 			StringBuilder sb = new StringBuilder();
 			for (Point p : listOfPoints) {
-				sb.append(p.getTime().getYear() + 1900).append('-').append(p.getTime().getMonth() + 1).append('-')
-						.append(p.getTime().getDate());
+				sb.append(p.getTime().getYear() + 1900).append('-').append(p.getTime().getMonth() + 1).append('-');
+				if(p.getTime().getDate() < 10){
+					sb.append('0');
+				}
+				sb.append(p.getTime().getDate());
 				if (!listOfDates.contains(sb.toString())) {
 					listOfDates.add(sb.toString());
 				}

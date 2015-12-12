@@ -40,11 +40,12 @@ public class MobileAuthorizationController {
 		}
 		return "Exception";
 	}
-	
-	private String getStringChildList(List<Child> childList){
+
+	private String getStringChildList(List<Child> childList) {
 		StringBuilder sb = new StringBuilder();
-		for(Child c: childList){
-			sb.append(c.getId()).append(';').append(c.getLogin()).append('\n');
+		for (Child c : childList) {
+			sb.append(c.getLogin()).append(';').append(c.getSendingFrequency()).append(';')
+					.append(c.getAuthorizatedNumber()).append('\n');
 		}
 		return sb.toString();
 	}

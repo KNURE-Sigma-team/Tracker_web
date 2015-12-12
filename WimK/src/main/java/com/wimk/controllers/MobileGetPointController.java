@@ -22,6 +22,7 @@ import com.wimk.entity.Parent;
 import com.wimk.entity.Point;
 import com.wimk.service.AreaService;
 import com.wimk.service.ChildService;
+import com.wimk.service.ParentService;
 import com.wimk.service.PointService;
 import com.wimk.service.PointTypeService;
 import com.wimk.utils.PointProcessor;
@@ -31,17 +32,20 @@ import com.wimk.utils.PointProcessor;
 public class MobileGetPointController {
 
 	@Autowired
+	ParentService parentService;
+
+	@Autowired
 	PointService pointService;
 
 	@Autowired
 	ChildService childService;
-	
+
 	@Autowired
 	AreaService areaService;
-	
+
 	@Autowired
 	PointTypeService pointTypeService;
-	
+
 	/*
 	 * Method get request and response. Request must contain new parameters:
 	 * "idChild", "longitude", "latitude", "battery_level", "time". Based on
@@ -51,7 +55,17 @@ public class MobileGetPointController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody String getPoint(HttpServletRequest request, HttpServletResponse response) {
-		Integer idChild = Integer.parseInt(request.getParameter("idChild"));
+		String parentLogin = request.getParameter("parent_login");
+		String childLogin = request.getParameter("child_login");
+		List<Child> listOfChild = childService.getChildOfParent(parentService.getByLogin(parentLogin));
+		Child child = null;
+		for (Child c : listOfChild) {
+			if (c.getLogin().equals(childLogin)) {
+				child = c;
+				break;
+			}
+		}
+
 		Double latitude = Double.parseDouble(request.getParameter("latitude"));
 		Double longitude = Double.parseDouble(request.getParameter("longitude"));
 		Integer battery_level = Integer.parseInt(request.getParameter("battery_level"));
@@ -66,18 +80,20 @@ public class MobileGetPointController {
 			return "Invalid input data";
 		}
 
-		if (idChild != null && longitude != null && latitude != null && battery_level != null
-				&& time != null && pointType != null) {
-			Child child = childService.getById(idChild);
-			if (child != null) {
-				Point point = new Point(child, latitude, longitude, time, battery_level, pointTypeService.getByName(pointType));
-				pointService.addPoint(point);
-				
-				List<Area> areaList = areaService.getAllAreasOfChild(child);
-				Parent parent = child.getParent();
-				PointProcessor.pointProcess(point, child, parent, areaList);
-				return "OK";
-			}
+		if (child != null && longitude != null && latitude != null && battery_level != null && time != null
+				&& pointType != null) {
+			Point point = new Point(child, latitude, longitude, time, battery_level,
+					pointTypeService.getByName(pointType));
+			pointService.addPoint(point);
+			
+			// Set that this child will check by job. Again.
+			child.setChecked(false);
+			childService.editChild(child);
+			
+			List<Area> areaList = areaService.getAllAreasOfChild(child);
+			Parent parent = child.getParent();
+			PointProcessor.pointProcess(point, child, parent, areaList, request);
+			return "OK";
 		}
 		return "Exception";
 	}

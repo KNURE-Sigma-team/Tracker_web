@@ -9,6 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
+
 <spring:url value="/resources/core/js/password.js" var="pasJs" />
 <spring:url value="/resources/core/js/script-registration_view.js" var="pasViewJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
@@ -24,32 +27,29 @@
 </head>
 <body>
     <div class = "container" align="center">
-    <div class="form_group">
-        <form:form action="register" method="post" id="registrationForm" commandName="userForm" class="form-signin form-signup">
-			<h2 class = "form-signin-heading">Registration</h2>
-				User E-mail:
-				<form:input type="email" required="required" path="login" class= "form-control"/>
-                Password:
-                <form:password class = "form-control" path="password" id="new_password" required="required" title="Strong password must contain digit, big letter, small letter, special character"/>
-                <div>
-	                <div id="new_password_remark">Too short</div>
-                    <div ><img id="new_password_remark_image" src="/wimk/resources/core/images/pasword_strength/invalid_password.png" /></div>
-                 </div>
-                 Confirm password:
-                 <input type="password" id="confirm_password" required="required" class = "form-control" />
+    <div class = "row registration">
+    <div class="form_group form-signup col-md-12 well">
+        <form:form action="register" method="post" id="registrationForm" commandName="userForm" class="form form-signup">
+			<h2 class = "form-heading">Registration</h2>
+				<form:input placeholder = "E-mail" type="email" required="required" path="login" class= "form-control"/>
+                <form:password placeholder ="Password" class = "form-control" path="password" id="new_password" required="required" title="Strong password must contain digit, big letter, small letter, special character"/>
+                 <input placeholder = "Confirm password" type="password" id="confirm_password" required="required" class = "form-control" />
                  <div id="confirm_password_remark"></div>
-                 Name:
-                 <form:input path="name"  required="required" pattern="[A-Za-z0-9][A-Za-z0-9 ]{4,16}" class = "form-control"/>
+                 <form:input path="name" placeholder = "Username" required="required" pattern="[A-Za-z0-9][A-Za-z0-9 ]{4,16}" class = "form-control"/>
                  <button type="submit" value="Register" class = "btn btn-lg btn-success btn-block"> Sign up </button>
         </form:form>
+           <a href="<c:url value="/" />">Back</a>
+   </div>
+   <div class = "col-md-6">
+    <div class = "col-md-3">
+   <div id="new_password_remark">Too short</div>
+    <div ><img id="new_password_remark_image" src="/wimk/resources/core/images/pasword_strength/invalid_password.png" /></div>
+   </div>
         <div id = error>${error_message}</div>
-        <a href="<c:url value="/" />">Back</a>
         <script src="${pasViewJs}" type="text/javascript"></script>
     </div>
     </div>
-     <footer>
-        <jsp:include page="footer.jsp"/>
-    </footer>
+   </div>
 
 </body>
 </html>

@@ -40,25 +40,18 @@ public class EditProfileController {
 		String authLogin = auth.getName();
 		Parent parent = parentService.getByLogin(authLogin);
 		
-		String login = request.getParameter("login");
 		String name = request.getParameter("name");
 		Integer removingFrequency = Integer.parseInt(request.getParameter("removing_frequency"));
 		
-		parent.setLogin(login);
 		parent.setName(name);
 		parent.setRemovingFrequency(removingFrequency);
-		if(!authLogin.equals(login) &&
-			parentService.getByLogin(login) != null){
-			model.put("parent", parent);
-			model.put("parent_exist", "Someone already has that username. Try another?");
-			return "EditProfile";
-		}
 		if(removingFrequency < 5 || removingFrequency > 90){
 			model.put("parent", parent);
 			model.put("invalid_removing_frequency", "Invalid removing frequency");
 			return "EditProfile";
 		}
-		request.getSession().setAttribute("parent", parent);
-		return "redirect:edit_profile_confirm_password";
+
+		parentService.editParent(parent);
+		return "redirect:personal_cabinet";
 	}
 }

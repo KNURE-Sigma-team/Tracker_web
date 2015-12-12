@@ -78,5 +78,5 @@ public class DataConfig {
  
         return properties;
     }
- 
+    
 }

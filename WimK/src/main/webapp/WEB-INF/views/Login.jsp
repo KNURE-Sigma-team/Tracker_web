@@ -8,6 +8,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
+
 <spring:url value="/resources/core/css/bootstrap.css" var="bootstrapCss" />
 <spring:url value="/resources/core/css/style.css" var="styleCss" />
 <spring:url value="/resources/core/css/bootstrap.js" var="bootstrapJs" />
@@ -28,16 +32,15 @@
 							required autofocus class="form-control"/></td>
 					<input type="password" name="j_password"
 							placeholder="Password" required class="form-control"/>
-					<button type="submit" class = "btn btn-lg btn-success btn-block">Войти</button>
+					<button type="submit" class = "btn btn-lg btn-success btn-block">Log in</button>
 				<div id = "error"> ${error_message} </div>
 			</form>
 			</div>
 			<form action="restore_password">
-				<button type="submit" class = "btn btn-warning">Forget password?</button>
+				<button type="submit" class = "btn btn-warning">Forgot password?</button>
 			</form>
+        <a href="<c:url value="/" />">Back</a>			
 	</div>
-    <footer>
-        <jsp:include page="footer.jsp"/>
-    </footer>
+
 </body>
 </html>

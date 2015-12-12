@@ -14,15 +14,19 @@ var polyline = new google.maps.Polyline({
 var editMode = false;
 
 // URI of images for draw point on the map
-var imageOfPoint = "/wimk/resources/core/images/point.png";
-var imageOfSosPoint = "/wimk/resources/core/images/point_sos.png";
-// Alphabet for labeles on the points
-var EnglishAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-var currentLetter = 0;
+var imageOfPoint = "/wimk/resources/core/images/points/point.png";
+var imageOfSosPoint = "/wimk/resources/core/images/points/point_sos.png";
+var imageOfPointOnDemand = "/wimk/resources/core/images/points/point_on_demand.png";
+var imageOfPointStoraged = "/wimk/resources/core/images/points/point_storaged.png";
 
 // Colors of areas
 var allowedColor = '#00ff00';
 var forbiddenColor = '#ff8c00';
+
+// List of all points on the map
+var listPoint = [];
+var sizeListPoint = 0;
+var lastPoint = null;
 
 // List of all area on the map
 var listArea = [];
@@ -217,41 +221,65 @@ function centerNewAreaChanged(circle){
 function initMap(latitude, longitude) {
 	map = new google.maps.Map(document.getElementById('map'), {
 		center : {
-			lat : latitude,
-			lng : longitude
+			lat : 0,
+			lng : 0
 		},
-		zoom : 16
+		zoom : 2
 	});
 	polyline.setMap(map);
 }
 
 // Function for draw point on the map.
-function drawPoint(latitude, longitude, date, batterryStatus) {
-	var marker = new google.maps.Marker({
-		position : {
-			lat : latitude,
-			lng : longitude
-		},
-		map : map,
-		label : EnglishAlphabet[currentLetter++%EnglishAlphabet.length],
-		icon : imageOfPoint,
-		title : 'Date: ' + date + ';\nBattery status : '+ batterryStatus + '%',
-	});
-	polyline.getPath().push(marker.position);
+function addPoint(latitude, longitude, date, batterryStatus, pointType) {
+	var isPreviousPointInSamePoint = false;
+	for(var i = 0; i < sizeListPoint; ++i){
+		if(listPoint[i].latitude == latitude && listPoint[i].longitude){
+			listPoint[i].title += '\n\nPoint type : ' + pointType + ';\nDate: ' + date + ';\nBattery status : '+ batterryStatus + '%';
+			listPoint[i].pointType = pointType;
+			isPreviousPointInSamePoint = true;
+			break;
+		}
+	}
+	if(!isPreviousPointInSamePoint){
+		listPoint[sizeListPoint++] = {
+			latitude : latitude,
+			longitude : longitude,
+			pointType : pointType,
+			title : 'Point type : ' + pointType + ';\nDate: ' + date + ';\nBattery status : '+ batterryStatus + '%',
+		};
+		lastPoint = listPoint[sizeListPoint - 1];
+	}
+	polyline.getPath().push(new google.maps.LatLng(latitude, longitude));
 }
 
-function drawSosPoint(latitude, longitude, date, batterryStatus) {
-	var marker = new google.maps.Marker({
-		position : {
-			lat : latitude,
-			lng : longitude
-		},
-		map : map,
-		icon : imageOfSosPoint,
-		title : 'Date: ' + date + ';\nBattery status : '+ batterryStatus + '%',
-	});
+function drawAllPoint(){
+	currentImageOfPoint = null;
+	for(var i = 0; i < sizeListPoint; ++i){
+		switch(listPoint[i].pointType){
+			case 'common':
+				currentImageOfPoint = imageOfPoint;
+				break;
+			case 'on_demand':
+				currentImageOfPoint = imageOfPointOnDemand;
+				break;
+			case 'storaged':
+				currentImageOfPoint = imageOfPointStoraged;
+				break;
+			case 'sos':
+				currentImageOfPoint = imageOfSosPoint;
+				break;
+		}
+		var marker = new google.maps.Marker({
+			position : {
+				lat : listPoint[i].latitude,
+				lng : listPoint[i].longitude
+			},
+			map : map,
+			icon : currentImageOfPoint,
+			title : listPoint[i].title,
+		});
+	}
 }
-
 
 // Function for adding old area.
 function addArea(x, y, radius, isAllowed, id, name) {
@@ -377,13 +405,33 @@ function confirmChanges(){
 	cancelRememberUserAboutUnsavedData();
 }
 
-// Function for execute query
+//Function for execute query
 function executeQuery(data){
 	$.ajax({
 		type: "POST",
 		url:  "/wimk/area_editor",
-		data: data
+		data: data,
+		success : function(message){
+			if(message=="OK"){
+				goodResult();
+			} else {
+				badResult();
+			}
+		}
 	});
+}
+
+// Functions for show user the result query
+function goodResult(){
+	document.getElementById('confirmChangesResult').innerHTML = "Changes was confirmed.";
+	setTimeout(removeResult, 3000);
+}
+function badResult(){
+	document.getElementById('confirmChangesResult').innerHTML = "Changes was not confirmed.";
+	setTimeout(removeResult, 3000);
+}
+function removeResult(){
+	document.getElementById('confirmChangesResult').innerHTML = "";
 }
 
 // ======================================================================================
@@ -404,14 +452,20 @@ function getMaxZoom(circleRadius){
 }
 
 // Set center of the map on the center of the biggest allowed area.
-function setCenterMapOnCenterBiggestArea(){
-	biggestCircle = null;
-	for(i = 0; i < sizeListArea; i++){
-		if(listArea[i].circle.fillColor == allowedColor && (biggestCircle == null || biggestCircle.radius < listArea[i].circle.radius)){
-			biggestCircle = listArea[i].circle;
+function updateMapCenter(){
+	if(lastPoint != null){
+		map.setCenter(new google.maps.LatLng(lastPoint.latitude, lastPoint.longitude));
+		map.setZoom(16);
+	} else if(sizeListArea > 0){
+		biggestCircle = null;
+		for(i = 0; i < sizeListArea; i++){
+			if(listArea[i].circle.fillColor == allowedColor && (biggestCircle == null || biggestCircle.radius < listArea[i].circle.radius)){
+				biggestCircle = listArea[i].circle;
+			}
 		}
-	}
-	if(biggestCircle != null){
-		map.setCenter(biggestCircle.getCenter());
+		if(biggestCircle != null){
+			map.setCenter(biggestCircle.getCenter());
+			map.setZoom(16);
+		}
 	}
 }

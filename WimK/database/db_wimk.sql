@@ -60,10 +60,22 @@ insert into PointType values(2, 'sos');
 alter table Point drop column pointType;
 alter table Point add idType INT;
 alter table Point add constraint fk_point_type foreign key (idType) references PointType(idType);
-update Point set PointType = 1;
 /*change password type because start use SHA-512*/
 alter table Parent modify password varchar(128);
 
 /*Changes related with activated account*/
-alter table add hash varchar(10);
-alter table add activated TINYINT(1);
+alter table Parent add hash varchar(10);
+alter table Parent add activated TINYINT(1);
+
+/*Changes related with activated account*/
+alter table Child add avatar varchar(100);
+
+alter table Child add authorizatedNumber INT;
+alter table Child add googleToken varchar(512);
+
+/*New point type*/
+Insert into PointType values(3, 'on_demand');
+Insert into PointType values(4, 'storaged');
+
+/*Checked connect of child*/
+Alter table Child add checked TINYINT(1);
