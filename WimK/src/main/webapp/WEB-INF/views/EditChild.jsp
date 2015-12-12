@@ -73,7 +73,7 @@
 				<div class = "input-box">
 					<div class="input-group">
 						<input class = "form-control" id="sending_frequency" name="sending_frequency" type="text" value="${child.sendingFrequency}"/>
-						<span class="input-group-addon">days</span>
+						<span class="input-group-addon">minutes</span>
 					</div>
 				 </div>
 			 </td>

@@ -244,7 +244,9 @@
 	<p> 1) Press button "Change password", so that go to special page for change password</p>
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/ChangePassword1.png" />
 	<p> 2) Input your old password in field "Old password".	</p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/ChangePassword2.png" />
 	<p> 3) Input your new password in field "New password"</p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/ChangePassword3.png" />
 	<p> 4) Input your new password again in field "Confirm password", for confirm your password</p>
 	<p> <b>Note:</b> Must be filled all fields. Otherwise you can't change password.</p>
 	<p> <b>Note:</b> New password and old password must be same. Otherwise you can't change password.</p>
@@ -253,19 +255,25 @@
 		<b>Note:</b> Password strength showed color line near "New password".
 		<p> Strength password must contain at least one big latin letter, one small latin letter, one number, ones special symbol </p>
 	</div> 
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/ChangePassword4.png" />
 	<p> 5) After filling all fields press button "Change password" for confirm changes</p>
 	<p> <b>Note:</b> If old password is wrong, after pressing button "Change password" will be show label "Old password is wrong" </p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/ChangePassword5.png" />
 	<p> 6) In success case you will go to personal cabinet</p>
 
 	<h3><a name="editPersonalData"/></a>Edit personal data</h3>
 	<p>For edit personal data (name, removing frequency) of you account follow next steps:</p>
+	<p>	<b>Note:</b> If you want ot change your email you must contact with suppert team - company.wimk@gmail.com. </p>
 	<p> 1) Press button "Edit profile", so that go to special page for edit profile</p>
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditProfile1.png" />
 	<p> 2) Input your right name in field "Name"</p>
 	<p>	<b>Note:</b> Value of name can contain only latin characters, numbers and symbol of space; and must length between 4 and 16 symbols</p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditProfile2.png" />
 	<p>	3) Input removing frequency that you want in field "Removing frequency". Removing frequency is the value of days that our system stores location points of your children.</p>
 	<p> <b>Note:</b> Field "Removing frequency" can contain only numbers. Number in field cannot be smaller than 5 or bigger than 90 days. 
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditProfile3.png" />
 	<p> 4) After filling all fields press button "Change profile" for confirm changes</p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditProfile4.png" />
 	<p> 5) In success case you will go to personal cabinet</p>
 
 	<h3><a name="addNewChild"/></a>Add new child</h3>
@@ -291,11 +299,15 @@
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditChild1.png" />
 	<p> 2) For change child login you must input right login of child in field "Login"</p>
 	<p> <b>Note:</b> Child login can contain only latin characters and numbers and must length between 4 and 20 symbols</p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditChild2.png" />
 	<p>	3) For change sending frequency you must input sending frequency that you want in field "Sending frequency". Sending frequency is the frequency of sending location coordinates from your child to server.</p>
 	<p> <b>Note:</b> Field "Removing frequency" can contain only numbers. Number in field cannot be smaller than 5 or bigger than 90 minutes. </p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditChild3.png" />
 	<p> 4) For change child avatar you must press button "Choose file" and choose image from files on your computer.</p>
 	<p> <b>Note:</b> Format of child avatars can be only PNG (.png) or JPEG (.jpg).</p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditChild4.png" />
 	<p> 5) After filling all fields press button "Save child" for confirm changes</p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditChild5.png" />
 	<p> 6) In success case you will go to personal cabinet</p>
 	
 	<h3><a name="removeChild"/></a>Remove child</h3>
@@ -303,7 +315,9 @@
 	<p> 1) Press button "edit" under child which you want to remove, so that go to special page for edit child</p>
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditChild1.png" />
 	<p> 2) Press button "Remove child". </p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/RemoveChild.png" />
 	<p> 3) In pop-up window press "OK" </p>
+	<img class="guide_image" src="/wimk/resources/core/images/user_manual/RemoveChild2.png" />
 	<p> 4) In success case you will go to personal cabinet</p>
 	<br/>
 	<br/>
