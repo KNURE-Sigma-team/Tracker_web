@@ -1,3 +1,7 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
 .form_group {
 	width: 400px;
 	margin: 25px;
@@ -107,7 +111,7 @@ body {
 }
 
 .simple_form {
-	width: 40%;
+	/*width: 40%;*/
 }
 
 .simple_form input {
@@ -157,4 +161,41 @@ body {
 
 input {
 	margin: 5px auto 15px;
+}
+
+
+.email {
+	display: inline-block;
+	margin: 15px 10px;
+	pading: 10px;
+}
+
+#removing_frequency {
+	margin-top: 0;
+}
+
+#editProfileForm {
+	font-size: 1.2em;
+	width: 30%;
+	margin: 40px auto;
+}
+
+#editProfileForm .name, #editProfileForm .form-rf {
+	padding: 20px auto;
+	margin: 15px auto 25px auto;
+}
+
+div#login {
+	padding: 10px auto;
+	margin: 5px auto 10px;
+}
+
+#editProfileForm button {
+	padding: 10px;
+}
+
+.pass-form {
+	font-size: 1.2em;
+	width: 40%;
+	margin: 80px auto;
 }

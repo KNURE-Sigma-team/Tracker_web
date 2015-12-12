@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
 
 <!-- URLs -->
 <spring:url value="/resources/core/css/style-view_points.css" var="mapCss" />
@@ -49,7 +50,7 @@
         </ul>
 	<div class = "navbar-right">
 	<sec:authorize access="isAuthenticated()">
-	<p>
+	<p class="email">
 		<sec:authentication property="principal.username" />
 	</p>
 	</sec:authorize>

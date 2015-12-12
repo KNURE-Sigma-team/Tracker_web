@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
 
 <spring:url value="/resources/core/js/script-edit_profile.js" var="editProfileJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
@@ -35,7 +36,7 @@
         </ul>
 	<div class = "navbar-right">
 	<sec:authorize access="isAuthenticated()">
-	<p>
+	<p class="email">
 		<sec:authentication property="principal.username" />
 	</p>
 	</sec:authorize>
@@ -46,11 +47,11 @@
 <div class = "content container">
 <form id="editProfileForm" method="post">
 			Login:
-			<div style="font-size:14pt"> ${parent.login}</div>
+			<div id="login" style="font-size:14pt"> ${parent.login}</div>
 			Name:
-			<input class = "form-control" name="name" required="required" pattern="[A-Za-z0-9][A-Za-z0-9 ]{4,16}" value="${parent.name}"/>
+			<input class = "form-control name" name="name" required="required" pattern="[A-Za-z0-9][A-Za-z0-9 ]{4,16}" value="${parent.name}"/>
 			Removing frequency
-			<div class="input-group">
+			<div class="input-group form-rf">
 				<input class = "form-control"  id= "removing_frequency" name="removing_frequency" type="text" value="${parent.removingFrequency}"/>
 				<span class="input-group-addon">days</span>
 			</div>
