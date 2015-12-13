@@ -19,7 +19,7 @@
 <link href="${bootstrapCss}" rel="stylesheet" type="text/css" />
 <link href="${styleCss}" rel="stylesheet" type="text/css" />
 
-<title>Registration</title>
+<title>WimK</title>
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
@@ -42,10 +42,11 @@
   </div>
   </nav>
 </sec:authorize>	
- <div class = "container info" align="center">
+ <div class = "container" align="center">
+		<img src = "https://psv4.vk.me/c610627/u59503884/docs/1047d2e69890/logo.png?extra=Wg93_7_-okoQlyhjTrGaqLYiRKyv_s0XCbQcDvlBIxawh1Kjwj85steHgWnZaRnRr7npY0Gm-Vp8fwnxIefq4DeqcIe_be9G"/>
 		<h1>WimK.com is free and helpful</h1>
-		<div class = "desc">
-		<p class = "text-centered">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?.</p>
+		<div class = "desc" style="margin-bottom:3%">
+		<p class = "text-centered">“Where is my kid” (WimK) – is a service that track location your child in order to parents know where was his child. Mobile application install to child phone in order to determine child location and send this data to server, which save data in database. Later, parent can view this data. Also parents can create allowed and forbidden areas in order to when his child leave from allowed area or come into forbidden area parent can get a message about this situation. Also SOS button will be on child phone in order to child can report about critical situation.</p>
 		</div>
 		<div style="background:url(http://cs610124.vk.me/u32958192/docs/539a27a6496d/gFM_5z3vVYk.png)">
 		</div>
