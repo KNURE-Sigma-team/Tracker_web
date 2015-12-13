@@ -31,8 +31,10 @@
         <ul class="nav navbar-nav">
         <li><img class = "cover" src = "/wimk/resources/core/images/logo.png" /></li>
         <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
-        <li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
+        <li><a href="<c:url value="/view_points" />" role="button">View geopoints of child</a></li>
         <li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
+        <li><a href="<c:url value="/user_manual" />">Help</a></li>
+        <li><a href="<c:url value="/mobile_user_manual" />">Mobile app info</a></li>
         </ul>
 	<div class = "navbar-right">
 	<sec:authorize access="isAuthenticated()">
@@ -50,7 +52,7 @@
 			<div id="login" style="font-size:14pt"> ${parent.login}</div>
 			Name:
 			<input class = "form-control name" name="name" required="required" pattern="[A-Za-z0-9][A-Za-z0-9 ]{4,16}" value="${parent.name}"/>
-			Removing frequency
+			Your child's points are stored for
 			<div class="input-group form-rf">
 				<input class = "form-control"  id= "removing_frequency" name="removing_frequency" type="text" value="${parent.removingFrequency}"/>
 				<span class="input-group-addon">days</span>

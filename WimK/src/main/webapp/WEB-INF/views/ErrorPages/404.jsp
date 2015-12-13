@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
+<title>Error 404</title>
 </head>
 <body>
 	<div class="http-error-container">
