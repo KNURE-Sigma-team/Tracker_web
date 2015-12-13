@@ -39,9 +39,10 @@
         <ul class="nav navbar-nav">
         <li><img class = "cover" src = "/wimk/resources/core/images/logo.png" /></li>
         <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
-        <li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
+        <li><a href="<c:url value="/view_points" />" role="button">View geopoints of child</a></li>
         <li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
         <li><a href="<c:url value="/user_manual" />">Help</a></li>
+        <li><a href="<c:url value="/mobile_user_manual" />">Mobile app info</a></li>
         </ul>
 	<div class = "navbar-right">
 	<sec:authorize access="isAuthenticated()">

@@ -29,9 +29,10 @@
 			<ul class="nav navbar-nav">
 				<li><img class = "cover" src = "/wimk/resources/core/images/logo.png" /></li>
 				<li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
-				<li><a href="<c:url value="/view_points" />" role="button">View points of child</a></li>
+				<li><a href="<c:url value="/view_points" />" role="button">View geopoints of child</a></li>
 				<li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
 				<li><a href="<c:url value="/user_manual" />">Help</a></li>
+				<li><a href="<c:url value="/mobile_user_manual" />">Mobile app info</a></li>
 			</ul>
 			<div class = "navbar-right">
 				<sec:authorize access="isAuthenticated()">
@@ -55,7 +56,7 @@
 			<a href="#mapView">Map View</a>
 			<ul>
 				<li><a href="#changeMode">change mode</a></li>
-				<li><a href="#viewChildPoints">view child points</a></li>
+				<li><a href="#viewChildPoints">view child geopoints</a></li>
 				<li><a href="#demandCurrentLocationOfChild">demand current location of child</a></li>
 				<li><a href="#addArea">add area</a></li>
 				<li><a href="#changeAreaCenter">change area center</a></li>
@@ -80,48 +81,48 @@
 	<br/>
 	<br/>
 	<h2><a name="terms"/></a>Terms</h2>
-		<p>Point - is point on the map, which contain coordinated, time and battery status. Points are sending by children from phone.</p>
-		<p>Point can be four types:</p>
+		<p>Geopoint - is point on the map, which contain coordinated, time and battery status. Geopoints are sending by children from phone.</p>
+		<p>Geopoint can be four types:</p>
 		<ul style="list-style-type:none">
-			<li>1. Common. It is point which sending from child phone every "child frequency" minutes. Mark as blue point. <img src="/wimk/resources/core/images/points/point.png" /></li>
-			<li>2. SOS. It is point which sending from child phone when you child press SOS button on phone. Mark as big red point. Notification that your child press this button will send on your email.<img src="/wimk/resources/core/images/points/point_sos.png" /></li>
-			<li>3. On demand point. It is point which sending from child phone every case when you press button "Where is my child" on map view. Mark as blue point with red exclamation point inside.<img src="/wimk/resources/core/images/points/point_on_demand.png" /></li>
-			<li>4. Stored point. It is point which can't send on time (Absent connection with WimK service), saved on phone and sending while connection appear. Mark as grey point.<img src="/wimk/resources/core/images/points/point_storaged.png" /></li>
+			<li>1. Common. It is geopoint which sending from child phone every "child frequency" minutes. Mark as blue point. <img src="/wimk/resources/core/images/points/point.png" /></li>
+			<li>2. SOS. It is geopoint which sending from child phone when you child press SOS button on phone. Mark as big red point. Notification that your child press this button will send on your email.<img src="/wimk/resources/core/images/points/point_sos.png" /></li>
+			<li>3. On demand geopoint. It is geopoint which sending from child phone every case when you press button "Where is my child" on map view. Mark as blue point with red exclamation point inside.<img src="/wimk/resources/core/images/points/point_on_demand.png" /></li>
+			<li>4. Stored geopoint. It is geopoint which can't send on time (Absent connection with WimK service), saved on phone and sending while connection appear. Mark as grey point.<img src="/wimk/resources/core/images/points/point_storaged.png" /></li>
 		</ul>
-		<p><b>Note:</b> The maximum phone can save points only for two days.</p>
+		<p><b>Note:</b> The maximum phone can save geopoints only for two days.</p>
 	<p>
 		Area - is area on the map. Area can be allowed and forbidden
-		Forbidden area. If your child send to WimK common point, on demand point or stored point which locate into forbidden area, then WimK send message on your email with information about this situation.
-		Allowed area. If your child send to WimK common point, on demand point or stored point which locate outside all allowed areas, then WimK send message on your email with information about this situation.
+		Forbidden area. If your child send to WimK common geopoint, on demand geopoint or stored geopoint which locate into forbidden area, then WimK send message on your email with information about this situation.
+		Allowed area. If your child send to WimK common geopoint, on demand geopoint or stored geopoint which locate outside all allowed areas, then WimK send message on your email with information about this situation.
 	 </p>
 	
 	<br/>
 	<br/>
 	<h2><a name="mapView"/></a>Map view</h2>
 	<p> 
-		Map view is page where you can view points of your child and add, edit and remove areas. This page contain two modes:
-		1. View mode. In this mode you can view points of child.
+		Map view is page where you can view geopoints of your child and add, edit and remove areas. This page contain two modes:
+		1. View mode. In this mode you can view geopoints of child.
 		2. Edit mode. In this mode you can add, edit and remove areas.
 	</p>
-	<p> To get to the page, press  menu item "View points of child" in top menu </p>
+	<p> To get to the page, press  menu item "View geopoints of child" in top menu </p>
 	
 	<h3><a name="changeMode"/></a>Change mode</h3>
 	<p> For change mode of page, follow next steps: </p> 
 	<p> 1) Press button "Change mode".</p>
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/ChangeMode.png" />
 	
-	<h3><a name="viewChildPoints"/></a>View child points</h3>
-	<p> For view points of child for current day, follow next steps: </p>
+	<h3><a name="viewChildPoints"/></a>View child geopoints</h3>
+	<p> For view geopoints of child for current day, follow next steps: </p>
 	<p> 1) You must be in view mode.</p> 
-	<p> 2) Select child from drop menu "Child", which points you want to view.</p>
+	<p> 2) Select child from drop menu "Child", which geopoints you want to view.</p>
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/ViewChildPoints1.png" />
-	<p> 3) Select date from drop menu "Date", which points you want to view.</p>
+	<p> 3) Select date from drop menu "Date", which geopoints you want to view.</p>
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/ViewChildPoints2.png" />
-	<p> 4) All points for this day will show on the map.</p>
+	<p> 4) All geopoints for this day will show on the map.</p>
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/ViewChildPoints3.png" />
-	<p> <b>Note:</b> Default location of pointer on the map is coordinates of last point, if there are not points then center of the biggest allowed area, otherwise will show center of Earth. </p>
-	<p> <b>Note:</b> If your child sent several points with same coordinates, draw only one point (image which will be image last send point). Information about all points show in point title </p>
-	<p> <b>Note:</b> To get title of point, you must cover point by mouse and wait some time</p>
+	<p> <b>Note:</b> Default location of pointer on the map is coordinates of last geopoint, if there are not geopoints then center of the biggest allowed area, otherwise will show center of Earth. </p>
+	<p> <b>Note:</b> If your child sent several geopoints with same coordinates, draw only one geopoint (image which will be image last send geopoint). Information about all geopoints show in geopoint title </p>
+	<p> <b>Note:</b> To get title of geopoint, you must cover geopoint by mouse and wait some time</p>
 	<p> <b>Note:</b> To scale map use mouse wheel</p>
 	
 	<h3><a name="demandCurrentLocationOfChild"/></a>Demand current location of child</h3>
@@ -133,7 +134,7 @@
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/DemandCurrentLocationOfChild2.png" />
 	<p> 3) Reload page in 1 - 2 minutes. In most browsers, it can do by pressing "F5".</p>
 	<p> <b>Note:</b> If you authorize child in several devices, then will demand location only last child. </p>
-	<p> <b>Note:</b> If you authorize child in several devices and logout last authorize. Point will not demand. </p>
+	<p> <b>Note:</b> If you authorize child in several devices and logout last authorize. Geopoint will not demand. </p>
 	
 	<h3><a name="addArea"/></a>Add area</h3>
 	<p> For add area, follow next steps: </p>
@@ -269,7 +270,7 @@
 	<p> 2) Input your right name in field "Name"</p>
 	<p>	<b>Note:</b> Value of name can contain only latin characters, numbers and symbol of space; and must length between 4 and 16 symbols</p>
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditProfile2.png" />
-	<p>	3) Input removing frequency that you want in field "Removing frequency". Removing frequency is the value of days that our system stores location points of your children.</p>
+	<p>	3) Input removing frequency that you want in field "Removing frequency". Removing frequency is the value of days that our system stores location geopoints of your children.</p>
 	<p> <b>Note:</b> Field "Removing frequency" can contain only numbers. Number in field cannot be smaller than 5 or bigger than 90 days. 
 	<img class="guide_image" src="/wimk/resources/core/images/user_manual/EditProfile3.png" />
 	<p> 4) After filling all fields press button "Change profile" for confirm changes</p>
