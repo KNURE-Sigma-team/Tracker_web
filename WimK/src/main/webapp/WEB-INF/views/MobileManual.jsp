@@ -48,7 +48,7 @@
 	<h1>Manual for mobile application</h1>
 	<br/>
 	<br/>
-	<h2>Guide for installation:</h2>
+	<h2>First stages:</h2>
 	<div>1) Download apk file on your phone.</div>
 	<div>
 		<div>Link for download from our site: </div>
@@ -60,12 +60,69 @@
 	</div>
 	<div>2) In your phone file explorer click on this file.</div>
 	<div>3) During the installation, allow access to the Internet and geolocation services</div>
-	<h3>Possible warnings</h3>
-	<div> On your phone disabled installation of unknown applications: </div>
+	<h3>Possible warnings:</h3>
+	<div> <h4>1. On your phone disabled installation of unknown applications: <h4></div>
 	<div> For resolve this problem. Follow next steps:</div>
 	<div> 1) Go to settings of your phone.</div>
 	<div> 2) Come in "Security" settings.</div>
 	<div> 3) Enable "Unknown sources. Allow installation of non-Market apps.".</div>
+	<br/>
+	<h2>Starting work with program</h2>
+	<div>After installing the application, on your desktop will appear two shortcuts.</div>
+	<br/>
+	<img src="/wimk/resources/core/images/mobile_user_manual/icons.png" />
+	<br/>
+	<br/>
+	<div>First icon, called "WinK", opens the login form of our program. </div>
+	<div>Second icon, called “SOS”, created to provide easy access to SOS button functionality. </div>
+	<br/>
+	<div><b>Warning: “SOS” shortcut will not work until you are logining into the application and selecting the child. If You taped “SOS” shortcut before you are logining, then you will get an error message.</b> </div>
+	<br/>
+	<h2>Login form</h2>
+	<div>After clicking on the “WimK” icon will be open login form of our application. See screenshot.</div>
+	<img src="/wimk/resources/core/images/mobile_user_manual/login_form.png" />
+	<div>This form has two text fields and only one button. To login in application you must input your e-mail and password, which you inputting during registration, in the text fields. After entering this information click on Login button. After successful login you will directed to child selecting form of our application.</div>
+	<br/>
+	<div><b>Note:</b> Registration are available only in web application. If you forgot your password, you can use “Forgot password?” function in our web application. If your account has only one child, after successful login you will directed to main form of our application.</div>
+	<br/>
+	<div><b>Warning: If you will try login on account which didn`t has child, you will get an error message. </b> </div>
+	<br/>
+	<h2>Child selecting form</h2>
+	<br/>
+	<img src="/wimk/resources/core/images/mobile_user_manual/child_selecting_form.png" />
+	<br/>
+	<br/>
+	<div>On this activity you can tap on child’s name for select child, which will tracked by our application.</div>
+	<br/>
+	<h2>Main form</h2>
+	<br/>
+	<img src="/wimk/resources/core/images/mobile_user_manual/main_form.png" />
+	<br/>
+	<br/>
+	<div>This is main form of our application, which provide main functionality. This form has one text label and two buttons. On text label you can see name of your child which tracked on this device at the moment. Here you can start and stop background service, which sending geolocations of your child. </div>
+	<br/>
+	<img src="/wimk/resources/core/images/mobile_user_manual/start_notification.png" />
+	<br/>
+	<br/>
+	<div>Notification like this will inform you about 	status of background service. </div>
+	<br/>
+	<div><b>Note:</b>: If you will try start background service with switched off geolocation, you will directed to geolocation settings form for switched their on.</div>
+	<br/>
+	<div><b>Warning: If you will try start background service with dropped internet connection, geolocation of your child will be storaged on device and you will get an error message.</b></div>
+	<br/>
+	<h2>Widget of SOS button </h2>
+	<br/>
+	<img src="/wimk/resources/core/images/mobile_user_manual/widget.png" />
+	<br/>
+	<br/>
+	<div>This is view of widget of  your desktop. Widget is the comfortable way to provide functionality of SOS button to you. By tapped  on widget, your child can send SOS message to us, and we will inform you on email like this:</div>
+	<br/>
+	<img src="/wimk/resources/core/images/mobile_user_manual/email.png" />
+	<br/>
+	<br/>
+	<br/>
+	<h2>Other Questions</h2>
+	<p>If you did not find there ask on your question. Contact with our support team - company.wimk@gmail.com. </p>
 </div>
 </body>
 </html>
