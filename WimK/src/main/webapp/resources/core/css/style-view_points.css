@@ -23,4 +23,5 @@ html, body {
 #child_avatar{
 	width: 180pt;
 	height: 180pt;
+	margin-top: 20px;
 }
