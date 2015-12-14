@@ -43,7 +43,7 @@
   </nav>
 </sec:authorize>	
  <div class = "container" align="center">
-		<img style="height:200pt" src = "/wimk/resources/core/images/logo.png"/>
+		<img style = "height: 300px;" src = "/wimk/resources/core/images/logo.png"/>
 		<h1>WimK.com is free and helpful</h1>
 		<div class = "desc" style="margin-bottom:3%">
 		<p class = "text-centered">“Where is my kid” (WimK) – is a service that track location your child in order to parents know where was his child. Mobile application install to child phone in order to determine child location and send this data to server, which save data in database. Later, parent can view this data. Also parents can create allowed and forbidden areas in order to when his child leave from allowed area or come into forbidden area parent can get a message about this situation. Also SOS button will be on child phone in order to child can report about critical situation.</p>

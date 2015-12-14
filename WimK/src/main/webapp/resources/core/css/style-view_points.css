@@ -13,7 +13,7 @@ html, body {
 	height: 90%;
 	width: 20%;
 	float: left;
-	margin-top: 5%;
+	margin-top: 7%;
 	padding-bottom: 0;
 	min-height: 100%;
 }
@@ -21,6 +21,7 @@ html, body {
 	display: none;
 }
 #child_avatar{
-	width: 180pt;
-	height: 215pt;
+	width: 120pt;
+	height: 180pt;
+	margin-top: 20px;
 }
