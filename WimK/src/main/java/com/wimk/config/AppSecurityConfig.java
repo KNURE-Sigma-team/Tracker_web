@@ -29,7 +29,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll();
 		http.authorizeRequests()
 				.antMatchers("/add_child/**", "/view_points/**", "/area_editor/**", "/personal_cabinet/**",
-						"/change_password/**", "/edit_profile/**", "/edit_child/**")
+						"/change_password/**", "/edit_profile/**", "/edit_child/**", "/user_manual/**", "/mobile_user_manual/**")
 				.access("hasRole('ROLE_USER')").and();
 
 		http.formLogin().defaultSuccessUrl("/personal_cabinet").loginPage("/login").loginProcessingUrl("/j_spring_security_check").failureUrl("/login?error")
