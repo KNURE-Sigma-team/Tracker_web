@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel = "shortcut icon" href="/wimk/resources/core/images/favicon.ico" />
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'/>	
 
 <spring:url value="/resources/core/js/script-edit_child.js" var="editChildJs" />
 <spring:url value="/resources/core/js/jquery-2.1.4.js" var="jquery" />
@@ -59,7 +59,7 @@
            	<input id="input_child_avatar" type="file" name="avatar" accept="image/jpeg,image/png" onchange="readURL(this);"/>
      		<div id="image_error">${bad_image}</div>
     </div>
-    <div class = "col-md-4">
+    <div class = "col-md-4 edit-child-form">
 	<input name="status" type="hidden" value="edit"/>
 	<table>
 		<tr>
