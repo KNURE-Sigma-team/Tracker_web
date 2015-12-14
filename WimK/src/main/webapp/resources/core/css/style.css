@@ -10,6 +10,23 @@ button.btn {
 
 button.btn-primary,  a.btn-info {
 	padding: 10px 25px;
+	background-color: #40CC40; /*#19ca1a;*/
+}
+
+/* uncomment if for overriding more bright green with bootstraps' green */
+/*
+button.btn, a.btn-info {
+	background-color: #5cb85c;
+}
+*/
+
+button.btn:hover, a.btn-info:hover, button.btn:target, a.btn-info:target {
+	background-color: #449d44;
+}
+
+button.btn-primary:hover,  a.btn-info:hover {
+	padding: 10px 25px;
+	background-color: #2cbb3c;
 }
 
 .form_group {
@@ -219,7 +236,7 @@ div#login {
 	margin: 20px auto;
 }
 
-#registrationForm input, .form-signin input, .restore-form input, input.form-control {
+#registrationForm input, .form-signin input, .restore-form input, input.form-control, :not(#editAreaMenu input) {
 	margin-top: 20px;
 	display: block;
 	border: 0;
@@ -227,7 +244,7 @@ div#login {
     padding: 20px;
     padding-left: 0;
     padding-bottom: 15px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
     border-radius: 0;
     background-color: transparent;
     box-shadow: none;
@@ -257,11 +274,35 @@ div.form_group {
 	margin-bottom: 20px;
 }
 
-.form-signin input:hover, .form-signin input:focus, .restore-form input:focus, input.form-control:focus, input.form-control:hover {
+.form-signin input:hover, .form-signin input:focus, .restore-form input:focus, 
+	input.form-control:focus, input.form-control:hover, 
+	#registrationForm input:hover, #registrationForm input:focus {
 	border-color: rgba(92,184,92,0.5);
 	box-shadow: none;
 }
 
 .restore-form {
 	padding: 20px;
+}
+
+#editProfileForm input {
+	padding-left: 10px;
+	padding-bottom: 10px;
+	font-size: 1.1em;
+}
+
+#editProfileForm span {
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background: #F0F4F7;
+}
+
+#editChildForm input {
+	padding-left: 10px;
+}
+
+#editChildForm span {
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background: #F0F4F7;
 }
