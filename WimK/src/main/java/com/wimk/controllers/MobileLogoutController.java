@@ -18,10 +18,10 @@ import com.wimk.service.ParentService;
 @Controller
 @RequestMapping(value = "/mobile_logout")
 public class MobileLogoutController {
-	
+
 	@Autowired
 	ChildService childService;
-	
+
 	@Autowired
 	ParentService parentService;
 
@@ -39,12 +39,14 @@ public class MobileLogoutController {
 			}
 		}
 		if (child != null) {
-			child.setAuthorizatedNumber(child.getAuthorizatedNumber() - 1);
+			if (child.getAuthorizatedNumber() > 0) {
+				child.setAuthorizatedNumber(child.getAuthorizatedNumber() - 1);
+			}
 			child.setGoogleToken(null);
 			childService.editChild(child);
 			result = "OK";
 		}
 		return result;
 	}
-	
+
 }

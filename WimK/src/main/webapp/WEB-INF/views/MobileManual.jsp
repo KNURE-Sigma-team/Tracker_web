@@ -27,7 +27,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<ul class="nav navbar-nav">
-				<li><img class = "cover" src = "/wimk/resources/core/images/logo.png" /></li>
+				<li><a href="<c:url value="/personal_cabinet" />"><img class = "cover" src = "/wimk/resources/core/images/logo.png" /></a></li>
 				<li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
 				<li><a href="<c:url value="/view_points" />" role="button">View geopoints of child</a></li>
 				<li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
@@ -51,8 +51,12 @@
 	<h2>Guide for installation:</h2>
 	<div>1) Download apk file on your phone.</div>
 	<div>
-		<div>Link for download : </div>
+		<div>Link for download from our site: </div>
 		<div><a href="/wimk/resources/core/distributions/app-debug.apk">app-debug.apk</a></div>
+	</div>
+	<div>
+		<div>Link for download from google drive: </div>
+		<div><a href="https://docs.google.com/uc?authuser=0&id=0B50OqEYAM1b8d0l6U0c3UVNhY1U&export=download">app-debug.apk</a></div>
 	</div>
 	<div>2) In your phone file explorer click on this file.</div>
 	<div>3) During the installation, allow access to the Internet and geolocation services</div>
