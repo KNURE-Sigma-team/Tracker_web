@@ -236,7 +236,8 @@ div#login {
 	margin: 20px auto;
 }
 
-#registrationForm input, .form-signin input, .restore-form input, input.form-control {
+#registrationForm input, .form-signin input, .restore-form input, input.form-control,
+	:not(#editAreaMenu *) {
 	margin-top: 20px;
 	display: block;
 	border: 0;
@@ -275,7 +276,8 @@ div.form_group {
 }
 
 .form-signin input:hover, .form-signin input:focus, .restore-form input:focus, 
-	input.form-control:focus, input.form-control:hover, #registrationForm input:hover, #registrationForm input:focus {
+	input.form-control:focus, input.form-control:hover, 
+	#registrationForm input:hover, #registrationForm input:focus {
 	border-color: rgba(92,184,92,0.5);
 	box-shadow: none;
 }
