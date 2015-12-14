@@ -37,7 +37,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
         <ul class="nav navbar-nav">
-        <li><a href="<c:url value="/personal_cabinet" />"><img class = "cover" src = "/wimk/resources/core/images/logo.png" /></a></li>
+        <li><a href="<c:url value="/personal_cabinet" />" style="padding:  0;"><img class = "cover" src = "/wimk/resources/core/images/logo.png" /></a></li>
         <li><a href="<c:url value="/add_child" />" role="button">Add child</a></li>
         <li><a href="<c:url value="/view_points" />" role="button">View geopoints of child</a></li>
         <li><a href="<c:url value="/personal_cabinet" />" role="button">Personal cabinet</a></li>
