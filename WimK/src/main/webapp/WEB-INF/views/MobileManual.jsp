@@ -56,7 +56,7 @@
 	</div>
 	<div>
 		<div>Link for download from google drive: </div>
-		<div><a href="https://docs.google.com/uc?authuser=0&id=0B50OqEYAM1b8d0l6U0c3UVNhY1U&export=download">app-debug.apk</a></div>
+		<div><a href="https://docs.google.com/uc?authuser=0&id=0B50OqEYAM1b8dmNXYjVQWnI5WHc&export=download">app-debug.apk</a></div>
 	</div>
 	<div>2) In your phone file explorer click on this file.</div>
 	<div>3) During the installation, allow access to the Internet and geolocation services</div>
