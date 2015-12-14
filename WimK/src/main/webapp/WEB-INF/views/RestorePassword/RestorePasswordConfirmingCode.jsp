@@ -24,8 +24,8 @@
 		<div>Please check your email for a message with your code. Your code is 10 characters long.</div>
 		<div><input type="text" class = "form-control" name="code" placeholder = "Security code"/></div>
 		<div><button class = "btn btn-primary pull-right" type="submit"/>Continue </button> </div>
-	</form>
 	<a href="<c:url value="/login" />">Cancel</a>
+	</form>
 	</div>
 </body>
 </html>

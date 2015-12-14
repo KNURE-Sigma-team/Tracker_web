@@ -42,8 +42,9 @@
 				<td><button type="submit" class="btn btn-success">Change password</button></td>
 			</tr>
 		</table>
-	</form>
 	<a href="<c:url value="/login" />">Cancel</a>
+
+	</form>
 	</div>
 	<script src="${pasViewJs}" type="text/javascript"></script>
 </body>

@@ -33,6 +33,8 @@
 			<h2 class = "form-heading">Registration</h2>
 				<form:input placeholder = "E-mail" type="email" required="required" path="login" class= "form-control"/>
                 <form:password placeholder ="Password" class = "form-control" path="password" id="new_password" required="required" title="Strong password must contain digit, big letter, small letter, special character"/>
+                  <div id="new_password_remark">Too short</div>
+    			<div ><img id="new_password_remark_image" src="/wimk/resources/core/images/pasword_strength/invalid_password.png" /></div>
                  <input placeholder = "Confirm password" type="password" id="confirm_password" required="required" class = "form-control" />
                  <div id="confirm_password_remark"></div>
                  <form:input path="name" placeholder = "Username" required="required" pattern="[A-Za-z0-9][A-Za-z0-9 ]{4,16}" class = "form-control"/>
@@ -41,10 +43,6 @@
            <a href="<c:url value="/" />">Back</a>
    </div>
    <div class = "col-md-6">
-    <div class = "col-md-3">
-   <div id="new_password_remark">Too short</div>
-    <div ><img id="new_password_remark_image" src="/wimk/resources/core/images/pasword_strength/invalid_password.png" /></div>
-   </div>
         <div id = error>${error_message}</div>
         <script src="${pasViewJs}" type="text/javascript"></script>
     </div>

@@ -32,8 +32,8 @@
 				<div>${email_not_exist}</div>
 				<button type="submit" class = "btn btn-success">Restore</button>
 			</form>
-		</div>
        <a href="<c:url value="/" />">Back</a>
+		</div>
 	</div>
 	
 </body>
